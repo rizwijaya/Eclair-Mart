@@ -416,12 +416,16 @@
                         <ul class="vertical-nav-menu">
                             <li class="app-sidebar__heading">Dashboards</li>
                             <li>
-                                <a href="index.html" class="mm-active">
+                                <a href="#" class="mm-active">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
-                                    Dashboard Example 1
+                                    Dashboard
+                                </a>
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    Dashboard Pelanggan
                                 </a>
                             </li>
-                            <li class="app-sidebar__heading">UI Components</li>
+                            <!-- <li class="app-sidebar__heading">UI Components</li>
                             <li>
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-diamond"></i>
@@ -592,10 +596,10 @@
                                     <i class="metismenu-icon pe-7s-graph2">
                                     </i>ChartJS
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="app-sidebar__heading">Account</li>
                             <li>
-                                <a href="<?php echo base_url(); ?>users/logout">
+                                <a href="<?php echo base_url(); ?>/users/logout">
                                     <i class="metismenu-icon pe-7s-graph2">
                                     </i>
                                     Logout

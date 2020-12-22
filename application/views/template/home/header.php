@@ -46,19 +46,19 @@
                             <li class="nav-item">
                                 <!-- Link--><a class="nav-link active" href="index.html">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <!-- Link--><a class="nav-link" href="#products">Shop</a>
-                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="#products">Shop</a>
+                            </li> -->
                             <li class="nav-item">
                                 <!-- Link--><a class="nav-link" href="<?php echo base_url(); ?>pelanggan/list_barang">Product</a>
                             </li>
-                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                            <!-- <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                                 <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown"><a class="dropdown-item border-0 transition-link" href="index.html">Homepage</a><a class="dropdown-item border-0 transition-link" href="shop.html">Category</a><a class="dropdown-item border-0 transition-link" href="detail.html">Product detail</a><a class="dropdown-item border-0 transition-link" href="cart.html">Shopping cart</a><a class="dropdown-item border-0 transition-link" href="checkout.html">Checkout</a></div>
-                            </li>
+                            </li> -->
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item"><a class="nav-link" href="cart.html"> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">(2)</small></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a></li>
+                            <!-- <li class="nav-item"><a class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a></li> -->
                             <?php if ($this->session->userdata('id_user')) { ?>
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>users/logout"> <i class="fas fa-user-alt mr-1 text-gray"></i>Logout</a></li>
                             <?php } else { ?>

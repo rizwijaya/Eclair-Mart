@@ -39,7 +39,7 @@
             <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
     </div>
-    <script type="text/javascript" src="<?php echo base_url(); ?>/assets/assets_admin/scripts/main.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>/assets/assets_admin/assets/scripts/main.js"></script>
 </body>
 
 </html>
