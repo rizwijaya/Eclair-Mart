@@ -9,4 +9,18 @@ class Home extends CI_Controller {
         $this->load->view('home');
         $this->load->view('template/home/footer');
 	}
+
+	public function login()
+	{
+		$this->load->view('template/login/header');
+        $this->load->view('login');
+        $this->load->view('template/login/footer');
+	}
+
+	public function register()
+    {
+		$this->load->view('template/login/header');
+        $this->load->view('register');
+        $this->load->view('template/login/footer');
+    }
 }

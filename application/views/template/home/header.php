@@ -59,7 +59,11 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item"><a class="nav-link" href="cart.html"> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">(2)</small></a></li>
                             <li class="nav-item"><a class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+                            <?php if ($this->session->userdata('id_user')) { ?>
+                                <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>users/logout"> <i class="fas fa-user-alt mr-1 text-gray"></i>Logout</a></li>
+                            <?php } else { ?>
+                                <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>home/login"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </nav>
