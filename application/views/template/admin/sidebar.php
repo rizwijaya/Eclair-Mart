@@ -593,12 +593,12 @@
                                     </i>ChartJS
                                 </a>
                             </li>
-                            <li class="app-sidebar__heading">PRO Version</li>
+                            <li class="app-sidebar__heading">Account</li>
                             <li>
-                                <a href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/" target="_blank">
+                                <a href="<?php echo base_url(); ?>users/logout">
                                     <i class="metismenu-icon pe-7s-graph2">
                                     </i>
-                                    Upgrade to PRO
+                                    Logout
                                 </a>
                             </li>
                         </ul>
