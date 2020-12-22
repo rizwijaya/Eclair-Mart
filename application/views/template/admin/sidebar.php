@@ -32,7 +32,7 @@
                 </span>
             </div>
             <div class="app-header__content">
-                <div class="app-header-left">
+                <!-- <div class="app-header-left">
                     <div class="search-wrapper">
                         <div class="input-holder">
                             <input type="text" class="search-input" placeholder="Type to search">
@@ -60,7 +60,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
                         <div class="widget-content p-0">
@@ -72,12 +72,12 @@
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <button type="button" tabindex="0" class="dropdown-item">User Account</button>
+                                            <!-- <button type="button" tabindex="0" class="dropdown-item">User Account</button>
                                             <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                             <h6 tabindex="-1" class="dropdown-header">Header</h6>
                                             <button type="button" tabindex="0" class="dropdown-item">Actions</button>
-                                            <div tabindex="-1" class="dropdown-divider"></div>
-                                            <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
+                                            <div tabindex="-1" class="dropdown-divider"></div> -->
+                                            <a href="<?php echo base_url(); ?>/users/logout" tabindex="0" class="dropdown-item">Logout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -89,11 +89,11 @@
                                         VP People Manager
                                     </div>
                                 </div>
-                                <div class="widget-content-right header-user-info ml-3">
+                                <!-- <div class="widget-content-right header-user-info ml-3">
                                     <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
                                         <i class="fa text-white fa-calendar pr-1 pl-1"></i>
                                     </button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -416,161 +416,38 @@
                         <ul class="vertical-nav-menu">
                             <li class="app-sidebar__heading">Dashboards</li>
                             <li>
-                                <a href="#" class="mm-active">
-                                    <i class="metismenu-icon pe-7s-rocket"></i>
-                                    Dashboard
-                                </a>
-                                <a href="#">
-                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                <?php if ($this->session->userdata('id_grup') == 2) { ?>
+                                    <a href="<?php echo base_url(); ?>pegawai" class="mm-active">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>
+                                        Dashboard
+                                    </a>
+                                <?php } else { ?> 
+                                    <a href="<?php echo base_url(); ?>pemilik" class="mm-active">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>
+                                        Dashboard
+                                    </a>
+                                <?php } ?>
+                                <a href="<?php echo base_url(); ?>home">
+                                    <i class="metismenu-icon pe-7s-pendrive"></i>
                                     Dashboard Pelanggan
                                 </a>
                             </li>
-                            <!-- <li class="app-sidebar__heading">UI Components</li>
+                            <li class="app-sidebar__heading">Kelola</li>
                             <li>
-                                <a href="#">
-                                    <i class="metismenu-icon pe-7s-diamond"></i>
-                                    Elements
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="elements-buttons-standard.html">
-                                            <i class="metismenu-icon"></i>
-                                            Buttons
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="elements-dropdowns.html">
-                                            <i class="metismenu-icon">
-                                            </i>Dropdowns
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="elements-icons.html">
-                                            <i class="metismenu-icon">
-                                            </i>Icons
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="elements-badges-labels.html">
-                                            <i class="metismenu-icon">
-                                            </i>Badges
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="elements-cards.html">
-                                            <i class="metismenu-icon">
-                                            </i>Cards
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="elements-list-group.html">
-                                            <i class="metismenu-icon">
-                                            </i>List Groups
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="elements-navigation.html">
-                                            <i class="metismenu-icon">
-                                            </i>Navigation Menus
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="elements-utilities.html">
-                                            <i class="metismenu-icon">
-                                            </i>Utilities
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="metismenu-icon pe-7s-car"></i>
-                                    Components
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="components-tabs.html">
-                                            <i class="metismenu-icon">
-                                            </i>Tabs
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-accordions.html">
-                                            <i class="metismenu-icon">
-                                            </i>Accordions
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-notifications.html">
-                                            <i class="metismenu-icon">
-                                            </i>Notifications
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-modals.html">
-                                            <i class="metismenu-icon">
-                                            </i>Modals
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-progress-bar.html">
-                                            <i class="metismenu-icon">
-                                            </i>Progress Bar
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-tooltips-popovers.html">
-                                            <i class="metismenu-icon">
-                                            </i>Tooltips &amp; Popovers
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-carousel.html">
-                                            <i class="metismenu-icon">
-                                            </i>Carousel
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-calendar.html">
-                                            <i class="metismenu-icon">
-                                            </i>Calendar
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-pagination.html">
-                                            <i class="metismenu-icon">
-                                            </i>Pagination
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-scrollable-elements.html">
-                                            <i class="metismenu-icon">
-                                            </i>Scrollable
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-maps.html">
-                                            <i class="metismenu-icon">
-                                            </i>Maps
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
                             <li>
                                 <a href="tables-regular.html">
                                     <i class="metismenu-icon pe-7s-display2"></i>
-                                    Tables
+                                    Daftar Barang
                                 </a>
                             </li>
-                            <li class="app-sidebar__heading">Widgets</li>
                             <li>
-                                <a href="dashboard-boxes.html">
-                                    <i class="metismenu-icon pe-7s-display2"></i>
-                                    Dashboard Boxes
+                                <a href="forms-controls.html">
+                                    <i class="metismenu-icon pe-7s-eyedropper">
+                                    </i>Daftar Distributor
                                 </a>
                             </li>
+                            <!-- <li class="app-sidebar__heading">Widgets</li>
+                            
                             <li class="app-sidebar__heading">Forms</li>
                             <li>
                                 <a href="forms-controls.html">
@@ -597,7 +474,7 @@
                                     </i>ChartJS
                                 </a>
                             </li> -->
-                            <li class="app-sidebar__heading">Account</li>
+                            <li class="app-sidebar__heading">Setelan</li>
                             <li>
                                 <a href="<?php echo base_url(); ?>/users/logout">
                                     <i class="metismenu-icon pe-7s-graph2">
