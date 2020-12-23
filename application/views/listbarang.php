@@ -1,8 +1,8 @@
  <!-- TRENDING PRODUCTS-->
  <section class="py-5" id="products" data-aos="fade-up">
      <header>
-         <p class="small text-muted small text-uppercase mb-1">Made the hard way</p>
-         <h2 class="h5 text-uppercase mb-4">Producs in Eclair Mart</h2>
+         <p class="small text-muted small text-uppercase mb-1">Produk di Eclair Mart</p>
+         <h2 class="h5 text-uppercase mb-4">Eclair Mart</h2>
      </header>
      <div class="row">
          <!-- PRODUCT-->
@@ -17,7 +17,7 @@
                          <div class="product-overlay">
                              <ul class="mb-0 list-inline">
                                  <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                                 <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to cart</a></li>
+                                 <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Tambah Ke keranjang</a></li>
                                  <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                              </ul>
                          </div>

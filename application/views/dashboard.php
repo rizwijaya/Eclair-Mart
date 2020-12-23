@@ -4,10 +4,10 @@
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
                                         <div class="widget-heading">Total Orders</div>
-                                        <div class="widget-subheading">Last year expenses</div>
+                                        <div class="widget-subheading">Total Order Bulan Ini</div>
                                     </div>
                                     <div class="widget-content-right">
-                                        <div class="widget-numbers text-white"><span>1896</span></div>
+                                        <div class="widget-numbers text-white"><span>58</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -16,11 +16,11 @@
                             <div class="card mb-3 widget-content bg-arielle-smile">
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
-                                        <div class="widget-heading">Clients</div>
-                                        <div class="widget-subheading">Total Clients Profit</div>
+                                        <div class="widget-heading">Pelanggan</div>
+                                        <div class="widget-subheading">Total Pelanggan Minimarket</div>
                                     </div>
                                     <div class="widget-content-right">
-                                        <div class="widget-numbers text-white"><span>$ 568</span></div>
+                                        <div class="widget-numbers text-white"><span>12</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -29,11 +29,11 @@
                             <div class="card mb-3 widget-content bg-grow-early">
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
-                                        <div class="widget-heading">Followers</div>
-                                        <div class="widget-subheading">People Interested</div>
+                                        <div class="widget-heading">Total Pegawai</div>
+                                        <div class="widget-subheading">Banyak Pegawai</div>
                                     </div>
                                     <div class="widget-content-right">
-                                        <div class="widget-numbers text-white"><span>46%</span></div>
+                                        <div class="widget-numbers text-white"><span>8</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                                 <div class="card-header-tab card-header-tab-animation card-header">
                                     <div class="card-header-title">
                                         <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
-                                        Sales Report
+                                        Grafik Penjualan
                                     </div>
                                     <ul class="nav">
                                         <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">Last</a></li>
@@ -202,7 +202,7 @@
                                 <div class="card-header-tab card-header">
                                     <div class="card-header-title">
                                         <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                        Bandwidth Reports
+                                        Grafik Transaksi
                                     </div>
                                     <div class="btn-actions-pane-right">
                                         <div class="nav">

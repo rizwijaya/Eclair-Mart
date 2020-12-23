@@ -83,10 +83,10 @@
                                 </div>
                                 <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
-                                        Alina Mclourd
+                                        Alfina Ardiyanti
                                     </div>
                                     <div class="widget-subheading">
-                                        VP People Manager
+                                        Pemilik Toko
                                     </div>
                                 </div>
                                 <!-- <div class="widget-content-right header-user-info ml-3">
@@ -496,7 +496,7 @@
                                     </i>
                                 </div>
                                 <div>Eclair Mart
-                                    <div class="page-title-subheading">Eclair Mart adalah toko serbga guna yang menyediakan berbagai kebutuhan anda.
+                                    <div class="page-title-subheading">Eclair Mart adalah toko serba guna yang menyediakan berbagai kebutuhan anda.
                                     </div>
                                 </div>
                             </div>
@@ -509,7 +509,7 @@
                                         <span class="btn-icon-wrapper pr-2 opacity-7">
                                             <i class="fa fa-business-time fa-w-20"></i>
                                         </span>
-                                        Buttons
+                                        Tambah
                                     </button>
                                     <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                         <ul class="nav flex-column">
