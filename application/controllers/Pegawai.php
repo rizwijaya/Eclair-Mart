@@ -9,7 +9,6 @@ class Pegawai extends CI_Controller {
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
         $this->load->view('dashboard');
-        $this->load->view('template/admin/footer');
 	}
 
 	public function distributor()
@@ -20,6 +19,5 @@ class Pegawai extends CI_Controller {
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
         $this->load->view('pegawai/distributor', $data);
-        $this->load->view('template/admin/footer');
 	}
 }

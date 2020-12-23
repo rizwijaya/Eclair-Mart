@@ -17,50 +17,12 @@
                         <i class="fa fa-star"></i>
                     </button>
                     <div class="d-inline-block dropdown">
-                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
+                        <button type="button" data-toggle="modal" data-target="#tambah_barang" class="btn-shadow btn btn-info">
                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                 <i class="fa fa-business-time fa-w-20"></i>
                             </span>
                             Tambah Barang
                         </button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a href="javascript:void(0);" class="nav-link">
-                                        <i class="nav-link-icon lnr-inbox"></i>
-                                        <span>
-                                            Inbox
-                                        </span>
-                                        <div class="ml-auto badge badge-pill badge-secondary">86</div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="javascript:void(0);" class="nav-link">
-                                        <i class="nav-link-icon lnr-book"></i>
-                                        <span>
-                                            Book
-                                        </span>
-                                        <div class="ml-auto badge badge-pill badge-danger">5</div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="javascript:void(0);" class="nav-link">
-                                        <i class="nav-link-icon lnr-picture"></i>
-                                        <span>
-                                            Picture
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a disabled href="javascript:void(0);" class="nav-link disabled">
-                                        <i class="nav-link-icon lnr-file-empty"></i>
-                                        <span>
-                                            File Disabled
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -70,6 +32,7 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Daftar Barang</h5>
+                        <p><?php echo $this->session->flashdata('pesan'); ?></p>
                         <table class="mb-0 table table-striped">
                             <thead>
                                 <tr>
@@ -78,6 +41,7 @@
                                     <th>Nama Barang</th>
                                     <th>Jumlah</th>
                                     <th>Harga</th>
+                                    <th>Status</th>
                                     <th>Kelola</th>
                                 </tr>
                             </thead>
@@ -92,6 +56,12 @@
                                         <td><?= $u->nama_barang ?></td>
                                         <td><?= $u->jumlah ?></td>
                                         <td>Rp. <?php echo number_format($u->harga, 0, ',', '.'); ?></td>
+                                        <td><?php if ($u->status_barang == 0) { ?>
+                                                Tidak Tersedia
+                                            <?php } else { ?>
+                                                Tersedia
+                                            <?php } ?>
+                                        </td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>
                                             <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash" onclick="return confirm('Yakin untuk menghapus?')"></i></a>
@@ -106,3 +76,124 @@
             </div>
         </div>
     </div>
+    <div class="app-wrapper-footer">
+        <div class="app-footer">
+            <div class="app-footer__inner">
+                <div class="app-footer-left">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="javascript:void(0);" class="nav-link">
+                                Footer Link 1
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript:void(0);" class="nav-link">
+                                Footer Link 2
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="app-footer-right">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="javascript:void(0);" class="nav-link">
+                                Footer Link 3
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript:void(0);" class="nav-link">
+                                <div class="badge badge-success mr-1 ml-0">
+                                    <small>NEW</small>
+                                </div>
+                                Footer Link 4
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+</div>
+</div>
+<script type="text/javascript" src="<?php echo base_url(); ?>/assets/assets_admin/assets/scripts/main.js"></script>
+<!-- Modal Tambah Data -->
+<div class="modal fade" id="tambah_barang" tabindex="-1" role="dialog" aria-labelledby="tambah_barang" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambah_barang">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?php echo base_url(); ?>barang/tambah_barang" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label class="form-control-label" for="nama_barang">Nama Barang</label>
+                        <input type="text" class="form-control" id="nama_barang" name="nama_barang" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="harga">Harga</label>
+                        <input type="number" class="form-control" id="harga" name="harga" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="jumlah">Jumlah</label>
+                        <input type="number" class="form-control" id="jumlah" name="jumlah" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="status">Status</label>
+                        <select class="form-control" name="status" id="status">
+                            <option value="">Pilih Status</option>
+                            <option value="1">Tersedia</option>
+                            <option value="0">Tidak Tersedia</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="distributor">Distributor</label>
+                                <select class="form-control" id="distributor" name="distributor" required="">
+                                    <option value="">Pilih Distributor</option>
+                                    <?php foreach ($distributor as $db) : ?>
+                                        <option value="<?= $db->id_distributor ?>"><?= $db->nama_perusahaan ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="kategori">Kategori Barang</label>
+                                <select class="form-control" id="kategori" name="kategori" required="">
+                                    <option value="">Pilih Kategori Barang</option>
+                                    <?php foreach ($kategori as $kt) : ?>
+                                        <option value="<?= $kt->id_kategori ?>"><?= $kt->nama_kategori ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <label>Upload Gambar</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input form-control" id="gambar" name="gambar" required="">
+                        <label class="custom-file-label" for="gambar">Pilih File</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="deskripsi">Deskripsi Barang</label>
+                        <textarea class="form-control" name="deskripsi" required="" id="deskripsi" placeholder="Deskripsi Singkat Barang (Maksimal 200 Kata) ... "></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="reset" class="btn btn-danger">reset</button>
+                <button type="submit" name="submit" id="submit" class="btn btn-primary">Tambah Data</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+<!--End Modal Tambah -->
+</body>
+
+</html>

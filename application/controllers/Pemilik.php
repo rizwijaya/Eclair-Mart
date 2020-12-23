@@ -9,6 +9,5 @@ class Pemilik extends CI_Controller {
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
         $this->load->view('dashboard');
-        $this->load->view('template/admin/footer');
 	}
 }

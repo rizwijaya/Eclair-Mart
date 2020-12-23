@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Des 2020 pada 01.19
+-- Waktu pembuatan: 23 Des 2020 pada 06.32
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.33
 
@@ -33,19 +33,25 @@ CREATE TABLE `barang` (
   `nama_barang` varchar(100) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
   `harga` int(11) DEFAULT NULL,
+  `status_barang` int(11) NOT NULL,
   `id_kategori` int(11) NOT NULL,
-  `photo_barang` char(50) DEFAULT NULL
+  `photo_barang` char(50) DEFAULT NULL,
+  `deskripsi_barang` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `barang`
 --
 
-INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `harga`, `id_kategori`, `photo_barang`) VALUES
-(3, 1, 'sikat', 100, 15000, 0, 'default.jpg'),
-(4, 2, 'meja', 100, 100000, 0, 'default.jpg'),
-(5, 1, 'sabun', 100, 10000, 0, 'default.jpg'),
-(6, 2, 'kursi', 100, 85000, 0, 'default.jpg');
+INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `harga`, `status_barang`, `id_kategori`, `photo_barang`, `deskripsi_barang`) VALUES
+(3, 1, 'sikat', 100, 15000, 0, 0, 'default.jpg', ''),
+(4, 2, 'meja', 100, 100000, 0, 0, 'default.jpg', ''),
+(5, 1, 'sabun', 100, 10000, 0, 0, 'default.jpg', ''),
+(6, 2, 'kursi', 100, 85000, 0, 0, 'default.jpg', ''),
+(7, 1, 'Dancow Fortigo', 45, 120000, 1, 2, 'dancow1.png', 'Dancow Fortigo adalah produk susu unggulan'),
+(8, 2, 'Dancow', 45, 12500, 1, 2, 'dancow2.png', 'dancow adalah susu'),
+(9, 1, 'Nugget', 23, 12500, 0, 2, 'nugget.png', 'Nugget AYAM'),
+(10, 1, 'Nugget', 23, 12500, 0, 2, 'nugget1.png', 'Nugget AYAM');
 
 -- --------------------------------------------------------
 
@@ -55,7 +61,9 @@ INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `h
 
 CREATE TABLE `distributor` (
   `id_distributor` int(11) NOT NULL,
-  `nama_distributor` varchar(100) DEFAULT NULL,
+  `nama_perusahaan` varchar(100) DEFAULT NULL,
+  `nama_distributor` varchar(100) NOT NULL,
+  `no_telp_distributor` varchar(50) NOT NULL,
   `date_created` timestamp NULL DEFAULT current_timestamp(),
   `data_updated` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -64,9 +72,9 @@ CREATE TABLE `distributor` (
 -- Dumping data untuk tabel `distributor`
 --
 
-INSERT INTO `distributor` (`id_distributor`, `nama_distributor`, `date_created`, `data_updated`) VALUES
-(1, 'PT Unilever Indonesia', '2020-12-23 00:09:10', '2020-12-23 00:08:39'),
-(2, 'PT Coca Cola', '2020-12-23 00:09:10', '2020-12-23 00:08:39');
+INSERT INTO `distributor` (`id_distributor`, `nama_perusahaan`, `nama_distributor`, `no_telp_distributor`, `date_created`, `data_updated`) VALUES
+(1, 'PT Unilever Indonesia', 'Rahmat Dianto', '086574837413', '2020-12-23 00:09:10', '2020-12-23 00:08:39'),
+(2, 'PT Coca Cola', 'Roy Martin', '085473283212', '2020-12-23 00:09:10', '2020-12-23 00:08:39');
 
 -- --------------------------------------------------------
 
@@ -101,6 +109,14 @@ CREATE TABLE `kategori` (
   `nama_kategori` varchar(200) NOT NULL,
   `date_created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `kode_kategori`, `nama_kategori`, `date_created`) VALUES
+(1, 'MKR', 'Makanan Ringan', '2020-12-23'),
+(2, 'MIN', 'Minuman', '2020-12-23');
 
 -- --------------------------------------------------------
 
@@ -254,7 +270,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `distributor`
@@ -272,7 +288,7 @@ ALTER TABLE `grup`
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `pegawai`

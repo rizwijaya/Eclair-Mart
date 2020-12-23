@@ -421,7 +421,7 @@
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Dashboard
                                     </a>
-                                <?php } else { ?> 
+                                <?php } else { ?>
                                     <a href="<?php echo base_url(); ?>pemilik" class="mm-active">
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Dashboard
