@@ -6,7 +6,7 @@ class Barang_model extends CI_Model
         $query = $this->db->get('barang');
         return $query;
     }
-    
+
     function select_category()
     {
         $query = $this->db->get('kategori');
@@ -22,5 +22,11 @@ class Barang_model extends CI_Model
     function tambah_barang($data, $table)
     {
         $this->db->insert($table, $data);
+    }
+
+    function select_barang_byid($id)
+    {
+        $query = $this->db->get('distributor');
+        return $query;
     }
 }

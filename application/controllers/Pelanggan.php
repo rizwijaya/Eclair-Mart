@@ -27,4 +27,13 @@ class Pelanggan extends CI_Controller
 		$this->load->view('listbarang', $data);
 		$this->load->view('template/home/footer');
 	}
+
+	public function detail_barang($data)
+	{
+		$this->load->view('template/home/header');
+		$data['barang'] = $this->barang_model->select_barang()->result();
+		//var_dump($data);
+		$this->load->view('detail_barang', $data);
+		$this->load->view('template/home/footer');
+	}
 }

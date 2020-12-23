@@ -65,8 +65,8 @@ class Pegawai extends CI_Controller
 				'nama_distributor'		=>   $nama_distributor,
 				'no_telp_distributor'	    	=>   $nomor_telepon,
 				'status_distributor'			=>   $status,
-				'date_created'			=> date('d-m-Y'),
-				'date_updated'			=> date('d-m-Y')
+				'date_created'			=> now('Asia/Jakarta'),
+				'date_updated'			=> now('Asia/Jakarta')
 			);
 
 			$que = $this->pegawai_model->tambah_distributor($data, 'distributor');
