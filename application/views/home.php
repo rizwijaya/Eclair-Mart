@@ -81,8 +81,8 @@
                                   </ul>
                               </div>
                           </div>
-                          <h6> <a class="reset-anchor" href="detail.html">Kui Ye Chen’s AirPods</a></h6>
-                          <p class="small text-muted">$250</p>
+                          <h6> <a class="reset-anchor" href="detail.html">Meja Lipat Laptop Original</a></h6>
+                          <p class="small text-muted">Rp.53.500</p>
                       </div>
                   </div>
                   <!-- PRODUCT-->
@@ -98,8 +98,8 @@
                                   </ul>
                               </div>
                           </div>
-                          <h6> <a class="reset-anchor" href="detail.html">Air Jordan 12 gym red</a></h6>
-                          <p class="small text-muted">$300</p>
+                          <h6> <a class="reset-anchor" href="detail.html">Dancow Fortigo</a></h6>
+                          <p class="small text-muted">Rp.120.000</p>
                       </div>
                   </div>
                   <!-- PRODUCT-->
@@ -115,8 +115,8 @@
                                   </ul>
                               </div>
                           </div>
-                          <h6> <a class="reset-anchor" href="detail.html">Cyan cotton t-shirt</a></h6>
-                          <p class="small text-muted">$25</p>
+                          <h6> <a class="reset-anchor" href="detail.html">Nugget</a></h6>
+                          <p class="small text-muted">Rp.12.500</p>
                       </div>
                   </div>
                   <!-- PRODUCT-->
@@ -132,8 +132,8 @@
                                   </ul>
                               </div>
                           </div>
-                          <h6> <a class="reset-anchor" href="detail.html">Timex Unisex Originals</a></h6>
-                          <p class="small text-muted">$351</p>
+                          <h6> <a class="reset-anchor" href="detail.html">Kursi Cafe Minimalis Olymplast</a></h6>
+                          <p class="small text-muted">Rp.294.000</p>
                       </div>
                   </div>
                   <!-- PRODUCT-->
@@ -149,8 +149,8 @@
                                   </ul>
                               </div>
                           </div>
-                          <h6> <a class="reset-anchor" href="detail.html">Red digital smartwatch</a></h6>
-                          <p class="small text-muted">$250</p>
+                          <h6> <a class="reset-anchor" href="detail.html">Sikat Baju W-20930</a></h6>
+                          <p class="small text-muted">Rp.19.900</p>
                       </div>
                   </div>
                   <!-- PRODUCT-->
@@ -166,8 +166,8 @@
                                   </ul>
                               </div>
                           </div>
-                          <h6> <a class="reset-anchor" href="detail.html">Nike air max 95</a></h6>
-                          <p class="small text-muted">$300</p>
+                          <h6> <a class="reset-anchor" href="detail.html">Sabun Detol Lasting Fresh</a></h6>
+                          <p class="small text-muted">Rp.7000</p>
                       </div>
                   </div>
                   <!-- PRODUCT-->
