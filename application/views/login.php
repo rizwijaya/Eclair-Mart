@@ -10,7 +10,7 @@
           <div class="col-md-7">
             <div class="card-body">
               <div class="brand-wrapper">
-                <img src="<?php echo base_url(); ?>/assets/assets_login_register/images/logo.svg" alt="logo" class="logo">
+                <img src="<?php echo base_url(); ?>/assets/assets_login_register/images/logo3.svg" alt="logo" class="logo">
               </div>
               <p class="login-card-description">Login</p>
               <p><?php echo $this->session->flashdata('pesan'); ?></p>
