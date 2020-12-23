@@ -45,10 +45,10 @@ class Pegawai extends CI_Controller
 
 	public function tambah_distributor()
 	{
+
 		$this->load->helper(array('form', 'url', 'security', 'date'));
 		$this->load->library(array('form_validation'));
 		$this->load->model('pegawai_model');
-
 		$this->_rules_tambah_distributor();
 		if ($this->form_validation->run() == FALSE) {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-error alert-danger fade show" role="alert">Kesalahan, Input tidak sesuai!</div>');
@@ -65,8 +65,8 @@ class Pegawai extends CI_Controller
 				'nama_distributor'		=>   $nama_distributor,
 				'no_telp_distributor'	    	=>   $nomor_telepon,
 				'status_distributor'			=>   $status,
-				'date_created'			=> now(),
-				'date_updated'			=> now()
+				'date_created'			=> date('d-m-Y'),
+				'date_updated'			=> date('d-m-Y')
 			);
 
 			$que = $this->pegawai_model->tambah_distributor($data, 'distributor');
