@@ -81,13 +81,8 @@
                                   </ul>
                               </div>
                           </div>
-<<<<<<< HEAD
                           <h6> <a class="reset-anchor" href="detail.html">Meja Lipat Portable </a></h6>
                           <p class="small text-muted">Rp70.000</p>
-=======
-                          <h6> <a class="reset-anchor" href="detail.html">Meja Lipat Laptop Original</a></h6>
-                          <p class="small text-muted">Rp.53.500</p>
->>>>>>> 065011ad75451c11639ff004a28f8012ae8a0041
                       </div>
                   </div>
                   <!-- PRODUCT-->
@@ -103,13 +98,8 @@
                                   </ul>
                               </div>
                           </div>
-<<<<<<< HEAD
                           <h6> <a class="reset-anchor" href="detail.html">Nestle Dancow FortiGro Instant Full Cream 800gr</a></h6>
                           <p class="small text-muted">Rp67.000</p>
-=======
-                          <h6> <a class="reset-anchor" href="detail.html">Dancow Fortigo</a></h6>
-                          <p class="small text-muted">Rp.120.000</p>
->>>>>>> 065011ad75451c11639ff004a28f8012ae8a0041
                       </div>
                   </div>
                   <!-- PRODUCT-->
@@ -125,13 +115,8 @@
                                   </ul>
                               </div>
                           </div>
-<<<<<<< HEAD
                           <h6> <a class="reset-anchor" href="detail.html">Chicken Nugget Belfoods 250 gram</a></h6>
                           <p class="small text-muted">Rp15.000</p>
-=======
-                          <h6> <a class="reset-anchor" href="detail.html">Nugget</a></h6>
-                          <p class="small text-muted">Rp.12.500</p>
->>>>>>> 065011ad75451c11639ff004a28f8012ae8a0041
                       </div>
                   </div>
                   <!-- PRODUCT-->
@@ -147,13 +132,8 @@
                                   </ul>
                               </div>
                           </div>
-<<<<<<< HEAD
                           <h6> <a class="reset-anchor" href="detail.html">Kursi Olymplast Milenial Dacey Cessi</a></h6>
                           <p class="small text-muted">Rp250.000</p>
-=======
-                          <h6> <a class="reset-anchor" href="detail.html">Kursi Cafe Minimalis Olymplast</a></h6>
-                          <p class="small text-muted">Rp.294.000</p>
->>>>>>> 065011ad75451c11639ff004a28f8012ae8a0041
                       </div>
                   </div>
                   <!-- PRODUCT-->
@@ -169,13 +149,8 @@
                                   </ul>
                               </div>
                           </div>
-<<<<<<< HEAD
                           <h6> <a class="reset-anchor" href="detail.html">Bagus Sikat Pahlawan</a></h6>
                           <p class="small text-muted">Rp20.000</p>
-=======
-                          <h6> <a class="reset-anchor" href="detail.html">Sikat Baju W-20930</a></h6>
-                          <p class="small text-muted">Rp.19.900</p>
->>>>>>> 065011ad75451c11639ff004a28f8012ae8a0041
                       </div>
                   </div>
                   <!-- PRODUCT-->
@@ -191,13 +166,8 @@
                                   </ul>
                               </div>
                           </div>
-<<<<<<< HEAD
                           <h6> <a class="reset-anchor" href="detail.html">Dettol Soap Lasting Fresh 105g</a></h6>
                           <p class="small text-muted">Rp5.500</p>
-=======
-                          <h6> <a class="reset-anchor" href="detail.html">Sabun Detol Lasting Fresh</a></h6>
-                          <p class="small text-muted">Rp.7000</p>
->>>>>>> 065011ad75451c11639ff004a28f8012ae8a0041
                       </div>
                   </div>
                   <!-- PRODUCT-->
