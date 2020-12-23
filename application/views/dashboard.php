@@ -4,10 +4,9 @@
             <div class="page-title-wrapper">
                 <div class="page-title-heading">
                     <div class="page-title-icon">
-                        <i class="pe-7s-car icon-gradient bg-mean-fruit">
-                        </i>
+                    <img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_admin/assets/images/logo.svg">
                     </div>
-                    <div>Eclair Mart
+                    <div><strong>Eclair-Mart</strong>
                         <div class="page-title-subheading">Eclair Mart adalah toko serba guna yang menyediakan berbagai kebutuhan anda.
                         </div>
                     </div>

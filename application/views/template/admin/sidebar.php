@@ -382,7 +382,7 @@
         <div class="app-main">
             <div class="app-sidebar sidebar-shadow">
                 <div class="app-header__logo">
-                    <div class="logo-src"></div>
+                    <img src="<?php echo base_url(); ?>/assets/assets_admin/assets/images/logo3.svg" alt="logo" class="logo">
                     <div class="header__pane ml-auto">
                         <div>
                             <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
