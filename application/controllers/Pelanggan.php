@@ -7,7 +7,7 @@ class Pelanggan extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('barang');
+		$this->load->model('barang_model');
 		$this->load->helper('url');
 	}
 
@@ -22,7 +22,7 @@ class Pelanggan extends CI_Controller
 	public function list_barang()
 	{
 		$this->load->view('template/home/header');
-		$data['barang'] = $this->barang->select_barang()->result();
+		$data['barang'] = $this->barang_model->select_barang()->result();
 		//var_dump($data);
 		$this->load->view('listbarang', $data);
 		$this->load->view('template/home/footer');
