@@ -17,7 +17,7 @@
                         <i class="fa fa-star"></i>
                     </button>
                     <div class="d-inline-block dropdown">
-                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
+                        <button type="button" data-toggle="modal" data-target="#tambah_distributor" class="btn-shadow btn btn-info">
                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                 <i class="fa fa-business-time fa-w-20"></i>
                             </span>
@@ -148,28 +148,28 @@
 </div>
 <script type="text/javascript" src="<?php echo base_url(); ?>/assets/assets_admin/assets/scripts/main.js"></script>
 <!-- Modal Tambah Data -->
-<div class="modal fade" id="tambah_barang" tabindex="-1" role="dialog" aria-labelledby="tambah_barang" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="tambah_distributor" tabindex="-1" role="dialog" aria-labelledby="tambah_distributor" style="display: none;" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambah_barang">Modal title</h5>
+                <h5 class="modal-title" id="tambah_distributor">Modal title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url(); ?>pegawai/tambah_distributor" method="post">
                     <div class="form-group">
-                        <label class="form-control-label" for="nama_barang">Nama Barang</label>
-                        <input type="text" class="form-control" id="nama_barang" name="nama_barang" required="">
+                        <label class="form-control-label" for="nama_perusahaan">Nama Perusahaan</label>
+                        <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" required="">
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" for="harga">Harga</label>
-                        <input type="number" class="form-control" id="harga" name="harga" required="">
+                        <label class="form-control-label" for="nama_distributor">Nama Distributor</label>
+                        <input type="text" class="form-control" id="nama_distributor" name="nama_distributor" required="">
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" for="jumlah">Jumlah</label>
-                        <input type="number" class="form-control" id="jumlah" name="jumlah" required="">
+                        <label class="form-control-label" for="nomor_telepon">Nomor Telepon</label>
+                        <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon" required="">
                     </div>
                     <div class="form-group">
                         <label class="form-control-label" for="status">Status</label>
@@ -178,35 +178,6 @@
                             <option value="1">Tersedia</option>
                             <option value="0">Tidak Tersedia</option>
                         </select>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-control-label" for="type">Distributor</label>
-                                <select class="form-control" id="kode_type" name="kode_type" required="">
-                                    <option value="">Pilih Distributor</option>
-                                    <!-- <?php foreach ($data['type'] as $tp) : ?>
-                                        <option value="<?= $tp['kode_type'] ?>"><?= $tp['nama_type'] ?></option>
-                                    <?php endforeach; ?> -->
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-control-label" for="type">Kategori Barang</label>
-                                <select class="form-control" id="kode_type" name="kode_type" required="">
-                                    <option value="">Pilih Kategori Barang</option>
-                                    <!-- <?php foreach ($data['type'] as $tp) : ?>
-                                        <option value="<?= $tp['kode_type'] ?>"><?= $tp['nama_type'] ?></option>
-                                    <?php endforeach; ?> -->
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <label>Upload Gambar</label>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input form-control" id="gambar" name="gambar" required="">
-                        <label class="custom-file-label" for="gambar">Pilih File</label>
                     </div>
             </div>
             <div class="modal-footer">
