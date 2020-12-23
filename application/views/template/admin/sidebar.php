@@ -435,13 +435,13 @@
                             <li class="app-sidebar__heading">Kelola</li>
                             <li>
                             <li>
-                                <a href="tables-regular.html">
+                                <a href="<?php echo base_url(); ?>barang">
                                     <i class="metismenu-icon pe-7s-display2"></i>
                                     Daftar Barang
                                 </a>
                             </li>
                             <li>
-                                <a href="forms-controls.html">
+                                <a href="<?php echo base_url(); ?>pegawai/distributor">
                                     <i class="metismenu-icon pe-7s-eyedropper">
                                     </i>Daftar Distributor
                                 </a>
@@ -495,8 +495,8 @@
                                     <i class="pe-7s-car icon-gradient bg-mean-fruit">
                                     </i>
                                 </div>
-                                <div>Analytics Dashboard
-                                    <div class="page-title-subheading">This is an example dashboard created using build-in elements and components.
+                                <div>Eclair Mart
+                                    <div class="page-title-subheading">Eclair Mart adalah toko serbga guna yang menyediakan berbagai kebutuhan anda.
                                     </div>
                                 </div>
                             </div>

@@ -23,7 +23,7 @@
                          </div>
                      </div>
                      <h6> <a class="reset-anchor" href="detail.html"><?php echo $u->nama_barang ?></a></h6>
-                     <p class="small text-muted"><?php echo $u->harga ?></p>
+                     <p class="small text-muted">Rp. <?php echo number_format($u->harga, 0, ',', '.'); ?></p>
                  </div>
              </div>
          <?php } ?>
