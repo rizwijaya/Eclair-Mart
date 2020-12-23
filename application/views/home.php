@@ -72,7 +72,7 @@
                   <div class="col-xl-3 col-lg-4 col-sm-6">
                       <div class="product text-center">
                           <div class="position-relative mb-3">
-                              <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_home/img/product-1.jpg" alt="..."></a>
+                              <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_home/img/meja.png" alt="..."></a>
                               <div class="product-overlay">
                                   <ul class="mb-0 list-inline">
                                       <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -123,7 +123,7 @@
                   <div class="col-xl-3 col-lg-4 col-sm-6">
                       <div class="product text-center">
                           <div class="position-relative mb-3">
-                              <div class="badge text-white badge-info">New</div><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_home/img/product-4.jpg" alt="..."></a>
+                              <div class="badge text-white badge-info">New</div><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_home/img/kursi.png" alt="..."></a>
                               <div class="product-overlay">
                                   <ul class="mb-0 list-inline">
                                       <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -140,7 +140,7 @@
                   <div class="col-xl-3 col-lg-4 col-sm-6">
                       <div class="product text-center">
                           <div class="position-relative mb-3">
-                              <div class="badge text-white badge-danger">Sold</div><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_home/img/product-5.jpg" alt="..."></a>
+                              <div class="badge text-white badge-danger">Sold</div><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_home/img/sikat.png" alt="..."></a>
                               <div class="product-overlay">
                                   <ul class="mb-0 list-inline">
                                       <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -157,7 +157,7 @@
                   <div class="col-xl-3 col-lg-4 col-sm-6">
                       <div class="product text-center">
                           <div class="position-relative mb-3">
-                              <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_home/img/product-6.jpg" alt="..."></a>
+                              <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_home/img/sabundetol.png" alt="..."></a>
                               <div class="product-overlay">
                                   <ul class="mb-0 list-inline">
                                       <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
