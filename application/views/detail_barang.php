@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="row align-items-stretch">
-                        <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(img/product-5.jpg)" href="img/product-5.jpg" data-lightbox="productview" title="Red digital smartwatch"></a><a class="d-none" href="img/product-5-alt-1.jpg" title="Red digital smartwatch" data-lightbox="productview"></a><a class="d-none" href="img/product-5-alt-2.jpg" title="Red digital smartwatch" data-lightbox="productview"></a></div>
+                        <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>)" href="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>" data-lightbox="productview" title="Red digital smartwatch"></a><a class="d-none" href="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>" title="Red digital smartwatch" data-lightbox="productview"></a><a class="d-none" href="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>" title="Red digital smartwatch" data-lightbox="productview"></a></div>
                         <div class="col-lg-6">
                             <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                             <div class="p-5 my-md-4">
@@ -16,9 +16,9 @@
                                     <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                                     <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                                 </ul>
-                                <h2 class="h4">Red digital smartwatch</h2>
-                                <p class="text-muted">$250</p>
-                                <p class="text-small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.</p>
+                                <h2 class="h4"><?php echo $u->nama_barang ?></h2>
+                                <p class="text-muted">$Rp. <?php echo $u->harga ?></p>
+                                <p class="text-small mb-4"><?php echo $u->deskripsi_barang ?></p>
                                 <div class="row align-items-stretch mb-4">
                                     <div class="col-sm-7 pr-sm-0">
                                         <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
