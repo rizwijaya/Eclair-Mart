@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Des 2020 pada 15.05
+-- Waktu pembuatan: 23 Des 2020 pada 01.19
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.33
 
@@ -33,8 +33,19 @@ CREATE TABLE `barang` (
   `nama_barang` varchar(100) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
   `harga` int(11) DEFAULT NULL,
+  `id_kategori` int(11) NOT NULL,
   `photo_barang` char(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `barang`
+--
+
+INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `harga`, `id_kategori`, `photo_barang`) VALUES
+(3, 1, 'sikat', 100, 15000, 0, 'default.jpg'),
+(4, 2, 'meja', 100, 100000, 0, 'default.jpg'),
+(5, 1, 'sabun', 100, 10000, 0, 'default.jpg'),
+(6, 2, 'kursi', 100, 85000, 0, 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -48,6 +59,14 @@ CREATE TABLE `distributor` (
   `date_created` timestamp NULL DEFAULT current_timestamp(),
   `data_updated` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `distributor`
+--
+
+INSERT INTO `distributor` (`id_distributor`, `nama_distributor`, `date_created`, `data_updated`) VALUES
+(1, 'PT Unilever Indonesia', '2020-12-23 00:09:10', '2020-12-23 00:08:39'),
+(2, 'PT Coca Cola', '2020-12-23 00:09:10', '2020-12-23 00:08:39');
 
 -- --------------------------------------------------------
 
@@ -69,6 +88,19 @@ INSERT INTO `grup` (`id_grup`, `nama_grup`, `date_created`) VALUES
 (1, 'pemilik', '2020-12-22'),
 (2, 'pegawai', '2020-12-22'),
 (3, 'pelanggan', '2020-12-22');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id_kategori` int(11) NOT NULL,
+  `kode_kategori` varchar(10) NOT NULL,
+  `nama_kategori` varchar(200) NOT NULL,
+  `date_created` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -157,8 +189,7 @@ INSERT INTO `users` (`id_user`, `id_grup`, `nama`, `email`, `password`, `date_cr
 -- Indeks untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  ADD PRIMARY KEY (`id_barang`),
-  ADD KEY `BARANG_DISTRIBUTOR` (`id_distributor`);
+  ADD PRIMARY KEY (`id_barang`);
 
 --
 -- Indeks untuk tabel `distributor`
@@ -171,6 +202,12 @@ ALTER TABLE `distributor`
 --
 ALTER TABLE `grup`
   ADD PRIMARY KEY (`id_grup`);
+
+--
+-- Indeks untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id_kategori`);
 
 --
 -- Indeks untuk tabel `pegawai`
@@ -198,9 +235,9 @@ ALTER TABLE `pemilik`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
-  ADD KEY `TRANSAKSI_PELANGGAN` (`id_pelanggan`),
+  ADD KEY `TRANSAKSI_BARANG` (`id_barang`),
   ADD KEY `TRANSAKSI_PEGAWAI` (`id_pegawai`),
-  ADD KEY `TRANSAKSI_BARANG` (`id_barang`);
+  ADD KEY `TRANSAKSI_PELANGGAN` (`id_pelanggan`);
 
 --
 -- Indeks untuk tabel `users`
@@ -217,19 +254,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `distributor`
 --
 ALTER TABLE `distributor`
-  MODIFY `id_distributor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_distributor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `grup`
 --
 ALTER TABLE `grup`
   MODIFY `id_grup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `pegawai`
@@ -266,12 +309,6 @@ ALTER TABLE `users`
 --
 
 --
--- Ketidakleluasaan untuk tabel `barang`
---
-ALTER TABLE `barang`
-  ADD CONSTRAINT `BARANG_DISTRIBUTOR` FOREIGN KEY (`id_distributor`) REFERENCES `distributor` (`id_distributor`);
-
---
 -- Ketidakleluasaan untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
@@ -287,21 +324,21 @@ ALTER TABLE `pelanggan`
 -- Ketidakleluasaan untuk tabel `pemilik`
 --
 ALTER TABLE `pemilik`
-  ADD CONSTRAINT `PEMILIK_USER` FOREIGN KEY (`ID_USER`) REFERENCES `users` (`id_user`);
+  ADD CONSTRAINT `PEMILIK_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --
 -- Ketidakleluasaan untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `TRANSAKSI_BARANG` FOREIGN KEY (`ID_BARANG`) REFERENCES `barang` (`ID_BARANG`),
-  ADD CONSTRAINT `TRANSAKSI_PEGAWAI` FOREIGN KEY (`ID_PEGAWAI`) REFERENCES `pegawai` (`ID_PEGAWAI`),
-  ADD CONSTRAINT `TRANSAKSI_PELANGGAN` FOREIGN KEY (`ID_PELANGGAN`) REFERENCES `pelanggan` (`ID_PELANGGAN`);
+  ADD CONSTRAINT `TRANSAKSI_BARANG` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
+  ADD CONSTRAINT `TRANSAKSI_PEGAWAI` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`),
+  ADD CONSTRAINT `TRANSAKSI_PELANGGAN` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`);
 
 --
 -- Ketidakleluasaan untuk tabel `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `USER_GRUP` FOREIGN KEY (`ID_GRUP`) REFERENCES `grup` (`ID_GRUP`);
+  ADD CONSTRAINT `USER_GRUP` FOREIGN KEY (`id_grup`) REFERENCES `grup` (`id_grup`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
