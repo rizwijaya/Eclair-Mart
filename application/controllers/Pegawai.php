@@ -52,7 +52,7 @@ class Pegawai extends CI_Controller
 		$this->_rules_tambah_distributor();
 		if ($this->form_validation->run() == FALSE) {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-error alert-danger fade show" role="alert">Kesalahan, Input tidak sesuai!</div>');
-			$this->index();
+			$this->distributor();
 		} else {
 
 			$nama_perusahaan      	  	= $this->input->post('nama_perusahaan');
@@ -65,17 +65,17 @@ class Pegawai extends CI_Controller
 				'nama_distributor'		=>   $nama_distributor,
 				'no_telp_distributor'	    	=>   $nomor_telepon,
 				'status_distributor'			=>   $status,
-				'date_created'			=> date('d-m-Y'),
-				'date_updated'			=> date('d-m-Y')
+				'date_created'			=> date('Y-m-d'),
+				'date_updated'			=> date('Y-m-d')
 			);
 
 			$que = $this->pegawai_model->tambah_distributor($data, 'distributor');
-			if (!$que) {
-				$this->db->_error_message();
-				die();
-			}
+			// if (!$que) {
+			// 	$this->db->_error_message();
+			// 	die();
+			// }
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil ditambahkan.</div>');
-			$this->index();
+			$this->distributor();
 		}
 	}
 }

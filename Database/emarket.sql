@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Des 2020 pada 06.32
+-- Waktu pembuatan: 23 Des 2020 pada 14.34
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.33
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `emarket`
 --
+
+DELIMITER $$
+--
+-- Prosedur
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deletebarang` (IN `ID` VARCHAR(12))  BEGIN
+	DELETE FROM barang where ID_BARANG=ID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatebarang` (IN `ID` INT, IN `DISTRI` INT, IN `NAMA` VARCHAR(100), IN `JUMLAH` INT, IN `HARGA` INT, IN `STATE` INT, IN `KATEGORI` INT, IN `PHOTO` CHAR(50), IN `DESK` VARCHAR(100))  BEGIN
+	UPDATE BARANG
+	SET
+    	id_distributor = DISTRI,
+	nama_barang = NAMA,
+    	jumlah = JUMLAH,
+    	harga = HARGA,
+	status_barang = STATE,
+    	id_kategori = KATEGORI,
+    	photo_barang = PHOTO,
+    	deskripsi_barang = DESK WHERE ID_BARANG = ID;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -64,17 +87,20 @@ CREATE TABLE `distributor` (
   `nama_perusahaan` varchar(100) DEFAULT NULL,
   `nama_distributor` varchar(100) NOT NULL,
   `no_telp_distributor` varchar(50) NOT NULL,
-  `date_created` timestamp NULL DEFAULT current_timestamp(),
-  `data_updated` timestamp NULL DEFAULT NULL
+  `status_distributor` int(11) NOT NULL,
+  `date_created` date DEFAULT current_timestamp(),
+  `date_updated` date DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `distributor`
 --
 
-INSERT INTO `distributor` (`id_distributor`, `nama_perusahaan`, `nama_distributor`, `no_telp_distributor`, `date_created`, `data_updated`) VALUES
-(1, 'PT Unilever Indonesia', 'Rahmat Dianto', '086574837413', '2020-12-23 00:09:10', '2020-12-23 00:08:39'),
-(2, 'PT Coca Cola', 'Roy Martin', '085473283212', '2020-12-23 00:09:10', '2020-12-23 00:08:39');
+INSERT INTO `distributor` (`id_distributor`, `nama_perusahaan`, `nama_distributor`, `no_telp_distributor`, `status_distributor`, `date_created`, `date_updated`) VALUES
+(1, 'PT Unilever Indonesia', 'Rahmat Dianto', '086574837413', 0, '2020-12-23', '2020-12-23'),
+(2, 'PT Coca Cola', 'Roy Martin', '085473283212', 0, '2020-12-23', '2020-12-23'),
+(14, 'PT Jaya Makmur', 'Rey Barack', '0854643254321', 0, '2020-12-23', '2020-12-23'),
+(15, 'PT Jaya Makmur', 'Adinda Rahma', '0854643334321', 1, '2020-12-23', '2020-12-23');
 
 -- --------------------------------------------------------
 
@@ -276,7 +302,7 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT untuk tabel `distributor`
 --
 ALTER TABLE `distributor`
-  MODIFY `id_distributor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_distributor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `grup`

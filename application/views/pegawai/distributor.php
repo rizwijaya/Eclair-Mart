@@ -70,6 +70,7 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Daftar Distributor</h5>
+                        <p><?php echo $this->session->flashdata('pesan'); ?></p>
                         <table class="mb-0 table table-striped">
                             <thead>
                                 <tr>
@@ -152,7 +153,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambah_distributor">Modal title</h5>
+                <h5 class="modal-title" id="tambah_distributor">Tambah Distributor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
