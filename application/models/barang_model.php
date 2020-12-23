@@ -26,7 +26,10 @@ class Barang_model extends CI_Model
 
     function select_barang_byid($id)
     {
-        $query = $this->db->get('distributor');
+        $this->db->select('*');
+        $this->db->from('barang');
+        $this->db->where('id_barang', $id);
+        $query = $this->db->get();
         return $query;
     }
 }

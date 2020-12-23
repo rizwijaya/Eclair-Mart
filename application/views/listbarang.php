@@ -13,7 +13,7 @@
              <div class="col-xl-3 col-lg-4 col-sm-6">
                  <div class="product text-center">
                      <div class="position-relative mb-3">
-                         <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>" alt="..."></a>
+                         <div class="badge text-white badge-"></div><a class="d-block" href="detail_barang/<?php echo $u->id_barang ?>"><img class="img-fluid w-100" src="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>" alt="..."></a>
                          <div class="product-overlay">
                              <ul class="mb-0 list-inline">
                                  <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -22,7 +22,7 @@
                              </ul>
                          </div>
                      </div>
-                     <h6> <a class="reset-anchor" href="detail.html"><?php echo $u->nama_barang ?></a></h6>
+                     <h6> <a class="reset-anchor" href="detail_barang<?php echo $u->id_barang ?>"><?php echo $u->nama_barang ?></a></h6>
                      <p class="small text-muted">Rp. <?php echo number_format($u->harga, 0, ',', '.'); ?></p>
                  </div>
              </div>
