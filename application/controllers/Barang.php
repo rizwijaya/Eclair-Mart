@@ -10,7 +10,7 @@ class Barang extends CI_Controller
 		$data['barang'] = $this->barang_model->select_barang()->result();
 		$data['kategori'] = $this->barang_model->select_category()->result();
 		$data['distributor'] = $this->barang_model->select_distributor()->result();
-
+		
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
 		$this->load->view('pegawai/barang', $data);
@@ -96,5 +96,17 @@ class Barang extends CI_Controller
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil ditambahkan.</div>');
 			$this->index();
 		}
+	}
+
+	function hapus($id)
+	{
+		$this->load->model('barang_model');
+		$this->barang_model->hapus_barang($id);
+		$this->index();
+	}
+
+	function update_barang()
+	{
+		var_dump($_POST);
 	}
 }

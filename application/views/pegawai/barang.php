@@ -64,7 +64,7 @@
                                         </td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>
-                                            <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash" onclick="return confirm('Yakin untuk menghapus?')"></i></a>
+                                            <a href="<?php echo base_url(); ?>barang/hapus/<?= $u->id_barang ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash" onclick="return confirm('Yakin untuk menghapus?')"></i></a>
                                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal<?= $u->id_barang ?>"><i class="fas fa-edit"></i></button>
                                         </td>
                                     </tr>
@@ -122,7 +122,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambah_barang">Modal title</h5>
+                <h5 class="modal-title" id="tambah_barang">Tambah Barang</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -192,8 +192,93 @@
         </form>
     </div>
 </div>
-</div>
 <!--End Modal Tambah -->
+<!-- Modal Update Data -->
+<?php foreach ($barang as $u) : ?>
+    <div class="modal fade" id="update_modal<?= $u->id_barang ?>" tabindex="-1" role="dialog" aria-labelledby="update_modal" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="update_modal">Update Data Barang</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?php echo base_url(); ?>barang/update_barang" method="post" enctype="multipart/form-data">
+                        <input type="hidden" class="form-control" id="id_barang" name="id_barang" value="<?= $u->id_barang ?>">
+                        <div class="form-group">
+                            <label class="form-control-label" for="nama_barang">Nama Barang</label>
+                            <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<?= $u->nama_barang ?>" required="">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="harga">Harga</label>
+                            <input type="number" class="form-control" id="harga" name="harga" value="<?= $u->harga ?>" required="">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="jumlah">Jumlah</label>
+                            <input type="number" class="form-control" id="jumlah" name="jumlah" value="<?= $u->jumlah ?>" required="">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="status">Status</label>
+                            <select class="form-control" name="status" id="status">
+                                <option <?php if ($u->status_barang == "1") {
+                                            echo "selected='selected'";
+                                        }
+                                        echo $u->status_barang; ?> value="1">Tersedia</option>
+                                <option <?php if ($u->status_barang == "0") {
+                                            echo "selected='selected'";
+                                        }
+                                        echo $u->status_barang; ?> value="0">Tidak Tersedia</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="distributor">Distributor</label>
+                                    <select class="form-control" id="distributor" name="distributor" required="">
+                                        <option value="<?= $u->id_distributor ?>"><?= $u->nama_perusahaan ?></option>
+                                        <?php foreach ($distributor as $db) : ?>
+                                            <option value="<?= $db->id_distributor ?>"><?= $db->nama_perusahaan ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="kategori">Kategori Barang</label>
+                                    <select class="form-control" id="kategori" name="kategori" required="">
+                                        <option value="<?= $u->id_kategori ?>"><?= $u->nama_kategori ?></option>
+                                        <?php foreach ($kategori as $kt) : ?>
+                                            <option value="<?= $kt->id_kategori ?>"><?= $kt->nama_kategori ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <label>Upload Gambar</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input form-control" id="gambar" name="gambar">
+                            <label class="custom-file-label" for="gambar">Pilih File</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="deskripsi">Deskripsi Barang</label>
+                            <textarea class="form-control" name="deskripsi" required="" id="deskripsi" placeholder="Deskripsi Singkat Barang (Maksimal 200 Kata) ... "><?= $u->deskripsi_barang ?></textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="reset" class="btn btn-danger">reset</button>
+                    <button type="submit" name="submit" id="submit" class="btn btn-primary">Perbarui Data</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+<?php endforeach; ?>
+<!--End Modal Update -->
+</div>
 </body>
 
 </html>
