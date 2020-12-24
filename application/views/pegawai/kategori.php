@@ -17,50 +17,12 @@
                         <i class="fa fa-star"></i>
                     </button>
                     <div class="d-inline-block dropdown">
-                        <button type="button" data-toggle="modal" data-target="#tambah_distributor" class="btn-shadow btn btn-info">
+                        <button type="button" data-toggle="modal" data-target="#tambah_kategori" class="btn-shadow btn btn-info">
                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                 <i class="fa fa-business-time fa-w-20"></i>
                             </span>
-                            Tambah
+                            Tambah Kategori
                         </button>
-                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a href="javascript:void(0);" class="nav-link">
-                                        <i class="nav-link-icon lnr-inbox"></i>
-                                        <span>
-                                            Inbox
-                                        </span>
-                                        <div class="ml-auto badge badge-pill badge-secondary">86</div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="javascript:void(0);" class="nav-link">
-                                        <i class="nav-link-icon lnr-book"></i>
-                                        <span>
-                                            Book
-                                        </span>
-                                        <div class="ml-auto badge badge-pill badge-danger">5</div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="javascript:void(0);" class="nav-link">
-                                        <i class="nav-link-icon lnr-picture"></i>
-                                        <span>
-                                            Picture
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a disabled href="javascript:void(0);" class="nav-link disabled">
-                                        <i class="nav-link-icon lnr-file-empty"></i>
-                                        <span>
-                                            File Disabled
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -145,6 +107,37 @@
 </div>
 </div>
 <script type="text/javascript" src="<?php echo base_url(); ?>/assets/assets_admin/assets/scripts/main.js"></script>
+<!-- Modal Tambah Data -->
+<div class="modal fade" id="tambah_kategori" tabindex="-1" role="dialog" aria-labelledby="tambah_kategori" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambah_kategori">Tambah Kategori</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?php echo base_url(); ?>pegawai/tambah_kategori" method="post">
+                    <div class="form-group">
+                        <label class="form-control-label" for="kode_kategori">Kode Kategori</label>
+                        <input type="text" class="form-control" id="kode_kategori" name="kode_kategori" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="nama_kategori">Nama Kategori</label>
+                        <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" required="">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="submit" id="submit" class="btn btn-primary">Tambah Data</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+<!--End Modal Tambah -->
 </body>
 
 </html>

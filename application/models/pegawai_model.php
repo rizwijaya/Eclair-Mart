@@ -41,4 +41,9 @@ class Pegawai_model extends CI_Model
         $query = $this->db->query($q);        
         return $query;   
     }
+
+    function tambah_kategori($data, $table)
+    {
+        $this->db->insert($table, $data);
+    }
 }

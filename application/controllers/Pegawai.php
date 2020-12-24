@@ -63,17 +63,14 @@ class Pegawai extends CI_Controller
 			$data = array(
 				'nama_perusahaan'    	=>   $nama_perusahaan,
 				'nama_distributor'		=>   $nama_distributor,
-				'no_telp_distributor'	    	=>   $nomor_telepon,
-				'status_distributor'			=>   $status,
-				'date_created'			=> date('Y-m-d'),
-				'date_updated'			=> date('Y-m-d')
+				'no_telp_distributor'	=>   $nomor_telepon,
+				'status_distributor'	=>   $status,
+				'date_created'			=> 	 date('Y-m-d'),
+				'date_updated'			=> 	 date('Y-m-d')
 			);
 
-			$que = $this->pegawai_model->tambah_distributor($data, 'distributor');
-			// if (!$que) {
-			// 	$this->db->_error_message();
-			// 	die();
-			// }
+			$this->pegawai_model->tambah_distributor($data, 'distributor');
+			
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil ditambahkan.</div>');
 			$this->distributor();
 		}
@@ -87,6 +84,50 @@ class Pegawai extends CI_Controller
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
 		$this->load->view('pegawai/kategori', $data);
+	}
+
+	public function _rules_tambah_kategori()
+	{
+		$this->load->library(array('form_validation'));
+
+		$this->form_validation->set_rules(
+			'kode_kategori',
+			'kode_kategori',
+			'trim|min_length[2]|max_length[128]|xss_clean|required'
+		);
+		$this->form_validation->set_rules(
+			'nama_kategori',
+			'nama_kategori',
+			'trim|xss_clean|required'
+		);
+	}
+
+	public function tambah_kategori()
+	{
+
+		$this->load->helper(array('form', 'url', 'security', 'date'));
+		$this->load->library(array('form_validation'));
+		$this->load->model('pegawai_model');
+		$this->_rules_tambah_kategori();
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-error alert-danger fade show" role="alert">Kesalahan, Input tidak sesuai!</div>');
+			$this->kategori();
+		} else {
+
+			$kode_kategori      	= $this->input->post('kode_kategori');
+			$nama_kategori        	= $this->input->post('nama_kategori');
+
+			$data = array(
+				'kode_kategori'    	=>   $kode_kategori,
+				'nama_kategori'		=>   $nama_kategori,
+				'date_created'		=> 	 date('Y-m-d')
+			);
+
+			$this->pegawai_model->tambah_kategori($data, 'kategori');
+			
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil ditambahkan.</div>');
+			$this->kategori();
+		}
 	}
 
 	function hapus_kategori($id)
