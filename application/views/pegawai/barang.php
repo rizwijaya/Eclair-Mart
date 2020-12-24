@@ -121,7 +121,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambah_barang">Modal title</h5>
+                <h5 class="modal-title" id="tambah_barang"><strong>Tambah Barang</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -185,7 +185,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="reset" class="btn btn-danger">reset</button>
-                <button type="submit" name="submit" id="submit" class="btn btn-primary">Tambah Data</button>
+                <button type="submit" name="submit" id="submit" class="btn btn-primary">Tambah</button>
             </div>
         </div>
         </form>
