@@ -4,10 +4,9 @@
             <div class="page-title-wrapper">
                 <div class="page-title-heading">
                     <div class="page-title-icon">
-                        <i class="pe-7s-car icon-gradient bg-mean-fruit">
-                        </i>
+                    <img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_admin/assets/images/logo.svg">   
                     </div>
-                    <div>Eclair Mart
+                    <div><strong>Eclair-Mart</strong>
                         <div class="page-title-subheading">Eclair Mart adalah toko serba guna yang menyediakan berbagai kebutuhan anda.
                         </div>
                     </div>
@@ -122,7 +121,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
+<<<<<<< HEAD
                 <h5 class="modal-title" id="tambah_barang">Tambah Barang</h5>
+=======
+                <h5 class="modal-title" id="tambah_barang"><strong>Tambah Barang</strong></h5>
+>>>>>>> 13e2ec4475a8427a99ccabbb8dc0df9a22887c5e
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -186,7 +189,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="reset" class="btn btn-danger">reset</button>
-                <button type="submit" name="submit" id="submit" class="btn btn-primary">Tambah Data</button>
+                <button type="submit" name="submit" id="submit" class="btn btn-primary">Tambah</button>
             </div>
         </div>
         </form>
