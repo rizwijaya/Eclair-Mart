@@ -55,7 +55,7 @@
                                         <td><?= date('d-m-Y', strtotime($u->date_created)); ?></td>
                                         <td>
                                             <a href="<?php echo base_url(); ?>pegawai/hapus_kategori/<?= $u->id_kategori ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash" onclick="return confirm('Yakin untuk menghapus?')"></i></a>
-                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal"><i class="fas fa-edit"></i></button>
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal<?= $u->id_kategori ?>"><i class="fas fa-edit"></i></button>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -138,6 +138,40 @@
 </div>
 </div>
 <!--End Modal Tambah -->
+<!-- Modal Update Data -->
+<?php foreach ($kategori as $u) { ?>
+<div class="modal fade" id="update_modal<?= $u->id_kategori ?>" tabindex="-1" role="dialog" aria-labelledby="update_modal" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="update_modal">Update Kategori</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?php echo base_url(); ?>pegawai/update_kategori" method="post">
+                <input type="hidden" class="form-control" id="id_kategori" name="id_kategori" value="<?= $u->id_kategori ?>">
+                    <div class="form-group">
+                        <label class="form-control-label" for="kode_kategori">Kode Kategori</label>
+                        <input type="text" class="form-control" id="kode_kategori" name="kode_kategori"  value="<?= $u->kode_kategori ?>" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="nama_kategori">Nama Kategori</label>
+                        <input type="text" class="form-control" id="nama_kategori" name="nama_kategori"  value="<?= $u->nama_kategori ?>" required="">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="submit" id="submit" class="btn btn-primary">Perbarui Data</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+<?php } ?>
+<!--End Modal Update -->
 </body>
 
 </html>

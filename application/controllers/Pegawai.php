@@ -137,6 +137,47 @@ class Pegawai extends CI_Controller
 		$this->kategori();
 	}
 
+	function update_kategori()
+	{
+		//var_dump($_POST); die;
+
+		$this->load->helper(array('form', 'url', 'security', 'date'));
+		$this->load->library(array('form_validation'));
+		$this->load->model('pegawai_model');
+
+		$this->form_validation->set_rules(
+			'kode_kategori',
+			'kode_kategori',
+			'trim|min_length[2]|max_length[128]|xss_clean|required'
+		);
+		$this->form_validation->set_rules(
+			'nama_kategori',
+			'nama_kategori',
+			'trim|xss_clean|required'
+		);
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-error alert-danger fade show" role="alert">Kesalahan, Input tidak sesuai!</div>');
+			$this->kategori();
+		} else {
+
+			$id_kategori        	= $this->input->post('id_kategori');
+			$kode_kategori      	= $this->input->post('kode_kategori');
+			$nama_kategori        	= $this->input->post('nama_kategori');
+
+			$data = array(
+				'id_kategori'    	=>   $id_kategori,
+				'kode_kategori'    	=>   $kode_kategori,
+				'nama_kategori'		=>   $nama_kategori
+			);
+
+			$this->pegawai_model->update_kategori($data);
+			
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil diperbarui.</div>');
+			$this->kategori();
+		}
+	}
+
 	function hapus_distributor($id)
 	{
 		$this->load->model('pegawai_model');

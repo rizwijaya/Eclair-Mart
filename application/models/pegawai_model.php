@@ -46,4 +46,9 @@ class Pegawai_model extends CI_Model
     {
         $this->db->insert($table, $data);
     }
+
+    function update_kategori($data)
+	{
+        $this->db->query("CALL updatekategori('". $data['id_kategori']."','". $data['kode_kategori']."','". $data['nama_kategori']."')");
+    }
 }
