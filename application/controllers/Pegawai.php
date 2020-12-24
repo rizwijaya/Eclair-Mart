@@ -78,4 +78,28 @@ class Pegawai extends CI_Controller
 			$this->distributor();
 		}
 	}
+
+	function kategori()
+	{
+		$this->load->model('pegawai_model');
+		$data['kategori'] = $this->pegawai_model->kategori();
+
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('pegawai/kategori', $data);
+	}
+
+	function hapus_kategori($id)
+	{
+		$this->load->model('pegawai_model');
+		$this->pegawai_model->hapus_kategori($id);
+		$this->kategori();
+	}
+
+	function hapus_distributor($id)
+	{
+		$this->load->model('pegawai_model');
+		$this->pegawai_model->hapus_distributor($id);
+		$this->distributor();
+	}
 }

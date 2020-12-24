@@ -95,7 +95,7 @@
                                         <td><?= date('d-m-Y', strtotime($u->date_created)); ?></td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>
-                                            <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash" onclick="return confirm('Yakin untuk menghapus?')"></i></a>
+                                            <a href="<?php echo base_url(); ?>pegawai/hapus_distributor/<?= $u->id_distributor ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash" onclick="return confirm('Yakin untuk menghapus?')"></i></a>
                                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal<?= $u->id_distributor ?>"><i class="fas fa-edit"></i></button>
                                         </td>
                                     </tr>

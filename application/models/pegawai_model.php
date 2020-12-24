@@ -11,4 +11,20 @@ class Pegawai_model extends CI_Model
     {
         $this->db->insert($table, $data);
     }
+
+    function kategori()
+    {
+        $query = $this->db->get('kategori');
+        return $query->result();
+    }
+
+    function hapus_kategori($id)
+	{
+		$this->db->query("CALL deletekategori('".$id."')");
+    }
+    
+    function hapus_distributor($id)
+	{
+		$this->db->query("CALL deletedistributor('".$id."')");
+	}
 }

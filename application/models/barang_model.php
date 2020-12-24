@@ -3,7 +3,7 @@ class Barang_model extends CI_Model
 {
     function select_barang()
     {
-        $q = "SELECT t1.*, t2.id_distributor, t2.nama_perusahaan, t3.id_kategori, t3.nama_kategori FROM barang t1 JOIN distributor t2 ON t1.id_distributor=t2.id_distributor JOIN kategori t3 ON t1.id_kategori=t3.id_kategori";
+        $q = "SELECT t1.*, t2.id_distributor, t2.nama_perusahaan, t3.id_kategori, t3.nama_kategori FROM barang t1 JOIN distributor t2 ON t1.id_distributor=t2.id_distributor LEFT JOIN kategori t3 ON t1.id_kategori=t3.id_kategori";
         $query = $this->db->query($q);        
         return $query;  
     }
