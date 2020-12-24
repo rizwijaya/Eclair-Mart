@@ -14,6 +14,7 @@ class Pegawai_model extends CI_Model
 
     function update_distributor($data)
 	{
+        $this->db->query("CALL updatedistributor('". $data['id_distributor']."','". $data['nama_perusahaan']."','". $data['nama_distributor']."','". $data['no_telp_distributor']."',". $data['status_distributor'].")");
         //proses pengerjaan
         //CALL updatedistributor(2, 'PT Coca', 'Rahmawati', 085473849321, 0);
     }
