@@ -452,22 +452,20 @@
                                     </i>Kategori Barang
                                 </a>
                             </li>
-                            <!-- <li class="app-sidebar__heading">Widgets</li>
-                            
-                            <li class="app-sidebar__heading">Forms</li>
+                            <li class="app-sidebar__heading">Daftar Pengguna</li>
                             <li>
-                                <a href="forms-controls.html">
+                                <a href="<?php echo base_url(); ?>pegawai/daftarpelanggan">
                                     <i class="metismenu-icon pe-7s-mouse">
-                                    </i>Forms Controls
+                                    </i>Daftar Pelanggan
                                 </a>
                             </li>
                             <li>
-                                <a href="forms-layouts.html">
+                                <a href="<?php echo base_url(); ?>pegawai/daftarpegawai">
                                     <i class="metismenu-icon pe-7s-eyedropper">
-                                    </i>Forms Layouts
+                                    </i>Daftar Pegawai
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="forms-validation.html">
                                     <i class="metismenu-icon pe-7s-pendrive">
                                     </i>Forms Validation

@@ -26,5 +26,19 @@ class Pegawai_model extends CI_Model
     function hapus_distributor($id)
 	{
 		$this->db->query("CALL deletedistributor('".$id."')");
-	}
+    }
+    
+    function daftarpelanggan()
+    {
+        $q = "SELECT t1.nama, t1.email, t2.alamat_pelanggan, t2.no_telp_pelanggan, t2.photo_pelanggan FROM users t1 LEFT JOIN pelanggan t2 ON t1.id_user=t2.id_user WHERE t1.id_grup = 3";
+        $query = $this->db->query($q);        
+        return $query;  
+    }
+
+    function daftarpegawai()
+    {
+        $q = "SELECT t1.nama, t1.email, t2.alamat_pegawai, t2.no_telp_pegawai FROM users t1 LEFT JOIN pegawai t2 ON t1.id_user=t2.id_user WHERE t1.id_grup = 2";
+        $query = $this->db->query($q);        
+        return $query;   
+    }
 }

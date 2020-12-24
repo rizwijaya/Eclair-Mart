@@ -38,6 +38,7 @@
                                     <th>No</th>
                                     <th>Photo</th>
                                     <th>Nama Barang</th>
+                                    <th>Distributor</th>
                                     <th>Jumlah</th>
                                     <th>Harga</th>
                                     <th>Status</th>
@@ -53,6 +54,7 @@
                                         <th scope="row"><?php echo $no++ ?></th>
                                         <td><img width="50px" src="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>"></td>
                                         <td><?= $u->nama_barang ?></td>
+                                        <td><?= $u->nama_perusahaan ?></td>
                                         <td><?= $u->jumlah ?></td>
                                         <td>Rp. <?php echo number_format($u->harga, 0, ',', '.'); ?></td>
                                         <td><?php if ($u->status_barang == 0) { ?>
