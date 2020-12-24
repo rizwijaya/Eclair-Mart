@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Des 2020 pada 14.34
+-- Waktu pembuatan: 24 Des 2020 pada 15.06
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.33
 
@@ -29,6 +29,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `deletebarang` (IN `ID` VARCHAR(12))
 	DELETE FROM barang where ID_BARANG=ID;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deletedistributor` (IN `ID` VARCHAR(12))  BEGIN
+	DELETE FROM distributor where id_distributor=ID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deletekategori` (IN `ID` VARCHAR(12))  BEGIN
+	DELETE FROM kategori where id_kategori=ID;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updatebarang` (IN `ID` INT, IN `DISTRI` INT, IN `NAMA` VARCHAR(100), IN `JUMLAH` INT, IN `HARGA` INT, IN `STATE` INT, IN `KATEGORI` INT, IN `PHOTO` CHAR(50), IN `DESK` VARCHAR(100))  BEGIN
 	UPDATE BARANG
 	SET
@@ -40,6 +48,22 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updatebarang` (IN `ID` INT, IN `DIS
     	id_kategori = KATEGORI,
     	photo_barang = PHOTO,
     	deskripsi_barang = DESK WHERE ID_BARANG = ID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatedistributor` (IN `ID` INT, IN `PERUS` VARCHAR(100), IN `NAMA` VARCHAR(100), IN `TELEPON` VARCHAR(50), IN `STATE` INT)  BEGIN
+	UPDATE DISTRIBUTOR
+	SET
+	nama_perusahaan = PERUS,
+	nama_distributor = NAMA,
+	no_telp_distributor = TELEPON,
+	status_distributor = STATE WHERE id_distributor = ID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatekategori` (IN `ID` INT, IN `KODE` VARCHAR(10), IN `NAMA` VARCHAR(100))  BEGIN
+	UPDATE kategori
+	SET
+	kode_kategori = KODE,
+	nama_kategori = NAMA WHERE id_kategori = ID;
 END$$
 
 DELIMITER ;
@@ -67,14 +91,11 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `harga`, `status_barang`, `id_kategori`, `photo_barang`, `deskripsi_barang`) VALUES
-(3, 1, 'sikat', 100, 15000, 0, 0, 'default.jpg', ''),
-(4, 2, 'meja', 100, 100000, 0, 0, 'default.jpg', ''),
-(5, 1, 'sabun', 100, 10000, 0, 0, 'default.jpg', ''),
-(6, 2, 'kursi', 100, 85000, 0, 0, 'default.jpg', ''),
-(7, 1, 'Dancow Fortigo', 45, 120000, 1, 2, 'dancow1.png', 'Dancow Fortigo adalah produk susu unggulan'),
-(8, 2, 'Dancow', 45, 12500, 1, 2, 'dancow2.png', 'dancow adalah susu'),
-(9, 1, 'Nugget', 23, 12500, 0, 2, 'nugget.png', 'Nugget AYAM'),
-(10, 1, 'Nugget', 23, 12500, 0, 2, 'nugget1.png', 'Nugget AYAM');
+(4, 2, 'meja', 100, 100000, 0, 1, 'default.jpg', 'meja'),
+(5, 1, 'sabun', 100, 10000, 0, 1, 'default.jpg', 'sabun'),
+(6, 2, 'kursi', 100, 85000, 0, 1, 'default.jpg', 'kursi'),
+(7, 2, 'Dancow Fortigo', 45, 120000, 1, 2, 'dancow1.png', 'Dancow Fortigo adalah produk susu unggulan'),
+(9, 1, 'Nugget', 23, 12500, 0, 2, 'nugget.png', 'Nugget AYAM');
 
 -- --------------------------------------------------------
 
@@ -98,9 +119,10 @@ CREATE TABLE `distributor` (
 
 INSERT INTO `distributor` (`id_distributor`, `nama_perusahaan`, `nama_distributor`, `no_telp_distributor`, `status_distributor`, `date_created`, `date_updated`) VALUES
 (1, 'PT Unilever Indonesia', 'Rahmat Dianto', '086574837413', 0, '2020-12-23', '2020-12-23'),
-(2, 'PT Coca Cola', 'Roy Martin', '085473283212', 0, '2020-12-23', '2020-12-23'),
+(2, 'PT Coca', 'Rahmawati', '85473849321', 0, '2020-12-23', '2020-12-23'),
 (14, 'PT Jaya Makmur', 'Rey Barack', '0854643254321', 0, '2020-12-23', '2020-12-23'),
-(15, 'PT Jaya Makmur', 'Adinda Rahma', '0854643334321', 1, '2020-12-23', '2020-12-23');
+(16, 'PT Chocolatos', 'Rey Barack', '0854643254321', 0, '2020-12-23', '2020-12-23'),
+(17, 'PT Sumber Jaya', 'Rahma Diyanto', '085433748223', 0, '2020-12-24', '2020-12-24');
 
 -- --------------------------------------------------------
 
@@ -142,7 +164,9 @@ CREATE TABLE `kategori` (
 
 INSERT INTO `kategori` (`id_kategori`, `kode_kategori`, `nama_kategori`, `date_created`) VALUES
 (1, 'MKR', 'Makanan Ringan', '2020-12-23'),
-(2, 'MIN', 'Minuman', '2020-12-23');
+(2, 'MIN', 'Minuman', '2020-12-23'),
+(4, 'KMS', 'Kosmetik', '2020-12-24'),
+(5, 'BDK', 'Bedak', '2020-12-24');
 
 -- --------------------------------------------------------
 
@@ -154,8 +178,15 @@ CREATE TABLE `pegawai` (
   `id_pegawai` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
   `alamat_pegawai` varchar(200) DEFAULT NULL,
-  `no_telp_pegawai` varchar(200) NOT NULL
+  `no_telp_pegawai` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `pegawai`
+--
+
+INSERT INTO `pegawai` (`id_pegawai`, `id_user`, `alamat_pegawai`, `no_telp_pegawai`) VALUES
+(1, 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -166,9 +197,19 @@ CREATE TABLE `pegawai` (
 CREATE TABLE `pelanggan` (
   `id_pelanggan` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
-  `alamat_pelanggan` varchar(200) NOT NULL,
-  `no_telp_pelanggan` varchar(50) NOT NULL
+  `alamat_pelanggan` varchar(200) DEFAULT NULL,
+  `no_telp_pelanggan` varchar(50) DEFAULT NULL,
+  `photo_pelanggan` varchar(200) NOT NULL DEFAULT 'default.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_pelanggan`, `id_user`, `alamat_pelanggan`, `no_telp_pelanggan`, `photo_pelanggan`) VALUES
+(1, 5, NULL, NULL, 'default.jpg'),
+(2, 4, NULL, NULL, 'default.jpg'),
+(3, 1, NULL, NULL, 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -180,6 +221,13 @@ CREATE TABLE `pemilik` (
   `id_pemilik` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `pemilik`
+--
+
+INSERT INTO `pemilik` (`id_pemilik`, `id_user`) VALUES
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -221,7 +269,8 @@ INSERT INTO `users` (`id_user`, `id_grup`, `nama`, `email`, `password`, `date_cr
 (1, 3, 'Pelanggan 1', 'pelanggan@gmail.com', '$2y$10$lKbhoHUExeFONB.t6yVASutWMYOmo9e7wSDOvXYedd9.F0mmSIFry', '2020-12-22'),
 (2, 1, 'Pemilik', 'pemilik@gmail.com', '$2y$10$gUXPIGBGnduJLziOVJNB3.P90ovqw.2DphvQb.drKj5Airw7E22tW', '2020-12-22'),
 (3, 2, 'Pegawai', 'pegawai@gmail.com', '$2y$10$6H9u.vCSOo7CAR1EkF.GIu.MKh.wlv8C5hbMu1SD55SdV.XBVz0Pu', '2020-12-22'),
-(4, 3, 'Pelanggan 2', 'test@gmail.com', '$2y$10$WqtTpmaL6g6ouMS3c/qnK.IigJ/YMEAUaaZti5w9RqTJkbcXplLku', '2020-12-22');
+(4, 3, 'Pelanggan 2', 'test@gmail.com', '$2y$10$WqtTpmaL6g6ouMS3c/qnK.IigJ/YMEAUaaZti5w9RqTJkbcXplLku', '2020-12-22'),
+(5, 3, 'pelanggan', 'testpelanggan@gmail.com', '$2y$10$jLpQjbzUMtLg8g20Mbu9y.zDgbfx.nOV6PVKuj0wbEovd36y93ZkW', '2020-12-24');
 
 --
 -- Indexes for dumped tables
@@ -302,7 +351,7 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT untuk tabel `distributor`
 --
 ALTER TABLE `distributor`
-  MODIFY `id_distributor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_distributor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `grup`
@@ -314,25 +363,25 @@ ALTER TABLE `grup`
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `pemilik`
 --
 ALTER TABLE `pemilik`
-  MODIFY `id_pemilik` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pemilik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaksi`
@@ -344,7 +393,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

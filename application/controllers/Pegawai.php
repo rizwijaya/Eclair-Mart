@@ -139,8 +139,6 @@ class Pegawai extends CI_Controller
 
 	function update_kategori()
 	{
-		//var_dump($_POST); die;
-
 		$this->load->helper(array('form', 'url', 'security', 'date'));
 		$this->load->library(array('form_validation'));
 		$this->load->model('pegawai_model');
@@ -176,6 +174,11 @@ class Pegawai extends CI_Controller
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil diperbarui.</div>');
 			$this->kategori();
 		}
+	}
+
+	function update_distributor($id)
+	{
+		//Proses pengerjaan
 	}
 
 	function hapus_distributor($id)

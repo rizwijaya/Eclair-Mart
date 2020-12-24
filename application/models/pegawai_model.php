@@ -12,6 +12,12 @@ class Pegawai_model extends CI_Model
         $this->db->insert($table, $data);
     }
 
+    function update_distributor($data)
+	{
+        //proses pengerjaan
+        //CALL updatedistributor(2, 'PT Coca', 'Rahmawati', 085473849321, 0);
+    }
+
     function kategori()
     {
         $query = $this->db->get('kategori');

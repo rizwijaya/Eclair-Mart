@@ -154,6 +154,52 @@
 </div>
 </div>
 <!--End Modal Tambah -->
+<!-- Modal Update Data -->
+<?php foreach ($distributor as $u) { ?>
+<div class="modal fade" id="update_modal<?= $u->id_distributor ?>" tabindex="-1" role="dialog" aria-labelledby="update_modal" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="update_modal">Update Distributor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?php echo base_url(); ?>pegawai/update_distributor" method="post">
+                    <div class="form-group">
+                        <label class="form-control-label" for="nama_perusahaan">Nama Perusahaan</label>
+                        <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="nama_distributor">Nama Distributor</label>
+                        <input type="text" class="form-control" id="nama_distributor" name="nama_distributor" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="nomor_telepon">Nomor Telepon</label>
+                        <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="status">Status</label>
+                        <select class="form-control" name="status" id="status">
+                            <option value="">Pilih Status</option>
+                            <option value="1">Tersedia</option>
+                            <option value="0">Tidak Tersedia</option>
+                        </select>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="reset" class="btn btn-danger">reset</button>
+                <button type="submit" name="submit" id="submit" class="btn btn-primary">Tambah Data</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+<?php } ?>
+<!--End Modal Update -->
 </body>
 
 </html>
