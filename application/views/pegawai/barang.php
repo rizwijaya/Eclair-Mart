@@ -121,11 +121,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-<<<<<<< HEAD
-                <h5 class="modal-title" id="tambah_barang">Tambah Barang</h5>
-=======
                 <h5 class="modal-title" id="tambah_barang"><strong>Tambah Barang</strong></h5>
->>>>>>> 13e2ec4475a8427a99ccabbb8dc0df9a22887c5e
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>

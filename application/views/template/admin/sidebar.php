@@ -446,6 +446,12 @@
                                     </i>Daftar Distributor
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?php echo base_url(); ?>pegawai/kategori">
+                                    <i class="metismenu-icon pe-7s-pendrive">
+                                    </i>Kategori Barang
+                                </a>
+                            </li>
                             <!-- <li class="app-sidebar__heading">Widgets</li>
                             
                             <li class="app-sidebar__heading">Forms</li>
