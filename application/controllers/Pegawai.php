@@ -176,9 +176,51 @@ class Pegawai extends CI_Controller
 		}
 	}
 
-	function update_distributor($id)
+	function update_distributor()
 	{
-		//Proses pengerjaan
+		$this->load->helper(array('form', 'url', 'security', 'date'));
+		$this->load->library(array('form_validation'));
+		$this->load->model('pegawai_model');
+
+		$this->form_validation->set_rules(
+			'nama_perusahaan',
+			'nama_perusahaan',
+			'trim|min_length[2]|max_length[128]|xss_clean|required'
+		);
+		$this->form_validation->set_rules(
+			'nama_distributor',
+			'nama_distributor',
+			'trim|xss_clean|required'
+		);
+		$this->form_validation->set_rules(
+			'nomor_telepon',
+			'nomor_telepon',
+			'trim|xss_clean|required'
+		);
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-error alert-danger fade show" role="alert">Kesalahan, Input tidak sesuai!</div>');
+			$this->distributor();
+		} else {
+			$id_distributor				= $this->input->post('id_distributor');
+			$nama_perusahaan      	  	= $this->input->post('nama_perusahaan');
+			$nama_distributor        	= $this->input->post('nama_distributor');
+			$no_telp_distributor     	= $this->input->post('nomor_telepon');
+			$status_distributor        	= $this->input->post('status');
+
+			$data = array(
+				'id_distributor'		=>	 $id_distributor,
+				'nama_perusahaan'    	=>   $nama_perusahaan,
+				'nama_distributor'		=>   $nama_distributor,
+				'no_telp_distributor'	=>   $no_telp_distributor,
+				'status_distributor'	=>   $status_distributor
+			);
+
+			$this->pegawai_model->update_distributor($data);
+			
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil diperbarui.</div>');
+			$this->distributor();
+		}
 	}
 
 	function hapus_distributor($id)
