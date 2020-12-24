@@ -6,10 +6,7 @@
      </header>
      <div class="row">
          <!-- PRODUCT-->
-         <?php
-            $no = 1;
-            foreach ($barang as $u) {
-            ?>
+         <?php foreach ($barang as $u) { ?>
              <div class="col-xl-3 col-lg-4 col-sm-6">
                  <div class="product text-center">
                      <div class="position-relative mb-3">

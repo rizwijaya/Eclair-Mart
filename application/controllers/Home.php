@@ -5,8 +5,11 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->model('barang_model');
+		$data['barang'] = $this->barang_model->select_barang()->result();
+
 		$this->load->view('template/home/header');
-        $this->load->view('home');
+        $this->load->view('home', $data);
         $this->load->view('template/home/footer');
 	}
 
