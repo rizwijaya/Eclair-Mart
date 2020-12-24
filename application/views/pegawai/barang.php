@@ -4,7 +4,7 @@
             <div class="page-title-wrapper">
                 <div class="page-title-heading">
                     <div class="page-title-icon">
-                    <img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_admin/assets/images/logo.svg">   
+                        <img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_admin/assets/images/logo.svg">
                     </div>
                     <div><strong>Eclair-Mart</strong>
                         <div class="page-title-subheading">Eclair Mart adalah toko serba guna yang menyediakan berbagai kebutuhan anda.
@@ -64,7 +64,7 @@
                                             <?php } ?>
                                         </td>
                                         <td>
-                                        <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#detail_modal<?= $u->id_barang ?>"><i class="fas fa-eye"></i></button>
+                                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#detail_modal<?= $u->id_barang ?>"><i class="fas fa-eye"></i></button>
                                             <a href="<?php echo base_url(); ?>barang/hapus/<?= $u->id_barang ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash" onclick="return confirm('Yakin untuk menghapus?')"></i></a>
                                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal<?= $u->id_barang ?>"><i class="fas fa-edit"></i></button>
                                         </td>
@@ -206,7 +206,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo base_url(); ?>barang/update_barang" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url(); ?>barang/update_barang/<?php echo $u->id_barang ?>" method="post" enctype="multipart/form-data">
                         <input type="hidden" class="form-control" id="id_barang" name="id_barang" value="<?= $u->id_barang ?>">
                         <div class="form-group">
                             <label class="form-control-label" for="nama_barang"><strong>Nama Barang</strong></label>
@@ -309,10 +309,10 @@
                         <div class="form-group">
                             <label class="form-control-label" for="status"><strong>Status Barang</strong></label><br>
                             <?php if ($u->status_barang == 0) { ?>
-                                                Tidak Tersedia
-                                            <?php } else { ?>
-                                                Tersedia
-                                            <?php } ?>
+                                Tidak Tersedia
+                            <?php } else { ?>
+                                Tersedia
+                            <?php } ?>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -329,8 +329,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                        <label><strong>Gambar Barang</strong></label><br>
-                        <img width = "200px" src="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>"></div>
+                            <label><strong>Gambar Barang</strong></label><br>
+                            <img width="200px" src="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>"></div>
                         <div class="form-group">
                             <label class="form-control-label" for="deskripsi"><strong>Deskripsi Barang</strong></label><br>
                             <?= $u->deskripsi_barang ?>

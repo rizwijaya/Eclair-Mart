@@ -37,14 +37,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `deletekategori` (IN `ID` VARCHAR(12
 	DELETE FROM kategori where id_kategori=ID;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updatebarang` (IN `ID` INT, IN `DISTRI` INT, IN `NAMA` VARCHAR(100), IN `JUMLAH` INT, IN `HARGA` INT, IN `STATE` INT, IN `KATEGORI` INT, IN `PHOTO` CHAR(50), IN `DESK` VARCHAR(100))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatebarang` 
+(IN `ID` INT, IN `DISTRI` INT,
+ IN `NAMA` VARCHAR(100), IN `JUMLAH` INT,
+  IN `HARGA` INT, IN `STATE` INT,
+   IN `KATEGORI` INT,
+    IN `PHOTO` CHAR(50),
+     IN `DESK` VARCHAR(100))  BEGIN
 	UPDATE BARANG
 	SET
     	id_distributor = DISTRI,
-	nama_barang = NAMA,
+	    nama_barang = NAMA,
     	jumlah = JUMLAH,
     	harga = HARGA,
-	status_barang = STATE,
+	    status_barang = STATE,
     	id_kategori = KATEGORI,
     	photo_barang = PHOTO,
     	deskripsi_barang = DESK WHERE ID_BARANG = ID;

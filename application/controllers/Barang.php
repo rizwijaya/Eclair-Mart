@@ -10,7 +10,7 @@ class Barang extends CI_Controller
 		$data['barang'] = $this->barang_model->select_barang()->result();
 		$data['kategori'] = $this->barang_model->select_category()->result();
 		$data['distributor'] = $this->barang_model->select_distributor()->result();
-		
+
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
 		$this->load->view('pegawai/barang', $data);
@@ -47,7 +47,7 @@ class Barang extends CI_Controller
 		$this->load->helper(array('form', 'url', 'security'));
 		$this->load->library(array('form_validation'));
 		$this->load->model('barang_model');
-		
+
 		$this->_rules_tambah_barang();
 		if ($this->form_validation->run() == FALSE) {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-error alert-danger fade show" role="alert">Kesalahan, Input tidak sesuai!</div>');
@@ -73,7 +73,7 @@ class Barang extends CI_Controller
 					// return $this->upload->data('file_name');		
 					$this->session->set_flashdata('pesan', '
 					<div class="alert alert-error alert-dismissible fade show" role="alert"> ' . $this->upload->display_errors() . '</div>');
-					
+
 					// // $error = array('error' => $this->upload->display_errors());
 					$this->index();
 				} else {
@@ -105,8 +105,60 @@ class Barang extends CI_Controller
 		$this->index();
 	}
 
-	function update_barang()
+	function update_barang($id)
 	{
-		var_dump($_POST);
+		$this->load->helper(array('form', 'url', 'security'));
+		$this->load->library(array('form_validation'));
+		$this->load->model('barang_model');
+
+		$this->_rules_tambah_barang();
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-error alert-danger fade show" role="alert">Kesalahan, Input tidak sesuai!</div>');
+			$this->index();
+		} else {
+			$nama_barang        = $this->input->post('nama_barang');
+			$harga        		= $this->input->post('harga');
+			$jumlah          	= $this->input->post('jumlah');
+			$status        		= $this->input->post('status');
+			$distributor        = $this->input->post('distributor');
+			$kategori           = $this->input->post('kategori');
+			$deskripsi           = $this->input->post('deskripsi');
+			$gambar         	= $_FILES['gambar']['name'];
+
+			if ($gambar = '') {
+			} else {
+				$config['upload_path']          = './assets/assets_barang/image';
+				$config['allowed_types']        = 'jpg|png|jpeg';
+				$config['max_size']             = 2048;
+
+				$this->load->library('upload', $config);
+				if (!$this->upload->do_upload('gambar')) {
+					// return $this->upload->data('file_name');		
+					$this->session->set_flashdata('pesan', '
+					<div class="alert alert-error alert-dismissible fade show" role="alert"> ' . $this->upload->display_errors() . '</div>');
+
+					// // $error = array('error' => $this->upload->display_errors());
+					$this->index();
+				} else {
+					$gambar = $this->upload->data('file_name');
+				}
+			}
+
+			// $data = array(
+			// 	'id_barang'			=> $id,
+			// 	'id_distributor'    =>   $distributor,
+			// 	'nama_barang'       =>   $nama_barang,
+			// 	'jumlah'          	=>   $jumlah,
+			// 	'harga'             =>   $harga,
+			// 	'status_barang'     =>   $status,
+			// 	'id_kategori'      	=>   $kategori,
+			// 	'photo_barang' 		=>   $gambar,
+			// 	'deskripsi_barang' 	=>	 $deskripsi
+			// );
+
+			$this->barang_model->update_barang($id, $distributor, $nama_barang, $jumlah, $harga, $status, $kategori, $gambar, $deskripsi);
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil ditambahkan.</div>');
+			$this->index();
+		}
 	}
 }
