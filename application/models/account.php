@@ -9,6 +9,23 @@ class Account extends CI_Model
         $this->db->set("id_grup", $data['id_grup']);
 
         $this->db->insert("users");
+
+        $id_user =  $this->db->insert_id();
+        $peran = $data['id_grup'];
+
+        if($peran == 3) { //Pelanggan
+            //Memasukkan data ke pelanggan
+            $this->db->set("id_user", $id_user);   
+            $this->db->insert("pelanggan");
+        } elseif($peran == 2) { //Pegawai
+            //Memasukkan data ke pegawai
+            $this->db->set("id_user", $id_user);   
+            $this->db->insert("pegawai");
+        } elseif($peran ==1) {//pemilik
+            //Memasukkan data ke pemilik
+            $this->db->set("id_user", $id_user);   
+            $this->db->insert("pemilik");
+        }
     }
 
     function checklogin($email, $password)
