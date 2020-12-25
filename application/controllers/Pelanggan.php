@@ -13,17 +13,11 @@ class Pelanggan extends CI_Controller
 
 	public function index()
 	{
-		$id = $this->session->userdata('id_user');
-		if (!empty($id))
-		{
-			$data['keranjang'] = $this->barang_model->jumlahkeranjang($id);
-		} else {
-			$data['keranjang'] = 0;
-		}
+		$this->load->model('barang_model');
+		$data['barang'] = $this->barang_model->select_barang()->result();
 
-		//var_dump($data['keranjang'][0]); die;
-		$this->load->view('template/home/header', $data);
-		$this->load->view('home');
+		$this->load->view('template/home/header');
+		$this->load->view('home', $data);
 		$this->load->view('template/home/footer');
 	}
 
@@ -61,19 +55,30 @@ class Pelanggan extends CI_Controller
 		$this->load->view('template/home/footer');
 	}
 	
-	function tambahkeranjang($id_barang, $jumlah)
+	function tambahkeranjang($id_barang)
 	{
 		$this->load->helper(array('date'));
 		$id_user = $this->session->userdata('id_user');
 
-		$cekbarang = $this->barang_model->findbarang($id_user, $id_barang);
+		if($_POST) {
+			var_dump($_POST); die;
+		} else {
+			$jumlah = 1;
+		}
 
+		$cekbarang = $this->barang_model->findbarang($id_user, $id_barang);
+		$getharga = $this->barang_model->getharga($id_barang);
+
+		$total_harga = $getharga[0]->harga * $jumlah;
 		if(!empty($cekbarang)) { //Update ke Keranjang yang sudah ada
 			$jml = $jumlah + $cekbarang[0]->jumlah; //Menambahkan jumlah barang
+			$total = $total_harga + $cekbarang[0]->total_harga; //Jumlah harga sebelum dengan input
+
 			$data = array(
 				'id_user'		=> 	$id_user,
 				'id_barang' 	=> 	$id_barang,
 				'jumlah'		=> 	$jml,
+				'total_harga'	=>	$total,
 				'date_created'	=> 	date('Y-m-d')
 			);
 
@@ -83,6 +88,7 @@ class Pelanggan extends CI_Controller
 				'id_user'		=> 	$id_user,
 				'id_barang' 	=> 	$id_barang,
 				'jumlah'		=> 	$jumlah,
+				'total_harga'	=>	$total_harga,
 				'date_created'	=> 	date('Y-m-d')
 			);
 
@@ -90,5 +96,12 @@ class Pelanggan extends CI_Controller
 		}
 
 		$this->list_barang(); //Redirect ke list barang
+	}
+
+	function hapus_keranjang($id)
+	{
+		$this->barang_model->hapus_keranjang($id);
+
+		redirect('home/keranjangbelanja');
 	}
 }

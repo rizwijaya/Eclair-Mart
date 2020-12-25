@@ -90,7 +90,7 @@
                                             <ul class="mb-0 list-inline">
                                                 <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
                                                 <?php if ($this->session->userdata('id_user')) { ?>
-                                                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="<?php echo base_url(); ?>pelanggan/tambahkeranjang/<?= $u->id_barang ?>/1">Add to cart</a></li>
+                                                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="<?php echo base_url(); ?>pelanggan/tambahkeranjang/<?= $u->id_barang ?>">Add to cart</a></li>
                                                 <!-- <?php //echo anchor('pelanggan/tambahkeranjang/'.$u->id_barang,'<li class="list-inline-item m-0 p-0"><button class="btn btn-sm btn-dark">Add to cart</button></li>')?> -->
                                                 <?php } else { ?>
                                                     <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="<?php echo base_url(); ?>home/login">Add to cart</a></li>

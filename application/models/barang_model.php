@@ -93,4 +93,31 @@ class Barang_model extends CI_Model
         $query = $this->db->query($q);
         return $query->result();
     }
+
+    function getkeranjangbyid($id)
+    {
+        $q = "SELECT t1.id_keranjang, t2.id_barang, t1.id_user, t1.jumlah, t1.total_harga, t2.nama_barang, t2.harga, t2.photo_barang FROM keranjang t1 LEFT JOIN barang t2 ON t1.id_barang = t2.id_barang WHERE t1.id_user = ".$id;
+        $query = $this->db->query($q);
+        return $query->result();  
+    }
+
+    function getharga($id)
+    {
+        $q = "SELECT * FROM barang WHERE id_barang = ".$id;
+        $query = $this->db->query($q);
+        return $query->result();       
+    }
+
+    function totalbelanja($id)
+    {
+        $q = "SELECT SUM(total_harga) FROM keranjang WHERE id_user = ".$id;
+        $query = $this->db->query($q);
+        return $query->result();
+    }
+
+    function hapus_keranjang($id)
+    {
+        $q = "DELETE FROM keranjang WHERE id_keranjang = ".$id;
+        $this->db->query($q);
+    }
 }
