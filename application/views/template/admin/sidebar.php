@@ -68,7 +68,7 @@
                                 <div class="widget-content-left">
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                            <img width="42" class="rounded-circle" src="<?php echo base_url(); ?>/assets/assets_admin/images/avatars/1.jpg" alt="">
+                                            <img width="42" class="rounded-circle" src="<?php echo base_url(); ?>/assets/assets_photo/default.jpg" alt="">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
@@ -83,10 +83,16 @@
                                 </div>
                                 <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
-                                        Alfina Ardiyanti
+                                    <?= $this->session->userdata('nama') ?>
                                     </div>
                                     <div class="widget-subheading">
+                                    <?php if ($this->session->userdata('id_grup') == 1) { ?>
                                         Pemilik Toko
+                                    <?php } elseif ($this->session->userdata('id_grup') == 2) { ?>
+                                        Pegawai
+                                    <?php } else { ?>
+                                        Pelanggan
+                                    <?php } ?>
                                     </div>
                                 </div>
                                 <!-- <div class="widget-content-right header-user-info ml-3">
@@ -432,7 +438,7 @@
                                     Dashboard Pelanggan
                                 </a>
                             </li>
-                            <li class="app-sidebar__heading">Kelola</li>
+                            <li class="app-sidebar__heading">Kelola Barang</li>
                             <li>
                             <li>
                                 <a href="<?php echo base_url(); ?>barang">
@@ -452,19 +458,27 @@
                                     </i>Kategori Barang
                                 </a>
                             </li>
-                            <li class="app-sidebar__heading">Daftar Pengguna</li>
+                            <li class="app-sidebar__heading">Kelola Pengguna</li>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/daftarpelanggan">
                                     <i class="metismenu-icon pe-7s-mouse">
                                     </i>Daftar Pelanggan
                                 </a>
                             </li>
+                            <?php if ($this->session->userdata('id_grup') == 1) { ?>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/daftarpegawai">
                                     <i class="metismenu-icon pe-7s-eyedropper">
                                     </i>Daftar Pegawai
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?php echo base_url(); ?>pemilik/tambahpegawai">
+                                    <i class="metismenu-icon pe-7s-eyedropper">
+                                    </i>Tambah Pegawai
+                                </a>
+                            </li>
+                            <?php } ?>
                             <!-- <li>
                                 <a href="forms-validation.html">
                                     <i class="metismenu-icon pe-7s-pendrive">
