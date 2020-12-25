@@ -50,7 +50,7 @@
                                 <a class="nav-link" href="#products">Shop</a>
                             </li> -->
                             <li class="nav-item">
-                                <!-- Link--><a class="nav-link" href="<?php echo base_url(); ?>pelanggan/list_barang">Product</a>
+                                <!-- Link--><a class="nav-link" href="<?php echo base_url(); ?>pelanggan/list_barang">Daftar Produk</a>
                             </li>
                             <?php if ($this->session->userdata('id_grup') == 1) { ?>
                                 <li class="nav-item">

@@ -21,9 +21,10 @@ class Pelanggan extends CI_Controller
 
 	public function list_barang()
 	{
-		$this->load->view('template/home/header');
 		$data['barang'] = $this->barang_model->select_barang()->result();
-		//var_dump($data);
+		$data['kategori'] = $this->barang_model->select_category()->result();
+
+		$this->load->view('template/home/header');
 		$this->load->view('listbarang', $data);
 		$this->load->view('template/home/footer');
 	}
@@ -36,6 +37,16 @@ class Pelanggan extends CI_Controller
 		//var_dump($query);
 		//die();
 		$this->load->view('detail_barang', $query);
+		$this->load->view('template/home/footer');
+	}
+
+	function filtercategory($id)
+	{
+		$data['barang'] = $this->barang_model->barangbycategory($id)->result();
+		$data['kategori'] = $this->barang_model->select_category()->result();
+
+		$this->load->view('template/home/header');
+		$this->load->view('listbarang', $data);
 		$this->load->view('template/home/footer');
 	}
 }

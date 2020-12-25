@@ -27,10 +27,8 @@ class Barang_model extends CI_Model
 
     function select_barang_byid($id)
     {
-        $this->db->select('*');
-        $this->db->from('barang');
-        $this->db->where('id_barang', $id);
-        $query = $this->db->get();
+        $q = "SELECT t1.*, t2.id_distributor, t2.nama_perusahaan, t2.nama_distributor, t2.no_telp_distributor, t3.id_kategori, t3.nama_kategori, t3.kode_kategori FROM barang t1 JOIN distributor t2 ON t1.id_distributor=t2.id_distributor LEFT JOIN kategori t3 ON t1.id_kategori=t3.id_kategori WHERE t1.id_barang = ".$id;
+        $query = $this->db->query($q);
         return $query;
     }
 
@@ -61,5 +59,12 @@ class Barang_model extends CI_Model
         //     'id_kategori' 
         //     'photo_barang' 
         //     'deskripsi_barang'
+    }
+
+    function barangbycategory($id)
+    {
+        $q = "SELECT t1.*, t2.id_distributor, t2.nama_perusahaan, t2.nama_distributor, t2.no_telp_distributor, t3.id_kategori, t3.nama_kategori, t3.kode_kategori FROM barang t1 JOIN distributor t2 ON t1.id_distributor=t2.id_distributor LEFT JOIN kategori t3 ON t1.id_kategori=t3.id_kategori WHERE t3.id_kategori = ".$id;
+        $query = $this->db->query($q);
+        return $query;
     }
 }
