@@ -19,7 +19,9 @@ class Account extends CI_Model
             $this->db->insert("pelanggan");
         } elseif($peran == 2) { //Pegawai
             //Memasukkan data ke pegawai
-            $this->db->set("id_user", $id_user);   
+            $this->db->set("id_user", $id_user);
+            $this->db->set("alamat_pegawai", $data['alamat_pegawai']);
+            $this->db->set("no_telp_pegawai", $data['no_telp_pegawai']);   
             $this->db->insert("pegawai");
         } elseif($peran ==1) {//pemilik
             //Memasukkan data ke pemilik
