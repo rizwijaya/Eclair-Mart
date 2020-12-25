@@ -309,15 +309,11 @@
                                                                                                                 } ?></li>
                                 <li class="list-group-item">Produsen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->nama_perusahaan; ?></li>
                                 <li class="list-group-item">Distributor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->nama_distributor; ?> (<?php echo $u->no_telp_distributor; ?>)</li>
+                                <li class="list-group-item">Deskripsi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->deskripsi_barang; ?></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 mt-5">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><strong> Deskripsi Barang : </strong><br>&nbsp;&nbsp;&nbsp;<?php echo $u->deskripsi_barang; ?></li>
-                            </ul>
-                        </div>
+                    
                     </div>
                 </div>
             </div>
