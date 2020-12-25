@@ -67,4 +67,57 @@ class Barang_model extends CI_Model
         $query = $this->db->query($q);
         return $query;
     }
+
+    function findbarang($id_user, $id_barang)
+    {
+        $q = "SELECT * FROM keranjang WHERE id_barang = ".$id_barang." AND id_user = ".$id_user;
+        $query = $this->db->query($q);
+        return $query->result();
+    }
+
+    function insertkeranjang($data, $table)
+    {
+        $this->db->insert($table, $data);
+    }
+
+    function updatekeranjang($data, $table)
+    {
+        $this->db->set($data);
+        $this->db->where('id_barang', $data['id_barang']);
+        $this->db->update($table);
+    }
+
+    function jumlahkeranjang($id)
+    {
+        $q = "SELECT SUM(jumlah) FROM keranjang WHERE id_user = ".$id;
+        $query = $this->db->query($q);
+        return $query->result();
+    }
+
+    function getkeranjangbyid($id)
+    {
+        $q = "SELECT t1.id_keranjang, t2.id_barang, t1.id_user, t1.jumlah, t1.total_harga, t2.nama_barang, t2.harga, t2.photo_barang FROM keranjang t1 LEFT JOIN barang t2 ON t1.id_barang = t2.id_barang WHERE t1.id_user = ".$id;
+        $query = $this->db->query($q);
+        return $query->result();  
+    }
+
+    function getharga($id)
+    {
+        $q = "SELECT * FROM barang WHERE id_barang = ".$id;
+        $query = $this->db->query($q);
+        return $query->result();       
+    }
+
+    function totalbelanja($id)
+    {
+        $q = "SELECT SUM(total_harga) FROM keranjang WHERE id_user = ".$id;
+        $query = $this->db->query($q);
+        return $query->result();
+    }
+
+    function hapus_keranjang($id)
+    {
+        $q = "DELETE FROM keranjang WHERE id_keranjang = ".$id;
+        $this->db->query($q);
+    }
 }

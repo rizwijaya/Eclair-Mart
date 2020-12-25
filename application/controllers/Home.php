@@ -58,4 +58,18 @@ class Home extends CI_Controller {
         $this->load->view('register');
         $this->load->view('template/login/footer');
     }
+
+    public function keranjangbelanja()
+    {
+        if (!$this->session->userdata('email')) {
+			$this->redirecting();
+        }
+
+        $this->load->model('barang_model');
+        $data['barang'] = $this->barang_model->getkeranjangbyid($this->session->userdata('id_user'));
+
+        $this->load->view('template/home/header');
+        $this->load->view('keranjangbelanja', $data);
+        $this->load->view('template/home/footer');
+    }
 }
