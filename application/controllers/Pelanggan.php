@@ -34,6 +34,9 @@ class Pelanggan extends CI_Controller
 		$this->load->model('barang_model');
 		$this->load->view('template/home/header');
 		$query['barang'] = $this->barang_model->select_barang_byid($data)->result();
+		//var_dump($query['barang'][0]->id_kategori);
+		//die;
+		$query['barangbyid'] = $this->barang_model->barangbycategory($query['barang'][0]->id_kategori)->result();
 		//var_dump($query);
 		//die();
 		$this->load->view('detail_barang', $query);

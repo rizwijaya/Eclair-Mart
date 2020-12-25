@@ -1,11 +1,12 @@
 <?php foreach ($barang as $u) : ?>
+    <?php foreach ($barangbyid as $brg) : ?>
         <!--  Modal -->
-        <div class="modal fade" id="productView" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="productView<?php echo $brg->id_barang ?>" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-body p-0">
                         <div class="row align-items-stretch">
-                            <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>)" href="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>" data-lightbox="productview" title="Red digital smartwatch"></a><a class="d-none" href="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>" title="Red digital smartwatch" data-lightbox="productview"></a><a class="d-none" href="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>" title="Red digital smartwatch" data-lightbox="productview"></a></div>
+                            <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $brg->photo_barang ?>)" href="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $brg->photo_barang ?>" data-lightbox="productview" title="Red digital smartwatch"></a><a class="d-none" href="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $brg->photo_barang ?>" title="Red digital smartwatch" data-lightbox="productview"></a><a class="d-none" href="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $brg->photo_barang ?>" title="Red digital smartwatch" data-lightbox="productview"></a></div>
                             <div class="col-lg-6">
                                 <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                 <div class="p-5 my-md-4">
@@ -16,9 +17,9 @@
                                         <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                                         <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                                     </ul>
-                                    <h2 class="h4"><?php echo $u->nama_barang ?></h2>
-                                    <p class="text-muted">$Rp. <?php echo $u->harga ?></p>
-                                    <p class="text-small mb-4"><?php echo $u->deskripsi_barang ?></p>
+                                    <h2 class="h4"><?php echo $brg->nama_barang ?></h2>
+                                    <p class="text-muted">Rp. <?php echo number_format($brg->harga, 0, ',', '.'); ?></p>
+                                    <p class="text-small mb-4"><?php echo $brg->deskripsi_barang ?></p>
                                     <div class="row align-items-stretch mb-4">
                                         <div class="col-sm-7 pr-sm-0">
                                             <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
@@ -38,6 +39,7 @@
                 </div>
             </div>
         </div>
+        <?php endforeach; ?>
         <section class="py-5">
             <div class="container">
                 <div class="row mb-5">
@@ -97,7 +99,7 @@
                 <div class="tab-content mb-5" id="myTabContent">
                     <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
                         <div class="p-4 p-lg-5 bg-white">
-                            <h6 class="text-uppercase">Product description </h6>
+                            <h6 class="text-uppercase">Deskripsi Produk </h6>
                             <p class="text-muted text-small mb-0"><?php echo $u->deskripsi_barang ?></p>
                         </div>
                     </div>
@@ -139,40 +141,26 @@
                     </div>
                 </div>
                 <!-- RELATED PRODUCTS-->
-                <h2 class="h5 text-uppercase mb-4">Related products</h2>
+                <h2 class="h5 text-uppercase mb-4">Produk yang Sesuai</h2>
                 <div class="row">
+                <?php foreach ($barangbyid as $brg) : ?>
                     <!-- PRODUCT-->
                     <div class="col-lg-3 col-sm-6">
                         <div class="product text-center skel-loader">
-                            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="img/product-1.jpg" alt="..."></a>
+                            <div class="d-block mb-3 position-relative"><a class="d-block" href="<?php echo base_url(); ?>pelanggan/detail_barang/<?php echo $brg->id_barang ?>"><img class="img-fluid w-100" src="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $brg->photo_barang ?>" alt="..."></a>
                                 <div class="product-overlay">
                                     <ul class="mb-0 list-inline">
                                         <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
                                         <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="#">Add to cart</a></li>
-                                        <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
+                                        <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView<?php echo $brg->id_barang ?>" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
-                            <h6> <a class="reset-anchor" href="detail.html">Kui Ye Chen’s AirPods</a></h6>
-                            <p class="small text-muted">$250</p>
+                            <h6> <a class="reset-anchor" href="<?php echo base_url(); ?>pelanggan/detail_barang/<?php echo $brg->id_barang ?>"><?php echo $brg->nama_barang ?></a></h6>
+                            <p class="small text-muted">Rp. <?php echo number_format($brg->harga, 0, ',', '.'); ?></p>
                         </div>
                     </div>
-                    <!-- PRODUCT-->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="product text-center skel-loader">
-                            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="img/product-2.jpg" alt="..."></a>
-                                <div class="product-overlay">
-                                    <ul class="mb-0 list-inline">
-                                        <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                                        <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="#">Add to cart</a></li>
-                                        <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <h6> <a class="reset-anchor" href="detail.html">Air Jordan 12 gym red</a></h6>
-                            <p class="small text-muted">$300</p>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
