@@ -38,7 +38,7 @@
                                     <th>No</th>
                                     <th>Photo</th>
                                     <th>Nama Barang</th>
-                                    <th>Distributor</th>
+                                    <th>Nama Perusahaan</th>
                                     <th>Jumlah</th>
                                     <th>Harga</th>
                                     <th>Status</th>
@@ -153,9 +153,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-control-label" for="distributor"><strong>Distributor</strong></label>
+                                <label class="form-control-label" for="distributor"><strong>Nama Perusahaan</strong></label>
                                 <select class="form-control" id="distributor" name="distributor" required="">
-                                    <option value="">Pilih Distributor</option>
+                                    <option value="">Pilih Perusahaan</option>
                                     <?php foreach ($distributor as $db) : ?>
                                         <option value="<?= $db->id_distributor ?>"><?= $db->nama_perusahaan ?></option>
                                     <?php endforeach; ?>
@@ -236,7 +236,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="distributor"><strong>Distributor</strong></label>
+                                    <label class="form-control-label" for="distributor"><strong>Nama Perusahaan</strong></label>
                                     <select class="form-control" id="distributor" name="distributor" required="">
                                         <option value="<?= $u->id_distributor ?>"><?= $u->nama_perusahaan ?></option>
                                         <?php foreach ($distributor as $db) : ?>
@@ -307,7 +307,7 @@
                                                                                                                 } else {
                                                                                                                     echo 'Tidak Tersedia';
                                                                                                                 } ?></li>
-                                <li class="list-group-item">Produsen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->nama_perusahaan; ?></li>
+                                <li class="list-group-item">Perusahaan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->nama_perusahaan; ?></li>
                                 <li class="list-group-item">Distributor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->nama_distributor; ?> (<?php echo $u->no_telp_distributor; ?>)</li>
                                 <li class="list-group-item">Deskripsi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->deskripsi_barang; ?></li>
                             </ul>
