@@ -283,7 +283,7 @@
 <!-- Modal Detail Data -->
 <?php foreach ($barang as $u) : ?>
     <div class="modal fade" id="detail_modal<?= $u->id_barang ?>" tabindex="-1" role="dialog" aria-labelledby="detail_modal" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="detail_modal"><strong>Detail Data Barang</strong></h5>
@@ -292,54 +292,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo base_url(); ?>barang/detail_barang" method="post" enctype="multipart/form-data">
-                        <input type="hidden" class="form-control" id="id_barang" name="id_barang" value="<?= $u->id_barang ?>">
-                        <div class="form-group">
-                            <label class="form-control-label" for="nama_barang"><strong>Nama Barang</strong></label><br>
-                            <?= $u->nama_barang ?>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img class="card-img-top" height="320px" src="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>" alt="Barang">
                         </div>
-                        <div class="form-group">
-                            <label class="form-control-label" for="harga"><strong>Harga Barang</strong></label><br>
-                            <p>Rp.<?php echo number_format($u->harga, 0, ',', '.'); ?></p>
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Nomor Barang&nbsp;&nbsp;:&nbsp;&nbsp;0172<?php echo $u->id_barang; ?></li>
+                                <li class="list-group-item">Nama Barang&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->nama_barang; ?></li>
+                                <li class="list-group-item">Harga Barang&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Rp. <?php echo number_format($u->harga, 0, ',', '.'); ?></li>
+                                <li class="list-group-item">Jumlah Barang&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->jumlah; ?> Buah</li>
+                                <li class="list-group-item">Status Barang&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php if ($u->status_barang == '1') {
+                                                                                                                    echo 'Tersedia';
+                                                                                                                } else {
+                                                                                                                    echo 'Tidak Tersedia';
+                                                                                                                } ?></li>
+                                <li class="list-group-item">Produsen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->nama_perusahaan; ?></li>
+                                <li class="list-group-item">Distributor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->nama_distributor; ?> (<?php echo $u->no_telp_distributor; ?>)</li>
+                            </ul>
                         </div>
-                        <div class="form-group">
-                            <label class="form-control-label" for="jumlah"><strong>Jumlah Barang</strong></label><br>
-                            <?= $u->jumlah ?>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-5">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong> Deskripsi Barang : </strong><br>&nbsp;&nbsp;&nbsp;<?php echo $u->deskripsi_barang; ?></li>
+                            </ul>
                         </div>
-                        <div class="form-group">
-                            <label class="form-control-label" for="status"><strong>Status Barang</strong></label><br>
-                            <?php if ($u->status_barang == 0) { ?>
-                                Tidak Tersedia
-                            <?php } else { ?>
-                                Tersedia
-                            <?php } ?>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="distributor"><strong>Distributor</strong></label><br>
-                                    <?= $u->nama_perusahaan ?>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="kategori"><strong>Kategori Barang</strong></label><br>
-                                    <p value="<?= $u->id_kategori ?>"><?= $u->nama_kategori ?></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label><strong>Gambar Barang</strong></label><br>
-                            <img width="200px" src="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>"></div>
-                        <div class="form-group">
-                            <label class="form-control-label" for="deskripsi"><strong>Deskripsi Barang</strong></label><br>
-                            <?= $u->deskripsi_barang ?>
-                        </div>
-                </div>
-                <div class="modal-footer">
+                    </div>
                 </div>
             </div>
-            </form>
         </div>
     </div>
     </div>
