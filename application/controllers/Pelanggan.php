@@ -13,8 +13,16 @@ class Pelanggan extends CI_Controller
 
 	public function index()
 	{
-		//echo "Ini Halaman Pelanggan"; die;
-		$this->load->view('template/home/header');
+		$id = $this->session->userdata('id_user');
+		if (!empty($id))
+		{
+			$data['keranjang'] = $this->barang_model->jumlahkeranjang($id);
+		} else {
+			$data['keranjang'] = 0;
+		}
+
+		//var_dump($data['keranjang'][0]); die;
+		$this->load->view('template/home/header', $data);
 		$this->load->view('home');
 		$this->load->view('template/home/footer');
 	}
@@ -51,5 +59,36 @@ class Pelanggan extends CI_Controller
 		$this->load->view('template/home/header');
 		$this->load->view('listbarang', $data);
 		$this->load->view('template/home/footer');
+	}
+	
+	function tambahkeranjang($id_barang, $jumlah)
+	{
+		$this->load->helper(array('date'));
+		$id_user = $this->session->userdata('id_user');
+
+		$cekbarang = $this->barang_model->findbarang($id_user, $id_barang);
+
+		if(!empty($cekbarang)) { //Update ke Keranjang yang sudah ada
+			$jml = $jumlah + $cekbarang[0]->jumlah; //Menambahkan jumlah barang
+			$data = array(
+				'id_user'		=> 	$id_user,
+				'id_barang' 	=> 	$id_barang,
+				'jumlah'		=> 	$jml,
+				'date_created'	=> 	date('Y-m-d')
+			);
+
+			$this->barang_model->updatekeranjang($data, 'keranjang');
+		} else { //Masukan Ke keranjang baru
+			$data = array(
+				'id_user'		=> 	$id_user,
+				'id_barang' 	=> 	$id_barang,
+				'jumlah'		=> 	$jumlah,
+				'date_created'	=> 	date('Y-m-d')
+			);
+
+			$this->barang_model->insertkeranjang($data, 'keranjang');
+		}
+
+		$this->list_barang(); //Redirect ke list barang
 	}
 }

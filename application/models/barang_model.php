@@ -67,4 +67,30 @@ class Barang_model extends CI_Model
         $query = $this->db->query($q);
         return $query;
     }
+
+    function findbarang($id_user, $id_barang)
+    {
+        $q = "SELECT * FROM keranjang WHERE id_barang = ".$id_barang." AND id_user = ".$id_user;
+        $query = $this->db->query($q);
+        return $query->result();
+    }
+
+    function insertkeranjang($data, $table)
+    {
+        $this->db->insert($table, $data);
+    }
+
+    function updatekeranjang($data, $table)
+    {
+        $this->db->set($data);
+        $this->db->where('id_barang', $data['id_barang']);
+        $this->db->update($table);
+    }
+
+    function jumlahkeranjang($id)
+    {
+        $q = "SELECT SUM(jumlah) FROM keranjang WHERE id_user = ".$id;
+        $query = $this->db->query($q);
+        return $query->result();
+    }
 }
