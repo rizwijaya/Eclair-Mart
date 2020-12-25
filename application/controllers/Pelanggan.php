@@ -23,7 +23,43 @@ class Pelanggan extends CI_Controller
 
 	public function list_barang()
 	{
-		$data['barang'] = $this->barang_model->select_barang()->result();
+		$this->load->library('pagination');
+
+		 //konfigurasi pagination
+		 $config['base_url'] = site_url('pelanggan/list_barang'); //site url
+		 $config['total_rows'] = $this->db->count_all('barang'); //total row
+		 $config['per_page'] = 12;  //show record per halaman
+		 $config["uri_segment"] = 3;  // uri parameter
+		 $choice = $config["total_rows"] / $config["per_page"];
+		 $config["num_links"] = floor($choice);
+  
+		// Membuat Style pagination dengan bootsrap
+		$config['first_link']       = 'First';
+		$config['last_link']        = 'Last';
+		$config['next_link']        = '<span aria-hidden="true">»</span>';
+		$config['prev_link']        = '<span aria-hidden="true">«</span>';
+		$config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center justify-content-lg-end">';
+		$config['full_tag_close']   = '</ul></nav></div>';
+		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
+		$config['num_tag_close']    = '</span></li>';
+		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
+		$config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
+		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
+		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
+		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
+		$config['prev_tagl_close']  = '</span>Next</li>';
+		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
+		$config['first_tagl_close'] = '</span></li>';
+		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
+		$config['last_tagl_close']  = '</span></li>';
+
+		 $this->pagination->initialize($config);
+		 $data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+           
+		 $data['barang'] = $this->barang_model->barang_pagging($config["per_page"], $data['page'])->result();
+
+		 $data['pagination'] = $this->pagination->create_links();
+
 		$data['kategori'] = $this->barang_model->select_category()->result();
 
 		$this->load->view('template/home/header');
@@ -51,7 +87,7 @@ class Pelanggan extends CI_Controller
 		$data['kategori'] = $this->barang_model->select_category()->result();
 
 		$this->load->view('template/home/header');
-		$this->load->view('listbarang', $data);
+		$this->load->view('filterbarang', $data);
 		$this->load->view('template/home/footer');
 	}
 	
@@ -103,5 +139,18 @@ class Pelanggan extends CI_Controller
 		$this->barang_model->hapus_keranjang($id);
 
 		redirect('home/keranjangbelanja');
+	}
+
+	function lengkapipembayaran($id)
+	{
+		if (!$this->session->userdata('email')) {
+			redirect('home/redirecting');
+		}
+
+		$data['getprofile'] = $this->account->getprofile();
+
+		$this->load->view('template/home/header');
+        $this->load->view('lengkapipembayaran', $data);
+        $this->load->view('template/home/footer');
 	}
 }

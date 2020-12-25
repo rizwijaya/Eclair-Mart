@@ -8,6 +8,12 @@ class Barang_model extends CI_Model
         return $query;
     }
 
+    function barang_pagging($limit, $start)
+    {
+        $query = $this->db->get('barang', $limit, $start);
+        return $query;
+    }
+
     function select_category()
     {
         $query = $this->db->get('kategori');
@@ -119,5 +125,12 @@ class Barang_model extends CI_Model
     {
         $q = "DELETE FROM keranjang WHERE id_keranjang = ".$id;
         $this->db->query($q);
+    }
+
+    function lengkap($id)
+    {
+        $q = "SELECT * FROM pelanggan WHERE id_user=" . $id;
+        $res = $this->db->query($q);
+        return $res->result_array();        
     }
 }

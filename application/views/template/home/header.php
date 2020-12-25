@@ -77,7 +77,11 @@
                                     if (!empty($id))
                                     {
                                         $keranjang = $this->barang_model->jumlahkeranjang($id);
-                                        foreach ($keranjang['0'] as $cetak) { echo $cetak; } 
+                                        foreach ($keranjang['0'] as $cetak) { 
+                                            if($cetak == NULL) {
+                                                echo '0';
+                                            } else {
+                                            echo $cetak; }} 
                                     } else {
                                         echo '0';
                                     } ?>)</small></a></li>
