@@ -3439,3 +3439,8 @@ code {
 .breadcrumb-item.active {
   color: #aaa;
 }
+
+.wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
