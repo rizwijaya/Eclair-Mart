@@ -91,6 +91,55 @@ class Pelanggan extends CI_Controller
 		$this->load->view('template/home/footer');
 	}
 
+	function tambahkeranjang_quantity($id_barang)
+	{
+		$this->load->helper(array('date'));
+		$id_user = $this->session->userdata('id_user');
+
+		$jumlah = $_POST['jumlah'];
+
+		$cekbarang = $this->barang_model->findbarang($id_user, $id_barang);
+		$getharga = $this->barang_model->getharga($id_barang);
+
+		$total_harga = $getharga[0]->harga * $jumlah;
+		if (!empty($cekbarang)) { //Update ke Keranjang yang sudah ada
+			$jml = $jumlah + $cekbarang[0]->jumlah; //Menambahkan jumlah barang
+			$total = $total_harga + $cekbarang[0]->total_harga; //Jumlah harga sebelum dengan input
+
+			$data = array(
+				'id_user'		=> 	$id_user,
+				'id_barang' 	=> 	$id_barang,
+				'jumlah'		=> 	$jml,
+				'total_harga'	=>	$total,
+				'date_created'	=> 	date('Y-m-d')
+			);
+
+			$this->barang_model->updatekeranjang($data, 'keranjang');
+		} else { //Masukan Ke keranjang baru
+			$data = array(
+				'id_user'		=> 	$id_user,
+				'id_barang' 	=> 	$id_barang,
+				'jumlah'		=> 	$jumlah,
+				'total_harga'	=>	$total_harga,
+				'date_created'	=> 	date('Y-m-d')
+			);
+
+			$this->barang_model->insertkeranjang($data, 'keranjang');
+		}
+
+		redirect('home/keranjangbelanja'); //Redirect ke list barang
+	}
+
+	public function viewkeranjang()
+	{
+		$this->load->model('barang_model');
+		$data['barang'] = $this->barang_model->select_barang()->result();
+
+		$this->load->view('template/home/header');
+		$this->load->view('home/keranjangbelanja', $data);
+		$this->load->view('template/home/footer');
+	}
+
 	function tambahkeranjang($id_barang)
 	{
 		$this->load->helper(array('date'));

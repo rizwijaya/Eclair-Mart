@@ -179,7 +179,7 @@ class Barang extends CI_Controller
 
 			$this->barang_model->update_barang($id, $distributor, $nama_barang, $jumlah, $harga, $status, $kategori, $gambar, $deskripsi);
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil ditambahkan.</div>');
-			$this->view_update();
+			$this->index();
 		}
 	}
 
