@@ -208,7 +208,7 @@
                     <div class="bg-light px-4 py-3">
                         <div class="row align-items-center text-center">
                             <div class="col-md-6 mb-3 mb-md-0 text-md-left"><a class="btn btn-link p-0 text-dark btn-sm" href="<?php echo base_url(); ?>pelanggan/histori"><i class="fas fa-long-arrow-alt-left mr-2"> </i>Histori Transaksi</a></div>
-                            <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm" href="#">Cetak Invoice<i class="fa fa-print ml-2"></i></a></div>
+                            <!-- <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm" href="#">Cetak Invoice<i class="fa fa-print ml-2"></i></a></div> -->
                         </div>
                     </div>
                 </div>
