@@ -1,4 +1,43 @@
 <?php foreach ($total_transaksi as $u) : ?>
+    <!-- Form Modal Upload Bukti Bayar -->
+    <div class="modal fade" id="update_modal<?= $u->id_transaksi; ?>" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="judulModal">Upload Bukti Pembayaran</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="<?php echo base_url(); ?>pelanggan/uploadbukti" method="post" enctype="multipart/form-data">
+                        <input type="hidden" class="form-control" id="id_transaksi" name="id_transaksi" value="<?= $u->id_transaksi; ?>">
+                        <div class="form-group">
+                            <label class="form-control-label" for="no_transaksi">Nomor Transaksi</label>
+                            <input type="text" class="form-control" value="#0938<?= $u->id_transaksi; ?>" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="merk">Nama Lengkap</label>
+                            <input type="text" class="form-control" value="<?= $u->nama; ?>" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="tahun">Total Pembayaran</label>
+                            <input type="text" class="form-control" value="Rp. <?php echo number_format($u->total_bayar, 0, ',', '.'); ?>" disabled>
+                        </div>
+                        <label class="form-control-label">Upload Bukti Pembayaran</label>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="bukti_pembayaran" name="bukti_pembayaran">
+                                <label class="custom-file-label" for="gambar" aria-describedby="inputGroupFileAddon02">Pilih file (maks 2mb, jpg/jpeg/png/pdf)</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer mt-5">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            <button type="submit" name="submit" id="submit" class="btn btn-secondary">Upload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Form Modal Upload Bukti Bayar -->
     <div class="container">
         <section class="py-5">
             <h2 class="h5 text-uppercase mb-4">Invoice Eclair Mart</h2>
@@ -6,6 +45,7 @@
                 <div class="col-lg-8 mb-lg-0  bg-light">
                     <!-- CART TABLE-->
                     <div class="table-responsive">
+                        <span class="mt-2 p-2"><?php echo $this->session->flashdata('pesan') ?></span>
                         <table class="table">
                             <tbody>
                                 <br>
@@ -105,7 +145,21 @@
                                 <li class="d-flex align-items-center justify-content-between mt-4"><strong class="text-uppercase small font-weight-bold">OVO/GOPAY: </strong><span class="text-muted small">0856786543465</span></li>
                                 <li class="mt-5">
                                     <div class="form-group">
-                                        <button class="btn btn-dark btn-sm btn-block" type="submit"></i>Upload Bukti Bayar</button>
+                                        <?php if ($u->status_bayar == 0) { ?>
+                                            <button class="btn btn-dark btn-sm btn-block" type="button" data-toggle="modal" data-target="#update_modal<?= $u->id_transaksi; ?>"></i>Upload Bukti Pembayaran</button>
+                                        <?php } elseif ($u->status_bayar == 1) { ?>
+                                            <button type="button" class="btn btn-warning btn-sm btn-block"><i><i class="fa fa-clock"></i></i> Menunggu Konfirmasi</button>
+                                        <?php } elseif ($u->status_bayar == 3) { ?>
+                                            <button type="button" class="btn btn-success btn-sm btn-block"><i><i class="fa fa-check"></i></i> Pembayaran berhasil</button>
+                                        <?php } elseif ($u->status_bayar == 2) { ?>
+                                            <button type="button" class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#update_modal<?= $u->id_transaksi; ?>">Upload Ulang Pembayaran</button>
+                                        <?php } elseif ($u->status_bayar == 4) { ?>
+                                            <button type="button" class="btn btn-warning btn-sm btn-block"><i><i class="fas fa-dolly-flatbed mr-1"></i></i> Sedang Dikemas</button>
+                                        <?php } elseif ($u->status_bayar == 5) { ?>
+                                            <button type="button" class="btn btn-warning btn-sm btn-block"><i><i class="far fa-paper-plane"></i></i> Proses Pengiriman</button>
+                                        <?php } elseif ($u->status_bayar == 6) { ?>
+                                            <button type="button" class="btn btn-success btn-sm btn-block"><i><i class="fa fa-check"></i></i> Barang Diterima</button>
+                                        <?php } ?>
                                     </div>
                                 </li>
                             </ul>

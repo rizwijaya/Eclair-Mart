@@ -53,4 +53,9 @@ class Transaksi_model extends CI_Model
         $res = $this->db->query($q);
         return $res->result();  
     }
+
+    function uploadbukti($table, $data, $where)
+    {
+        $this->db->update($table,$data,$where);
+    }
 }

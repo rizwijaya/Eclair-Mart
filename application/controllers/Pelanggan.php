@@ -229,7 +229,7 @@ class Pelanggan extends CI_Controller
 		$this->load->model('transaksi_model');
 		//Melakukan Perhitungan total bayar
 		$totalbayar = $this->transaksi_model->totalcheckout($this->session->userdata('id_user'));
-		$tanggal_bayar = date('Y-m-d');// pendefinisian tanggal awal bayar
+		$tanggal_bayar = date('Y-m-d'); // pendefinisian tanggal awal bayar
 		$batas_bayar = date('Y-m-d', strtotime('+1 days', strtotime($tanggal_bayar))); //batas pembayaran
 		foreach ($totalbayar['0'] as $tb) {
 			//Menginisialisasi nilai dari array input dengan data transaksi
@@ -241,9 +241,9 @@ class Pelanggan extends CI_Controller
 				'batas_bayar'	=> 	$batas_bayar
 			);
 		}
-		
+
 		//Melakukan Insert ke data Transaksi
-		
+
 		$id_transaksi = $this->transaksi_model->insertcheckout($input, 'transaksi');
 
 		//Mengurangi Stock barang sekarang dengan yang diorder pelanggan
@@ -288,7 +288,7 @@ class Pelanggan extends CI_Controller
 		$this->load->model('transaksi_model');
 		$data['barang_detail'] = $this->transaksi_model->barangtransaksi($id_transaksi); //mengambil data barang
 		$data['total_transaksi'] = $this->transaksi_model->getinvoice($id_transaksi); //mengambil data Transaksi
-		
+
 		$this->load->view('template/home/header');
 		$this->load->view('invoice', $data);
 		$this->load->view('template/home/footer');
@@ -302,7 +302,7 @@ class Pelanggan extends CI_Controller
 
 		$session_data = $this->session->userdata('id_grup');
 		if ($session_data != 3) {
-				redirect('home/redirecting');
+			redirect('home/redirecting');
 		}
 
 		$this->load->model('transaksi_model');
@@ -311,5 +311,42 @@ class Pelanggan extends CI_Controller
 		$this->load->view('template/home/header');
 		$this->load->view('histori', $data);
 		$this->load->view('template/home/footer');
+	}
+
+	function uploadbukti()
+	{
+		$id                     = $this->input->post('id_transaksi');
+		$bukti_pembayaran       = $_FILES['bukti_pembayaran']['name'];
+
+		if ($bukti_pembayaran = '') {
+		} else {
+			$config['upload_path']          = './assets/assets_bukti_bayar';
+			$config['allowed_types']        = 'pdf|jpg|png|jpeg';
+			$config['max_size']             = 2048;
+
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('bukti_pembayaran')) {
+				// return $this->upload->data('file_name');
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">' . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</button></div>');
+				// // $error = array('error' => $this->upload->display_errors());
+				$this->invoice($id);
+			} else {
+				$bukti_pembayaran = $this->upload->data('file_name');
+			}
+		}
+		$status = 1; //Status menunggu konfirmasi
+		$data = array(
+			'bukti_bayar' 	=> $bukti_pembayaran,
+			'status_bayar'	=> $status
+		);
+
+		$where = array(
+			'id_transaksi' => $id
+		);
+
+		$this->load->model('transaksi_model');
+		$this->transaksi_model->uploadbukti('transaksi', $data, $where);
+		$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Bukti Pembayaran berhasil diuploads! Silahkan tunggu konfirmasi maks 1x24jam.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</button></div>');
+		$this->invoice($id);
 	}
 }
