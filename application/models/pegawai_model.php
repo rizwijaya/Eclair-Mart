@@ -58,4 +58,18 @@ class Pegawai_model extends CI_Model
 	{
         $this->db->query("CALL updatekategori('". $data['id_kategori']."','". $data['kode_kategori']."','". $data['nama_kategori']."')");
     }
+
+    function pembayaran($status)
+    {
+        $q = "SELECT t1.id_transaksi, t1.bukti_bayar, t1.total_bayar, t1.status_bayar, t1.tanggal_bayar, t1.batas_bayar, t2.nama, t2.email, t3.* FROM transaksi t1 JOIN users t2 ON t1.id_user=t2.id_user JOIN pelanggan t3 ON t2.id_user=t3.id_user WHERE t1.status_bayar = " .$status;
+        $query = $this->db->query($q);        
+        return $query->result();   
+    }
+
+    function transaksi()
+    {
+        $q = "SELECT t1.id_transaksi, t1.bukti_bayar, t1.total_bayar, t1.status_bayar, t1.tanggal_bayar, t1.batas_bayar, t2.nama, t2.email, t3.* FROM transaksi t1 JOIN users t2 ON t1.id_user=t2.id_user JOIN pelanggan t3 ON t2.id_user=t3.id_user WHERE t1.status_bayar = 3 OR t1.status_bayar = 4 OR t1.status_bayar = 5";
+        $query = $this->db->query($q);        
+        return $query->result();   
+    }
 }

@@ -263,4 +263,97 @@ class Pegawai extends CI_Controller
 		$this->load->view('template/admin/sidebar');
 		$this->load->view('pegawai/pegawai', $data);
 	}
+
+	function pembayaranmasuk()
+	{
+		$this->load->model('pegawai_model');
+		$data['pembayaran'] = $this->pegawai_model->pembayaran(1);
+
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('pegawai/pembayaranmasuk', $data);
+	}
+
+	function terimabukti($id)
+	{
+		$data = array(
+			'status_bayar'	=> 3
+		);
+
+		$where = array(
+			'id_transaksi'	=> $id
+		);
+
+		$this->load->model('transaksi_model');
+
+		$this->transaksi_model->updatebayar('transaksi', $data , $where);
+		
+		$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Pembayaran Berhasil diterima, barang sedang akan dikemas!</div>');
+		$this->pembayaranmasuk();
+	}
+
+	function tolakbukti($id)
+	{
+		$data = array(
+			'status_bayar'	=> 2
+		);
+
+		$where = array(
+			'id_transaksi'	=> $id
+		);
+
+		$this->load->model('transaksi_model');
+		$this->transaksi_model->updatebayar('transaksi', $data , $where);
+
+		$this->session->set_flashdata('pesan', '<div class="alert alert-error alert-danger fade show" role="alert">Pembayaran Berhasil Ditolak!</div>');
+		$this->pembayaranmasuk();
+	}
+
+	function transaksi()
+	{
+		$this->load->model('pegawai_model');
+		$data['transaksi'] = $this->pegawai_model->transaksi();
+		
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('pegawai/transaksi', $data);		
+	}
+
+	function update_transaksi()
+	{
+		$status			= $this->input->post('status_bayar');
+		$id				= $this->input->post('id_transaksi');
+
+		$where = array(
+			'id_transaksi'	=> $id
+		);
+
+		$data = array(
+			'status_bayar'	=> $status
+		);
+
+		$this->load->model('transaksi_model');
+		$this->transaksi_model->updatebayar('transaksi', $data , $where);
+
+		$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Status Pembelian Berhasil diperbarui!</div>');
+		$this->transaksi();
+	}
+
+	function laporantransaksi()
+	{
+		$this->load->model('pegawai_model');
+		$data['laporan'] = $this->pegawai_model->pembayaran(6);
+		
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('pegawai/laporan', $data);				
+	}
+
+	function cetaklaporan()
+	{
+		$this->load->model('pegawai_model');
+		$data['laporan'] = $this->pegawai_model->pembayaran(6);
+		
+		$this->load->view('pegawai/cetaklaporan', $data);		
+	}
 }

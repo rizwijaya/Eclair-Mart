@@ -458,6 +458,27 @@
                                     </i>Kategori Barang
                                 </a>
                             </li>
+                            <li class="app-sidebar__heading">Kelola Pembayaran</li>
+                            <?php if ($this->session->userdata('id_grup') == 2) { ?>
+                            <li>
+                                <a href="<?php echo base_url(); ?>pegawai/pembayaranmasuk">
+                                    <i class="metismenu-icon pe-7s-mouse">
+                                    </i>Pembayaran Masuk
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url(); ?>pegawai/transaksi">
+                                    <i class="metismenu-icon pe-7s-mouse">
+                                    </i>Transaksi Penjualan
+                                </a>
+                            </li>
+                            <?php } ?>
+                            <li>
+                                <a href="<?php echo base_url(); ?>pegawai/laporantransaksi">
+                                    <i class="metismenu-icon pe-7s-mouse">
+                                    </i>Laporan Transaksi
+                                </a>
+                            </li>
                             <li class="app-sidebar__heading">Kelola Pengguna</li>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/daftarpelanggan">

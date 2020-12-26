@@ -58,4 +58,9 @@ class Transaksi_model extends CI_Model
     {
         $this->db->update($table,$data,$where);
     }
+
+    function updatebayar($table, $data, $where)
+    {
+        $this->db->update($table,$data,$where);
+    }
 }
