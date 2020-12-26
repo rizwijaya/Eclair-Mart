@@ -73,21 +73,28 @@
                             </li> -->
                         </ul>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item"><a class="nav-link" <?php if ($this->session->userdata('id_user')) { ?> href="<?php echo base_url(); ?>home/keranjangbelanja" <?php } else { ?> href="<?php echo base_url(); ?>home/login" <?php } ?>><i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Keranjang<small class="text-gray">(<?php
-                                                                                                                                                                                                                                                                                                                                            $id = $this->session->userdata('id_user');
-                                                                                                                                                                                                                                                                                                                                            if (!empty($id)) {
-                                                                                                                                                                                                                                                                                                                                                $keranjang = $this->barang_model->jumlahkeranjang($id);
-                                                                                                                                                                                                                                                                                                                                                foreach ($keranjang['0'] as $cetak) {
-                                                                                                                                                                                                                                                                                                                                                    if ($cetak == NULL) {
-                                                                                                                                                                                                                                                                                                                                                        echo '0';
-                                                                                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                                                                                        echo $cetak;
-                                                                                                                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                                                                echo '0';
-                                                                                                                                                                                                                                                                                                                                            } ?>)</small></a></li>
+                            <li class="nav-item"><a class="nav-link" <?php if ($this->session->userdata('id_user')) { ?> href="<?php echo base_url(); ?>home/keranjangbelanja" <?php } else { ?> href="<?php echo base_url(); ?>home/login" <?php } ?>><i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Keranjang
+                                    <small class="text-gray">(<?php
+                                                                $id = $this->session->userdata('id_user');
+                                                                if (!empty($id)) {
+                                                                    $keranjang = $this->barang_model->jumlahkeranjang($id);
+                                                                    foreach ($keranjang['0'] as $cetak) {
+                                                                        if ($cetak == NULL) {
+                                                                            echo '0';
+                                                                        } else {
+                                                                            echo $cetak;
+                                                                        }
+                                                                    }
+                                                                } else {
+                                                                    echo '0';
+                                                                } ?>)</small></a></li>
                             <!-- <li class="nav-item"><a class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a></li> -->
+                            <!-- Search form -->
+                            <form method="post" action="#" class="form-inline d-flex justify-content-center md-form form-sm">
+                                <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                            </form>
+
                             <?php if ($this->session->userdata('id_user')) { ?>
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>users/logout"> <i class="fas fa-user-alt mr-1 text-gray"></i>Logout</a></li>
                             <?php } else { ?>
