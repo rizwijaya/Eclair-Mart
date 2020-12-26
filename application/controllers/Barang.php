@@ -6,18 +6,18 @@ class Barang extends CI_Controller
 
 	public function __construct()
 	{
-			parent::__construct(); // you have missed this line.
-			$this->load->library('session');
-			if (!$this->session->userdata('email')) {
-					redirect('home');
-			}
+		parent::__construct(); // you have missed this line.
+		$this->load->library('session');
+		if (!$this->session->userdata('email')) {
+			redirect('home');
+		}
 
-			$session_data = $this->session->userdata('id_grup');
-			if ($session_data == 3) {
-					redirect('home/redirecting');
-			}
+		$session_data = $this->session->userdata('id_grup');
+		if ($session_data == 3) {
+			redirect('home/redirecting');
+		}
 	}
-	
+
 	public function index()
 	{
 		$this->load->model('barang_model');
@@ -139,7 +139,11 @@ class Barang extends CI_Controller
 			$deskripsi           = $this->input->post('deskripsi');
 			$gambar         	= $_FILES['gambar']['name'];
 
-			if ($gambar = '') {
+			if ($gambar == '') {
+				$oldgambar = $this->barang_model->select_barang_byid($id)->result();
+				foreach ($oldgambar as $u) :
+					$gambar = $u->photo_barang;
+				endforeach;
 			} else {
 				$config['upload_path']          = './assets/assets_barang/image';
 				$config['allowed_types']        = 'jpg|png|jpeg';
@@ -155,8 +159,11 @@ class Barang extends CI_Controller
 					$this->index();
 				} else {
 					$gambar = $this->upload->data('file_name');
+					var_dump($gambar);
+					die();
 				}
 			}
+
 
 			// $data = array(
 			// 	'id_barang'			=> $id,
@@ -172,7 +179,19 @@ class Barang extends CI_Controller
 
 			$this->barang_model->update_barang($id, $distributor, $nama_barang, $jumlah, $harga, $status, $kategori, $gambar, $deskripsi);
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil ditambahkan.</div>');
-			$this->index();
+			$this->view_update();
 		}
+	}
+
+	public function view_update()
+	{
+		$this->load->model('barang_model');
+		$data['barang'] = $this->barang_model->select_barang()->result();
+		$data['kategori'] = $this->barang_model->select_category()->result();
+		$data['distributor'] = $this->barang_model->select_distributor()->result();
+
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('pegawai/barang', $data);
 	}
 }
