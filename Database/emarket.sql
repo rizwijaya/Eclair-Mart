@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Des 2020 pada 07.30
+-- Waktu pembuatan: 26 Des 2020 pada 12.27
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.33
 
@@ -92,12 +92,12 @@ CREATE TABLE `barang` (
 
 INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `harga`, `status_barang`, `id_kategori`, `photo_barang`, `deskripsi_barang`) VALUES
 (4, 2, 'meja', 81, 100000, 0, 6, 'meja1.png', 'meja'),
-(5, 1, 'sabun', 86, 10000, 0, 10, 'sabundetol1.png', 'sabun'),
+(5, 1, 'sabun', 85, 10000, 0, 10, 'sabundetol1.png', 'sabun'),
 (6, 2, 'kursi', 96, 85000, 0, 6, 'kursi3.png', 'kursi'),
 (7, 2, 'Dancow Fortigo', 45, 120000, 1, 2, 'dancow3.png', 'Dancow Fortigo adalah produk susu unggulan'),
 (9, 1, 'Nugget', 15, 12500, 0, 2, 'nugget.png', 'Nugget AYAM'),
 (13, 14, 'Garnier Sakura White Serum Night Cream Moisturizer Skin Care - 50 ml', 49, 53000, 1, 10, 'garnier.png', 'Krim essence lembut dengan paduan Ekstrak Sakura, Ekstrak Buah-buahan, dan Vitamin CG, melembapkan wajah hingga 24 jam dan membiarkannya bernafas selama Anda tidur.'),
-(14, 1, 'Pond\'s White Beauty Facial Foam 50 gr', 93, 14000, 1, 10, 'ponds1.png', 'Dengan kandungan Pearl Nutrients, Vitamin B3, dan AHA'),
+(14, 1, 'Pond\'s White Beauty Facial Foam 50 gr', 92, 14000, 1, 10, 'ponds1.png', 'Dengan kandungan Pearl Nutrients, Vitamin B3, dan AHA'),
 (15, 1, 'Garnier Sakura White Pinkish Radiance Essence Lotion Skin Care - 120ml', 99, 75600, 1, 10, 'garnieres.png', 'Essence lotion yang melembabkan, mencerahkan, menghaluskan tekstur kulit dan menyiapkan kulit untuk perawatan kulit tahap selanjutnya.'),
 (17, 17, 'Ovale Facial Lotion Lemon Botol 200 ml', 49, 22800, 1, 10, 'ovale.png', 'Membersihkan kotoran dan sisa tata rias'),
 (18, 1, 'Garnier Men Turbo Light Oil Control 3 in 1 Charcoal Cleanser Foam Skin Care - 100 ml', 48, 29000, 1, 10, 'garnier1.png', 'Pembersih wajah 3 in 1 pertama untuk berminyak dengan kombinasi kekuatan charcoal, beads dan clay.'),
@@ -214,7 +214,9 @@ INSERT INTO `checkout` (`id_checkout`, `id_transaksi`, `id_barang`, `jumlah`, `t
 (54, 38, 9, 1, 12500, '2020-12-26'),
 (55, 38, 18, 1, 29000, '2020-12-26'),
 (56, 40, 4, 1, 100000, '2020-12-26'),
-(57, 40, 9, 1, 12500, '2020-12-26');
+(57, 40, 9, 1, 12500, '2020-12-26'),
+(58, 42, 5, 1, 10000, '2020-12-26'),
+(59, 42, 14, 1, 14000, '2020-12-26');
 
 -- --------------------------------------------------------
 
@@ -410,7 +412,7 @@ CREATE TABLE `transaksi` (
   `id_transaksi` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `total_bayar` int(50) DEFAULT NULL,
-  `status_bayar` varchar(50) DEFAULT NULL,
+  `status_bayar` int(11) DEFAULT NULL,
   `bukti_bayar` varchar(200) NOT NULL,
   `tanggal_bayar` date DEFAULT current_timestamp(),
   `batas_bayar` date NOT NULL DEFAULT current_timestamp()
@@ -421,10 +423,11 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `total_bayar`, `status_bayar`, `bukti_bayar`, `tanggal_bayar`, `batas_bayar`) VALUES
-(34, 1, 112500, '0', '', '2020-12-26', '2020-12-27'),
-(36, 1, 112500, '0', '', '2020-12-26', '2020-12-27'),
-(38, 1, 141500, '0', '', '2020-12-26', '2020-12-27'),
-(40, 1, 112500, '0', '', '2020-12-26', '2020-12-27');
+(34, 1, 112500, 0, '', '2020-12-26', '2020-12-27'),
+(36, 1, 112500, 6, 'bukti.jpg', '2020-12-26', '2020-12-27'),
+(38, 1, 141500, 6, 'bukti5.jpg', '2020-12-26', '2020-12-27'),
+(40, 1, 112500, 5, 'bukti3.jpg', '2020-12-26', '2020-12-27'),
+(42, 1, 24000, 1, 'bukti2.jpg', '2020-12-26', '2020-12-27');
 
 -- --------------------------------------------------------
 
@@ -460,13 +463,17 @@ INSERT INTO `users` (`id_user`, `id_grup`, `nama`, `email`, `password`, `date_cr
 -- Indeks untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  ADD PRIMARY KEY (`id_barang`);
+  ADD PRIMARY KEY (`id_barang`),
+  ADD KEY `BARANG_DISTRIBUTOR` (`id_distributor`),
+  ADD KEY `BARANG_kategori` (`id_kategori`);
 
 --
 -- Indeks untuk tabel `checkout`
 --
 ALTER TABLE `checkout`
-  ADD PRIMARY KEY (`id_checkout`);
+  ADD PRIMARY KEY (`id_checkout`),
+  ADD KEY `CHECKOUT_TRANSAKSI` (`id_transaksi`),
+  ADD KEY `CHECKOUT_BARANG` (`id_barang`);
 
 --
 -- Indeks untuk tabel `distributor`
@@ -490,7 +497,9 @@ ALTER TABLE `kategori`
 -- Indeks untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  ADD PRIMARY KEY (`id_keranjang`);
+  ADD PRIMARY KEY (`id_keranjang`),
+  ADD KEY `KERANJANG_USER` (`id_user`),
+  ADD KEY `KERANJANG_BARANG` (`id_barang`);
 
 --
 -- Indeks untuk tabel `pegawai`
@@ -523,7 +532,9 @@ ALTER TABLE `status`
 -- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id_transaksi`);
+  ADD PRIMARY KEY (`id_transaksi`),
+  ADD KEY `TRANSAKSI_USER` (`id_user`),
+  ADD KEY `TRANSAKSI_STATUS` (`status_bayar`);
 
 --
 -- Indeks untuk tabel `users`
@@ -546,7 +557,7 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT untuk tabel `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id_checkout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_checkout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT untuk tabel `distributor`
@@ -570,7 +581,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT untuk tabel `pegawai`
@@ -600,7 +611,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
@@ -611,6 +622,27 @@ ALTER TABLE `users`
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `barang`
+--
+ALTER TABLE `barang`
+  ADD CONSTRAINT `BARANG_DISTRIBUTOR` FOREIGN KEY (`id_distributor`) REFERENCES `distributor` (`id_distributor`),
+  ADD CONSTRAINT `BARANG_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
+
+--
+-- Ketidakleluasaan untuk tabel `checkout`
+--
+ALTER TABLE `checkout`
+  ADD CONSTRAINT `CHECKOUT_BARANG` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
+  ADD CONSTRAINT `CHECKOUT_TRANSAKSI` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`);
+
+--
+-- Ketidakleluasaan untuk tabel `keranjang`
+--
+ALTER TABLE `keranjang`
+  ADD CONSTRAINT `KERANJANG_BARANG` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
+  ADD CONSTRAINT `KERANJANG_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --
 -- Ketidakleluasaan untuk tabel `pegawai`
@@ -629,6 +661,13 @@ ALTER TABLE `pelanggan`
 --
 ALTER TABLE `pemilik`
   ADD CONSTRAINT `PEMILIK_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+
+--
+-- Ketidakleluasaan untuk tabel `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD CONSTRAINT `TRANSAKSI_STATUS` FOREIGN KEY (`status_bayar`) REFERENCES `status` (`status_bayar`),
+  ADD CONSTRAINT `TRANSAKSI_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --
 -- Ketidakleluasaan untuk tabel `users`
