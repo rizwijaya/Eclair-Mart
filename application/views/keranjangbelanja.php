@@ -60,7 +60,7 @@
                 <div class="bg-light px-4 py-3">
                     <div class="row align-items-center text-center">
                         <div class="col-md-6 mb-3 mb-md-0 text-md-left"><a class="btn btn-link p-0 text-dark btn-sm" href="<?php echo base_url(); ?>pelanggan/list_barang"><i class="fas fa-long-arrow-alt-left mr-2"> </i>Lanjutkan Belanja</a></div>
-                        <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm" href="<?php 
+                        <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm" onclick="return confirm('Apakah anda yakin ingin melakukan Pembelian?')" href="<?php 
                         $cek = $this->barang_model->lengkap($this->session->userdata('id_user'));
                         if(isset($cek[0]['no_telp_pelanggan'])) { ?>
                         <?= base_url(); ?>pelanggan/checkout/<?= $this->session->userdata('id_user') ?>

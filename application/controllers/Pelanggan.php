@@ -243,9 +243,9 @@ class Pelanggan extends CI_Controller
 		}
 		
 		//Melakukan Insert ke data Transaksi
-		$this->transaksi_model->insertcheckout($input, 'transaksi');
-		$id_transaksi = $this->db->insert_id();
 		
+		$id_transaksi = $this->transaksi_model->insertcheckout($input, 'transaksi');
+
 		//Mengurangi Stock barang sekarang dengan yang diorder pelanggan
 		$keranjang = $this->transaksi_model->getcheckout($this->session->userdata('id_user'));
 		foreach ($keranjang as $kj) {
@@ -270,7 +270,7 @@ class Pelanggan extends CI_Controller
 				'total_harga'	=>	$kj->total_harga,
 				'date_created'	=> 	date('Y-m-d')
 			);
-			$this->transaksi_model->insertcheckout($data, 'checkout');
+			$this->transaksi_model->insertbarang($data, 'checkout');
 		}
 
 		//Menghapus data pada keranjang setelah checkout
@@ -291,6 +291,25 @@ class Pelanggan extends CI_Controller
 		
 		$this->load->view('template/home/header');
 		$this->load->view('invoice', $data);
+		$this->load->view('template/home/footer');
+	}
+
+	function histori()
+	{
+		if (!$this->session->userdata('email')) {
+			redirect('home');
+		}
+
+		$session_data = $this->session->userdata('id_grup');
+		if ($session_data != 3) {
+				redirect('home/redirecting');
+		}
+
+		$this->load->model('transaksi_model');
+		$data['histori'] = $this->transaksi_model->gethistori($this->session->userdata('id_user')); //mengambil data Transaksi
+
+		$this->load->view('template/home/header');
+		$this->load->view('histori', $data);
 		$this->load->view('template/home/footer');
 	}
 }
