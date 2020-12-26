@@ -49,7 +49,7 @@ class Transaksi_model extends CI_Model
 
     function gethistori($id)
     {
-        $q = "SELECT * FROM transaksi WHERE id_user = " . $id;
+        $q = "SELECT * FROM transaksi WHERE id_user = " . $id. " AND total_bayar != 0 ORDER BY `id_transaksi` DESC";
         $res = $this->db->query($q);
         return $res->result();  
     }

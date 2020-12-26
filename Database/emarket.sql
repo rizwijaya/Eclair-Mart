@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Des 2020 pada 16.06
+-- Waktu pembuatan: 26 Des 2020 pada 07.30
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.33
 
@@ -91,27 +91,27 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `harga`, `status_barang`, `id_kategori`, `photo_barang`, `deskripsi_barang`) VALUES
-(4, 2, 'meja', 100, 100000, 0, 6, 'meja1.png', 'meja'),
-(5, 1, 'sabun', 100, 10000, 0, 10, 'sabundetol1.png', 'sabun'),
-(6, 2, 'kursi', 100, 85000, 0, 6, 'kursi3.png', 'kursi'),
+(4, 2, 'meja', 81, 100000, 0, 6, 'meja1.png', 'meja'),
+(5, 1, 'sabun', 86, 10000, 0, 10, 'sabundetol1.png', 'sabun'),
+(6, 2, 'kursi', 96, 85000, 0, 6, 'kursi3.png', 'kursi'),
 (7, 2, 'Dancow Fortigo', 45, 120000, 1, 2, 'dancow3.png', 'Dancow Fortigo adalah produk susu unggulan'),
-(9, 1, 'Nugget', 23, 12500, 0, 2, 'nugget.png', 'Nugget AYAM'),
-(13, 14, 'Garnier Sakura White Serum Night Cream Moisturizer Skin Care - 50 ml', 50, 53000, 1, 10, 'garnier.png', 'Krim essence lembut dengan paduan Ekstrak Sakura, Ekstrak Buah-buahan, dan Vitamin CG, melembapkan wajah hingga 24 jam dan membiarkannya bernafas selama Anda tidur.'),
-(14, 1, 'Pond\'s White Beauty Facial Foam 50 gr', 100, 14000, 1, 10, 'ponds1.png', 'Dengan kandungan Pearl Nutrients, Vitamin B3, dan AHA'),
-(15, 1, 'Garnier Sakura White Pinkish Radiance Essence Lotion Skin Care - 120ml', 100, 75600, 1, 10, 'garnieres.png', 'Essence lotion yang melembabkan, mencerahkan, menghaluskan tekstur kulit dan menyiapkan kulit untuk perawatan kulit tahap selanjutnya.'),
-(17, 17, 'Ovale Facial Lotion Lemon Botol 200 ml', 50, 22800, 1, 10, 'ovale.png', 'Membersihkan kotoran dan sisa tata rias'),
-(18, 1, 'Garnier Men Turbo Light Oil Control 3 in 1 Charcoal Cleanser Foam Skin Care - 100 ml', 50, 29000, 1, 10, 'garnier1.png', 'Pembersih wajah 3 in 1 pertama untuk berminyak dengan kombinasi kekuatan charcoal, beads dan clay.'),
+(9, 1, 'Nugget', 15, 12500, 0, 2, 'nugget.png', 'Nugget AYAM'),
+(13, 14, 'Garnier Sakura White Serum Night Cream Moisturizer Skin Care - 50 ml', 49, 53000, 1, 10, 'garnier.png', 'Krim essence lembut dengan paduan Ekstrak Sakura, Ekstrak Buah-buahan, dan Vitamin CG, melembapkan wajah hingga 24 jam dan membiarkannya bernafas selama Anda tidur.'),
+(14, 1, 'Pond\'s White Beauty Facial Foam 50 gr', 93, 14000, 1, 10, 'ponds1.png', 'Dengan kandungan Pearl Nutrients, Vitamin B3, dan AHA'),
+(15, 1, 'Garnier Sakura White Pinkish Radiance Essence Lotion Skin Care - 120ml', 99, 75600, 1, 10, 'garnieres.png', 'Essence lotion yang melembabkan, mencerahkan, menghaluskan tekstur kulit dan menyiapkan kulit untuk perawatan kulit tahap selanjutnya.'),
+(17, 17, 'Ovale Facial Lotion Lemon Botol 200 ml', 49, 22800, 1, 10, 'ovale.png', 'Membersihkan kotoran dan sisa tata rias'),
+(18, 1, 'Garnier Men Turbo Light Oil Control 3 in 1 Charcoal Cleanser Foam Skin Care - 100 ml', 48, 29000, 1, 10, 'garnier1.png', 'Pembersih wajah 3 in 1 pertama untuk berminyak dengan kombinasi kekuatan charcoal, beads dan clay.'),
 (19, 1, 'Rexona Men Deodorant Roll On Invisible Dry 45 ml - Antiperspirant Deodorant Deodoran Roll On', 45, 13300, 1, 10, 'rexona1.png', 'Rexona Men Deodorant Pria Roll On tanpa pewarna Dengan formula anti noda terbaik Melawan keringat dan bau badan hingga 48 jam'),
 (20, 1, 'Axe Hair Styling Extreme Hold Gel 75 ml', 50, 12000, 1, 10, 'axe1.png', 'Berwarna transparan dengan konsistensi lebih tipis dibandingkan produk lainnya tetapi tetap memberikan tampilan rambut yang keras dan tertata.'),
 (21, 1, 'Head & Shoulders Shampoo Clean and Balanced 400 ml', 50, 51900, 1, 10, 'hs1.png', 'Head & Shoulders, Shampo Anti-Ketombe No.1 Di Dunia'),
 (22, 1, 'Rejoice Conditioner Rich Halus Lembut 320ml [P&G]', 55, 40000, 1, 10, 'rejoice2.png', 'untuk membantu rambut tampak lurus alami, menggunakan Rejoice sistem vs shampo non kondisioner'),
 (23, 1, 'Head & Shoulders Shampoo Cool Menthol Anti-Dandruff 300 ml [P&G]', 75, 50000, 1, 10, 'hs2.png', 'Dengan formula menthol jadikan rambut serta kulit kepala terasa dingin dan bersih menyegarkan.'),
-(24, 1, 'Tresemme Hair Fall Control Shampoo 170Ml', 55, 24600, 1, 10, 'tresemme.png', 'TRESemmé Hair Fall Control Baru kini dilengkapi dengan Chia Seed Oil dan Amino Vitamin yang membantu mengurangi kerontokan rambut'),
+(24, 1, 'Tresemme Hair Fall Control Shampoo 170Ml', 54, 24600, 1, 10, 'tresemme.png', 'TRESemmé Hair Fall Control Baru kini dilengkapi dengan Chia Seed Oil dan Amino Vitamin yang membantu mengurangi kerontokan rambut'),
 (25, 1, 'Pantene Conditioner Daily Moisture Renewal 290 ml', 70, 43000, 1, 10, 'pantene.png', 'Memperbaiki kerusakan rambut dan mengembalikan kilau dengan mengisi kekosongan pada permukaan rambut. Pelembapnya membuat rambut lembut, mudah diatur, dan kuat melawan kerusakan.'),
 (26, 1, 'Pepsodent Pasta Gigi White 225 gr', 70, 9000, 1, 10, 'pepsodent.png', 'Pencegah Gigi Berlubang Pasta Gigi merupakan pasta gigi dengan perlindungan Mikro Kalsium Aktif'),
 (27, 1, 'LISTERINE® Cool Mint Mouthwash / Obat Kumur 250ml', 50, 20000, 1, 10, 'listerine.png', 'Gunakan LISTERINE® Cool Mint Antiseptic Mouthwash (Obat Kumur Antiseptik) sehari 2x setelah menyikat gigi.'),
 (28, 14, 'Bimoli Klasik 2L', 40, 32000, 1, 9, 'bimoli.png', 'Bimoli Klasik 2L merupakan minyak goreng yang terbuat dari biji kelapa sawit pilihan'),
-(29, 14, 'Fortune Cooking Oil Pouch 2L', 40, 25000, 1, 9, 'fortune.png', 'Fortune Cooking Oil Pouch 2L merupakan minyak goreng yang terbuat dari bahan berkualitas'),
+(29, 14, 'Fortune Cooking Oil Pouch 2L', 39, 25000, 1, 9, 'fortune.png', 'Fortune Cooking Oil Pouch 2L merupakan minyak goreng yang terbuat dari bahan berkualitas'),
 (30, 14, 'Gold Rice Beras Super 5kg', 35, 67400, 1, 9, 'beras_gold.png', 'Beras Premium 5kg merupakan beras persembahan Gold Rice yang terbuat dari bibit unggul pilihan dari hasil petani Indonesia'),
 (31, 14, 'Lumbung Padi Indonesia Beras Putih 5kg', 30, 62500, 1, 9, 'lm_padi.png', 'Beras Premium persembahan dari Wilmar, beras putih berkualitas premium'),
 (32, 20, 'ABC Sarden Saus Cabai 155 g', 25, 9000, 1, 9, 'sarden.png', 'Sarden ABC adalah makanan siap saji yang di buat dari perpaduan ikan terbaik dengan saus berkualitas'),
@@ -161,7 +161,7 @@ INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `h
 (76, 17, 'So Klin Pewangi Merah Pouch 1800mL', 36, 16300, 1, 6, '40.png', 'So Klin Pewangi Regular, is your secret of perfume fresheshness. shelf life 24 month'),
 (77, 17, 'WHISKAS® Makanan Kucing Kering Junior Rasa Ocean Fish 450 Gr', 67, 27800, 1, 6, '41.png', 'WHISKAS makanan kucing lengkap dan seimbang, dirancang khusus untuk memenuhi kebutuhan kucing'),
 (78, 17, 'Hit Aerosol Lily Blossom 600ml+75ml', 64, 33600, 1, 6, '42.png', 'IT Aerosol merupakan anti nyamuk berbetuk aerosol untuk membasmi nyamuk, lalat dan kecoa didalam ruangan.'),
-(79, 19, 'Wardah EyeXpert Perfectcurl Mascara 7 g', 75, 49500, 1, 4, '43.png', 'Dengan Curl Lock Power untuk bulu mata yang lebih tebal, panjang, dan lentik sempurna sepanjang hari'),
+(79, 19, 'Wardah EyeXpert Perfectcurl Mascara 7 g', 74, 49500, 1, 4, '43.png', 'Dengan Curl Lock Power untuk bulu mata yang lebih tebal, panjang, dan lentik sempurna sepanjang hari'),
 (80, 19, 'Emina Cheeklit Cream Blush', 46, 25000, 1, 4, '44.png', 'Emina Cheeklit Cream Blush enhances your cheek natural glow and makes it Wow.'),
 (81, 19, 'MAKE OVER Powerstay Demi-Matte Cover Cushion 15 g', 57, 172000, 1, 4, '45.png', 'Make Over Demi-Matte Cover Cushion merupakan cushion compact yang tahan lama hingga 12 jam'),
 (82, 19, 'Wardah Exclusive Matte Lip Cream 03 See You Latte 4 gr', 45, 41500, 1, 4, '46.png', 'inovasi Lushlip Liquid dengan tekstur cream lembut untuk aplikasi sekali oles dengan warna merata.'),
@@ -170,7 +170,7 @@ INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `h
 (85, 18, 'Maybelline Push Up Drama Mascara', 35, 90000, 1, 4, '49.png', 'Maskara waterproof dengan teknologi cup-shaped bristles pada push up brush dan creamy plumping formula yang membuat bulu mata terlihat tebal dramatis'),
 (86, 19, 'FOCALLURE 10 Color Eyeshadow Palette Nude Edition with Brush', 24, 108000, 1, 4, '50.png', 'Focallure Ten Colors Eye Shadow Beauty Makeup Shimmer Matte Eyeshadow Earth Color Eyeshadow Palette Cosmetic'),
 (87, 19, 'Evangeline Eau De Parfum Aura 100ml', 27, 50000, 1, 4, '51.png', 'EVANGELINE Perfume Aura 100ml merupakan perfume dari Evangeline yang memiliki aroma Aura yang memberikan Anda kesegaran sepanjang hari.'),
-(88, 18, 'Just Miss Angled Blush Brush 872', 24, 28700, 1, 4, '52.png', 'Angled Blush Brush dengan bulu-bulu lembut dengan kualitas premium'),
+(88, 18, 'Just Miss Angled Blush Brush 872', 23, 28700, 1, 4, '52.png', 'Angled Blush Brush dengan bulu-bulu lembut dengan kualitas premium'),
 (89, 1, 'Le Minerale 1500ml', 100, 3900, 1, 2, '53.png', 'Le Minerale 1500ml merupakan air mineral murni dan terawetkan yang bersumber dari gunung dan dikemas langsung di lokasi menggunakan teknologi terbaru'),
 (90, 1, 'AQUA Life 1100 ml', 53, 6200, 1, 2, '54.png', 'QUA LIFE - inovasi nyata AQUA untuk mendukung Indonesia yag lebih #BijakBerplastik.'),
 (91, 1, 'AQUA Air Mineral 1500 ml', 150, 4200, 1, 2, '55.png', 'Air mineral berkualitas yang berasal dari sumber air pegunungan pilihan dan terlindungi.'),
@@ -180,11 +180,41 @@ INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `h
 (95, 2, 'Coca-Cola Slim Can 250 mL', 150, 4900, 1, 2, '59.png', 'Coca-Cola Slim Can 250 mL merupakan minuman ringan berkarbonat yang paling terkenal di seluruh dunia'),
 (96, 2, 'Fanta Orange Pet 390 mL', 49, 5300, 1, 2, '60.png', 'Fanta Orange PET 390 mL merupakan minuman ringan bersoda dengan rasa orange yang menyegarkan'),
 (97, 16, 'Jetz Stick Chocofiesta 40 Gr', 100, 3500, 1, 1, '61.png', 'Jetz Stick Chocofiesta 40 Gr merupakan mie goreng instant yang dibuat dari bahan-bahan berkualitas tinggi'),
-(98, 14, 'Chitato Spicy Chicken 68gr', 75, 6500, 1, 1, '66.png', 'Chitato Spicy Chicken 68gr merupakan keripik kentang persembahan Chitato dengan rasa ayam bumbu yang nikmat untuk Anda.'),
+(98, 14, 'Chitato Spicy Chicken 68gr', 74, 6500, 1, 1, '66.png', 'Chitato Spicy Chicken 68gr merupakan keripik kentang persembahan Chitato dengan rasa ayam bumbu yang nikmat untuk Anda.'),
 (99, 14, 'Mayasi Pedas 65gr', 46, 9000, 1, 1, '63.png', 'Mayasi Pedas 65gr merupakan kacang panggang yang kaya akan serat dan cita rasa.'),
 (100, 17, 'Rebo Kuaci Bunga Matahari Super 150Gr', 49, 13000, 1, 1, '62.png', 'Rebo Kuaci Bunga Matahari Super 70gr merupakan cemilan yang dibuat dari biji bunga matahari yang berkualitas.'),
 (101, 14, 'Nextar Pineapple 14gr x 8', 37, 6500, 1, 1, '68.png', 'Nextar Pineapple 14gr x 8 merupakan biskuit dengan nanas didalamnya membuat brownis yang lezat dan lembut.'),
 (102, 14, 'Mr. Hottest Maitos Tortilla Chips Rasa BBQ Fiesta 55 gr', 49, 3900, 1, 1, '67.png', 'Snack yang terbuat dari bahan baku jagung asli dan dapat di sajikan sebagai hidangan pembuka, lauk atau snack malam...');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `checkout`
+--
+
+CREATE TABLE `checkout` (
+  `id_checkout` int(11) NOT NULL,
+  `id_transaksi` int(11) NOT NULL,
+  `id_barang` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `total_harga` int(50) NOT NULL,
+  `date_created` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `checkout`
+--
+
+INSERT INTO `checkout` (`id_checkout`, `id_transaksi`, `id_barang`, `jumlah`, `total_harga`, `date_created`) VALUES
+(49, 34, 4, 1, 100000, '2020-12-26'),
+(50, 34, 9, 1, 12500, '2020-12-26'),
+(51, 36, 4, 1, 100000, '2020-12-26'),
+(52, 36, 9, 1, 12500, '2020-12-26'),
+(53, 38, 4, 1, 100000, '2020-12-26'),
+(54, 38, 9, 1, 12500, '2020-12-26'),
+(55, 38, 18, 1, 29000, '2020-12-26'),
+(56, 40, 4, 1, 100000, '2020-12-26'),
+(57, 40, 9, 1, 12500, '2020-12-26');
 
 -- --------------------------------------------------------
 
@@ -310,6 +340,9 @@ CREATE TABLE `pelanggan` (
   `id_pelanggan` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
   `alamat_pelanggan` varchar(200) DEFAULT NULL,
+  `kode_pos_pelanggan` int(11) DEFAULT NULL,
+  `kota_pelanggan` varchar(100) DEFAULT NULL,
+  `negara_pelanggan` varchar(100) DEFAULT NULL,
   `no_telp_pelanggan` varchar(50) DEFAULT NULL,
   `photo_pelanggan` varchar(200) NOT NULL DEFAULT 'default.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -318,10 +351,10 @@ CREATE TABLE `pelanggan` (
 -- Dumping data untuk tabel `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `id_user`, `alamat_pelanggan`, `no_telp_pelanggan`, `photo_pelanggan`) VALUES
-(1, 5, NULL, NULL, 'default.jpg'),
-(2, 4, NULL, NULL, 'default.jpg'),
-(3, 1, NULL, NULL, 'default.jpg');
+INSERT INTO `pelanggan` (`id_pelanggan`, `id_user`, `alamat_pelanggan`, `kode_pos_pelanggan`, `kota_pelanggan`, `negara_pelanggan`, `no_telp_pelanggan`, `photo_pelanggan`) VALUES
+(1, 5, NULL, 0, '', '', NULL, 'default.jpg'),
+(2, 4, NULL, 0, '', '', NULL, 'default.jpg'),
+(3, 1, 'Jalan Merpati', 63154, 'Surabaya', 'Indonesia', '6285606392213', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -344,19 +377,54 @@ INSERT INTO `pemilik` (`id_pemilik`, `id_user`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `status`
+--
+
+CREATE TABLE `status` (
+  `status_bayar` int(11) NOT NULL,
+  `nama_status` varchar(50) NOT NULL,
+  `date_created` date NOT NULL,
+  `date_updated` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `status`
+--
+
+INSERT INTO `status` (`status_bayar`, `nama_status`, `date_created`, `date_updated`) VALUES
+(0, 'Belum dibayar', '2020-12-26', '2020-12-26'),
+(1, 'Menunggu Konfirmasi', '2020-12-26', '2020-12-26'),
+(2, 'Pembayaran Ditolak', '2020-12-26', '2020-12-26'),
+(3, 'Pembayaran Berhasil', '2020-12-26', '2020-12-26'),
+(4, 'Sedang Dikemas', '2020-12-26', '2020-12-26'),
+(5, 'Proses Pengiriman', '2020-12-26', '2020-12-26'),
+(6, 'Selesai', '2020-12-26', '2020-12-26');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `transaksi`
 --
 
 CREATE TABLE `transaksi` (
   `id_transaksi` int(11) NOT NULL,
-  `id_pelanggan` int(11) DEFAULT NULL,
-  `id_pegawai` int(11) DEFAULT NULL,
-  `id_barang` int(11) DEFAULT NULL,
-  `jumlah` int(11) DEFAULT NULL,
-  `total_harga` int(11) DEFAULT NULL,
-  `status` varchar(25) DEFAULT NULL,
-  `tanggal` date DEFAULT current_timestamp()
+  `id_user` int(11) NOT NULL,
+  `total_bayar` int(50) DEFAULT NULL,
+  `status_bayar` varchar(50) DEFAULT NULL,
+  `bukti_bayar` varchar(200) NOT NULL,
+  `tanggal_bayar` date DEFAULT current_timestamp(),
+  `batas_bayar` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `total_bayar`, `status_bayar`, `bukti_bayar`, `tanggal_bayar`, `batas_bayar`) VALUES
+(34, 1, 112500, '0', '', '2020-12-26', '2020-12-27'),
+(36, 1, 112500, '0', '', '2020-12-26', '2020-12-27'),
+(38, 1, 141500, '0', '', '2020-12-26', '2020-12-27'),
+(40, 1, 112500, '0', '', '2020-12-26', '2020-12-27');
 
 -- --------------------------------------------------------
 
@@ -393,6 +461,12 @@ INSERT INTO `users` (`id_user`, `id_grup`, `nama`, `email`, `password`, `date_cr
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`id_barang`);
+
+--
+-- Indeks untuk tabel `checkout`
+--
+ALTER TABLE `checkout`
+  ADD PRIMARY KEY (`id_checkout`);
 
 --
 -- Indeks untuk tabel `distributor`
@@ -440,13 +514,16 @@ ALTER TABLE `pemilik`
   ADD KEY `PEMILIK_USER` (`id_user`);
 
 --
+-- Indeks untuk tabel `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`status_bayar`);
+
+--
 -- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id_transaksi`),
-  ADD KEY `TRANSAKSI_BARANG` (`id_barang`),
-  ADD KEY `TRANSAKSI_PEGAWAI` (`id_pegawai`),
-  ADD KEY `TRANSAKSI_PELANGGAN` (`id_pelanggan`);
+  ADD PRIMARY KEY (`id_transaksi`);
 
 --
 -- Indeks untuk tabel `users`
@@ -464,6 +541,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `barang`
   MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+
+--
+-- AUTO_INCREMENT untuk tabel `checkout`
+--
+ALTER TABLE `checkout`
+  MODIFY `id_checkout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT untuk tabel `distributor`
@@ -487,7 +570,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT untuk tabel `pegawai`
@@ -508,10 +591,16 @@ ALTER TABLE `pemilik`
   MODIFY `id_pemilik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT untuk tabel `status`
+--
+ALTER TABLE `status`
+  MODIFY `status_bayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
@@ -540,14 +629,6 @@ ALTER TABLE `pelanggan`
 --
 ALTER TABLE `pemilik`
   ADD CONSTRAINT `PEMILIK_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
-
---
--- Ketidakleluasaan untuk tabel `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD CONSTRAINT `TRANSAKSI_BARANG` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
-  ADD CONSTRAINT `TRANSAKSI_PEGAWAI` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`),
-  ADD CONSTRAINT `TRANSAKSI_PELANGGAN` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`);
 
 --
 -- Ketidakleluasaan untuk tabel `users`
