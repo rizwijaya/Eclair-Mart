@@ -65,7 +65,7 @@
                         if(isset($cek[0]['no_telp_pelanggan'])) { ?>
                         <?= base_url(); ?>pelanggan/checkout/<?= $this->session->userdata('id_user') ?>
                         <?php } else { ?>
-                        <?= base_url(); ?>pelanggan/lengkapipembayaran/<?= $this->session->userdata('id_user') ?>
+                        <?= base_url(); ?>pelanggan/lengkapipembayaran
                         <?php } ?>">Bayar Sekarang<i class="fas fa-long-arrow-alt-right ml-2"></i></a></div>
                     </div>
                 </div>

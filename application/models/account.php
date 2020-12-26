@@ -13,37 +13,50 @@ class Account extends CI_Model
         $id_user =  $this->db->insert_id();
         $peran = $data['id_grup'];
 
-        if($peran == 3) { //Pelanggan
+        if ($peran == 3) { //Pelanggan
             //Memasukkan data ke pelanggan
-            $this->db->set("id_user", $id_user);   
+            $this->db->set("id_user", $id_user);
             $this->db->insert("pelanggan");
-        } elseif($peran == 2) { //Pegawai
+        } elseif ($peran == 2) { //Pegawai
             //Memasukkan data ke pegawai
             $this->db->set("id_user", $id_user);
             $this->db->set("alamat_pegawai", $data['alamat_pegawai']);
-            $this->db->set("no_telp_pegawai", $data['no_telp_pegawai']);   
+            $this->db->set("no_telp_pegawai", $data['no_telp_pegawai']);
             $this->db->insert("pegawai");
-        } elseif($peran ==1) {//pemilik
+        } elseif ($peran == 1) { //pemilik
             //Memasukkan data ke pemilik
-            $this->db->set("id_user", $id_user);   
+            $this->db->set("id_user", $id_user);
             $this->db->insert("pemilik");
         }
     }
 
     function checklogin($email, $password)
     {
-       $result = $this->db->where('email', $email)
-                            ->limit(1)
-                            ->get('users');
+        $result = $this->db->where('email', $email)
+            ->limit(1)
+            ->get('users');
         if ($result->num_rows() > 0) {
             $hash = $result->row('password');
-            if (password_verify($password,$hash)){
-                return $result->result_array(); 
+            if (password_verify($password, $hash)) {
+                return $result->result_array();
             } else {
                 return FALSE;
             }
         } else {
             return FALSE;
         }
+    }
+
+    function getprofile($id)
+    {
+        $q = "SELECT id_user, nama, email FROM users WHERE id_user = " . $id . " LIMIT 1";
+        $query = $this->db->query($q);
+        return $query->result();
+    }
+
+    function updateprofile($where, $data)
+    {
+        $this->db->where('id_user', $where);
+        $this->db->update('pelanggan', $data);
     }
 }

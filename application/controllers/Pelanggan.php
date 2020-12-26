@@ -141,16 +141,89 @@ class Pelanggan extends CI_Controller
 		redirect('home/keranjangbelanja');
 	}
 
-	function lengkapipembayaran($id)
+	function lengkapipembayaran()
 	{
 		if (!$this->session->userdata('email')) {
 			redirect('home/redirecting');
 		}
 
-		$data['getprofile'] = $this->account->getprofile();
+		$cek = $this->barang_model->lengkap($this->session->userdata('id_user'));
+	
+		if($cek[0]['no_telp_pelanggan'] != NULL){
+			redirect('home/redirecting');
+		}
+		
+		$this->load->model('barang_model');
+		$this->load->model('account');
+
+        $data['barang'] = $this->barang_model->getkeranjangbyid($this->session->userdata('id_user'));
+		$data['getprofile'] = $this->account->getprofile($this->session->userdata('id_user'));
 
 		$this->load->view('template/home/header');
         $this->load->view('lengkapipembayaran', $data);
         $this->load->view('template/home/footer');
+	}
+
+	function proseslengkapi()
+	{
+		$this->load->helper(array('url', 'security'));
+		$this->load->library(array('form_validation'));
+
+		$this->form_validation->set_rules(
+			'alamat',
+			'Alamat',
+			'trim|min_length[2]|max_length[128]|xss_clean|required'
+		);
+		$this->form_validation->set_rules(
+			'kode_pos',
+			'Kode Pos',
+			'trim|min_length[2]|max_length[128]|xss_clean|required'
+		);
+		$this->form_validation->set_rules(
+			'kota',
+			'Kota',
+			'trim|min_length[5]|max_length[128]|xss_clean|required'
+		);
+		$this->form_validation->set_rules(
+			'negara',
+			'Negara',
+			'trim|min_length[5]|max_length[128]|xss_clean|required'
+		);
+		$this->form_validation->set_rules(
+			'no_telepon',
+			'No Telepon',
+			'trim|min_length[5]|max_length[128]|xss_clean|required'
+		);
+		//var_dump($_POST); die;
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('template/home/header');
+			$this->load->view('register');
+			$this->load->view('template/home/footer');
+		} else {
+			$id_user			=	$this->input->post('id_user');
+			$alamat				=	$this->input->post('alamat');
+			$kode_pos			=	$this->input->post('kode_pos');
+			$kota				=	$this->input->post('kota');
+			$negara				=	$this->input->post('negara');
+			$no_telepon			=	$this->input->post('no_telepon');
+
+			$data = array(
+				'alamat_pelanggan'		=>		$alamat,
+				'kode_pos_pelanggan'	=>		$kode_pos,
+				'kota_pelanggan'		=>		$kota,
+				'negara_pelanggan'		=>		$negara,
+				'no_telp_pelanggan'		=>		$no_telepon,
+			);
+
+			$this->load->model('account');
+			$this->account->updateprofile($id_user, $data);
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Profile Berhasil Ditambahkan!. <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</button></div>');
+			redirect('pelanggan/checkout');
+		}
+	}
+
+	function checkout()
+	{
+		echo "Ini Halaman Invoice Pembayaran";
 	}
 }

@@ -95,7 +95,7 @@
                         <p class="small text-muted">Rp. <?php echo number_format($u->harga, 0, ',', '.'); ?></p>
                     </div>
                 </div>
-            <?php  if (++$i == 6) break; } ?>
+            <?php  if (++$i == 8) break; } ?>
         </div>
     </section>
     <!-- SERVICES-->
