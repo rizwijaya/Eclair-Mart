@@ -424,17 +424,23 @@
                             <li>
                                 <?php if ($this->session->userdata('id_grup') == 2) { ?>
                                     <a href="<?php echo base_url(); ?>pegawai" class="mm-active">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>
+                                        <i class="metismenu-icon">
+                                            <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/dashboard.png">
+                                        </i>
                                         Dashboard
                                     </a>
                                 <?php } else { ?>
                                     <a href="<?php echo base_url(); ?>pemilik" class="mm-active">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>
+                                        <i class="metismenu-icon">
+                                        <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/dashboard.png">
+                                        </i>
                                         Dashboard
                                     </a>
                                 <?php } ?>
                                 <a href="<?php echo base_url(); ?>home">
-                                    <i class="metismenu-icon pe-7s-pendrive"></i>
+                                    <i class="metismenu-icon">
+                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/store.svg">
+                                    </i>
                                     Dashboard Pelanggan
                                 </a>
                             </li>
@@ -442,19 +448,23 @@
                             <li>
                             <li>
                                 <a href="<?php echo base_url(); ?>barang">
-                                    <i class="metismenu-icon pe-7s-display2"></i>
+                                    <i class="metismenu-icon">
+                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/supermarket.svg">
+                                    </i>
                                     Daftar Barang
                                 </a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/distributor">
-                                    <i class="metismenu-icon pe-7s-eyedropper">
+                                    <i class="metismenu-icon">
+                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/distribution.svg">
                                     </i>Daftar Distributor
                                 </a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/kategori">
-                                    <i class="metismenu-icon pe-7s-pendrive">
+                                <i class="metismenu-icon">
+                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/categories.svg">
                                     </i>Kategori Barang
                                 </a>
                             </li>
@@ -462,40 +472,46 @@
                             <?php if ($this->session->userdata('id_grup') == 2) { ?>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/pembayaranmasuk">
-                                    <i class="metismenu-icon pe-7s-mouse">
+                                <i class="metismenu-icon">
+                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/wallet.svg">
                                     </i>Pembayaran Masuk
                                 </a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/transaksi">
-                                    <i class="metismenu-icon pe-7s-mouse">
+                                <i class="metismenu-icon">
+                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/trade.svg">
                                     </i>Transaksi Penjualan
                                 </a>
                             </li>
                             <?php } ?>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/laporantransaksi">
-                                    <i class="metismenu-icon pe-7s-mouse">
+                                <i class="metismenu-icon">
+                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/report.svg">
                                     </i>Laporan Transaksi
                                 </a>
                             </li>
                             <li class="app-sidebar__heading">Kelola Pengguna</li>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/daftarpelanggan">
-                                    <i class="metismenu-icon pe-7s-mouse">
+                                <i class="metismenu-icon">
+                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/customer.svg">
                                     </i>Daftar Pelanggan
                                 </a>
                             </li>
                             <?php if ($this->session->userdata('id_grup') == 1) { ?>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/daftarpegawai">
-                                    <i class="metismenu-icon pe-7s-eyedropper">
+                                <i class="metismenu-icon">
+                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/employee.svg">
                                     </i>Daftar Pegawai
                                 </a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url(); ?>pemilik/tambahpegawai">
-                                    <i class="metismenu-icon pe-7s-eyedropper">
+                                <i class="metismenu-icon">
+                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/addemployee.png">
                                     </i>Tambah Pegawai
                                 </a>
                             </li>
@@ -516,7 +532,8 @@
                             <li class="app-sidebar__heading">Setelan</li>
                             <li>
                                 <a href="<?php echo base_url(); ?>/users/logout">
-                                    <i class="metismenu-icon pe-7s-graph2">
+                                <i class="metismenu-icon">
+                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/exit.svg">
                                     </i>
                                     Logout
                                 </a>
