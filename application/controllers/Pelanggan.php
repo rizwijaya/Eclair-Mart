@@ -25,14 +25,14 @@ class Pelanggan extends CI_Controller
 	{
 		$this->load->library('pagination');
 
-		 //konfigurasi pagination
-		 $config['base_url'] = site_url('pelanggan/list_barang'); //site url
-		 $config['total_rows'] = $this->db->count_all('barang'); //total row
-		 $config['per_page'] = 12;  //show record per halaman
-		 $config["uri_segment"] = 3;  // uri parameter
-		 $choice = $config["total_rows"] / $config["per_page"];
-		 $config["num_links"] = floor($choice);
-  
+		//konfigurasi pagination
+		$config['base_url'] = site_url('pelanggan/list_barang'); //site url
+		$config['total_rows'] = $this->db->count_all('barang'); //total row
+		$config['per_page'] = 12;  //show record per halaman
+		$config["uri_segment"] = 3;  // uri parameter
+		$choice = $config["total_rows"] / $config["per_page"];
+		$config["num_links"] = floor($choice);
+
 		// Membuat Style pagination dengan bootsrap
 		$config['first_link']       = 'First';
 		$config['last_link']        = 'Last';
@@ -53,12 +53,12 @@ class Pelanggan extends CI_Controller
 		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
 		$config['last_tagl_close']  = '</span></li>';
 
-		 $this->pagination->initialize($config);
-		 $data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-           
-		 $data['barang'] = $this->barang_model->barang_pagging($config["per_page"], $data['page'])->result();
+		$this->pagination->initialize($config);
+		$data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-		 $data['pagination'] = $this->pagination->create_links();
+		$data['barang'] = $this->barang_model->barang_pagging($config["per_page"], $data['page'])->result();
+
+		$data['pagination'] = $this->pagination->create_links();
 
 		$data['kategori'] = $this->barang_model->select_category()->result();
 
@@ -90,14 +90,15 @@ class Pelanggan extends CI_Controller
 		$this->load->view('filterbarang', $data);
 		$this->load->view('template/home/footer');
 	}
-	
+
 	function tambahkeranjang($id_barang)
 	{
 		$this->load->helper(array('date'));
 		$id_user = $this->session->userdata('id_user');
 
-		if($_POST) {
-			var_dump($_POST); die;
+		if ($_POST) {
+			var_dump($_POST);
+			die;
 		} else {
 			$jumlah = 1;
 		}
@@ -106,7 +107,7 @@ class Pelanggan extends CI_Controller
 		$getharga = $this->barang_model->getharga($id_barang);
 
 		$total_harga = $getharga[0]->harga * $jumlah;
-		if(!empty($cekbarang)) { //Update ke Keranjang yang sudah ada
+		if (!empty($cekbarang)) { //Update ke Keranjang yang sudah ada
 			$jml = $jumlah + $cekbarang[0]->jumlah; //Menambahkan jumlah barang
 			$total = $total_harga + $cekbarang[0]->total_harga; //Jumlah harga sebelum dengan input
 
@@ -148,20 +149,20 @@ class Pelanggan extends CI_Controller
 		}
 
 		$cek = $this->barang_model->lengkap($this->session->userdata('id_user'));
-	
-		if($cek[0]['no_telp_pelanggan'] != NULL){
+
+		if ($cek[0]['no_telp_pelanggan'] != NULL) {
 			redirect('home/redirecting');
 		}
-		
+
 		$this->load->model('barang_model');
 		$this->load->model('account');
 
-        $data['barang'] = $this->barang_model->getkeranjangbyid($this->session->userdata('id_user'));
+		$data['barang'] = $this->barang_model->getkeranjangbyid($this->session->userdata('id_user'));
 		$data['getprofile'] = $this->account->getprofile($this->session->userdata('id_user'));
 
 		$this->load->view('template/home/header');
-        $this->load->view('lengkapipembayaran', $data);
-        $this->load->view('template/home/footer');
+		$this->load->view('lengkapipembayaran', $data);
+		$this->load->view('template/home/footer');
 	}
 
 	function proseslengkapi()
@@ -224,6 +225,72 @@ class Pelanggan extends CI_Controller
 
 	function checkout()
 	{
-		echo "Ini Halaman Invoice Pembayaran";
+		$this->load->helper(array('date'));
+		$this->load->model('transaksi_model');
+		//Melakukan Perhitungan total bayar
+		$totalbayar = $this->transaksi_model->totalcheckout($this->session->userdata('id_user'));
+		$tanggal_bayar = date('Y-m-d');// pendefinisian tanggal awal bayar
+		$batas_bayar = date('Y-m-d', strtotime('+1 days', strtotime($tanggal_bayar))); //batas pembayaran
+		foreach ($totalbayar['0'] as $tb) {
+			//Menginisialisasi nilai dari array input dengan data transaksi
+			$input = array(
+				'id_user'		=>	$this->session->userdata('id_user'),
+				'total_bayar'	=>	$tb,
+				'status_bayar'	=>	0,
+				'tanggal_bayar'	=> 	$tanggal_bayar,
+				'batas_bayar'	=> 	$batas_bayar
+			);
+		}
+		
+		//Melakukan Insert ke data Transaksi
+		$this->transaksi_model->insertcheckout($input, 'transaksi');
+		$id_transaksi = $this->db->insert_id();
+		
+		//Mengurangi Stock barang sekarang dengan yang diorder pelanggan
+		$keranjang = $this->transaksi_model->getcheckout($this->session->userdata('id_user'));
+		foreach ($keranjang as $kj) {
+			$id_barang = $kj->id_barang;
+			//Mengambil Stock barang sekarang
+			$stock = $this->barang_model->getstock($id_barang);
+			foreach ($stock as $stk) {
+				$hasil = $stk->jumlah - $kj->jumlah; //Mengurangi stock barang
+				$kurangi = array(
+					'jumlah'		=>	$hasil
+				);
+				$this->barang_model->kurangistock($id_barang, $kurangi);
+			}
+		}
+
+		//Melakukan Pemindahan data dari keranjang ke checkout
+		foreach ($keranjang as $kj) {
+			$data = array(
+				'id_transaksi'	=>	$id_transaksi,
+				'id_barang'		=>	$kj->id_barang,
+				'jumlah'		=>	$kj->jumlah,
+				'total_harga'	=>	$kj->total_harga,
+				'date_created'	=> 	date('Y-m-d')
+			);
+			$this->transaksi_model->insertcheckout($data, 'checkout');
+		}
+
+		//Menghapus data pada keranjang setelah checkout
+		$this->transaksi_model->hapusallkeranjang($this->session->userdata('id_user'));
+
+		$this->invoice($id_transaksi); //Melakukan load ke halaman invoice
+	}
+
+	function invoice($id_transaksi)
+	{
+		if (!$this->session->userdata('email')) {
+			redirect('home');
+		}
+
+		$this->load->model('transaksi_model');
+		$data['barang_detail'] = $this->transaksi_model->barangtransaksi($id_transaksi); //mengambil data barang
+		$data['total_transaksi'] = $this->transaksi_model->getinvoice($id_transaksi); //mengambil data Transaksi
+		
+		$this->load->view('template/home/header');
+		$this->load->view('invoice', $data);
+		$this->load->view('template/home/footer');
 	}
 }

@@ -133,4 +133,18 @@ class Barang_model extends CI_Model
         $res = $this->db->query($q);
         return $res->result_array();        
     }
+
+    function getstock($id)
+    {
+        $q = "SELECT * FROM barang WHERE id_barang = " . $id;
+        $res = $this->db->query($q);
+        return $res->result();         
+    }
+    
+    function kurangistock($id_barang, $data)
+    {
+        $this->db->set($data);
+        $this->db->where('id_barang', $id_barang);
+        $this->db->update('barang');
+    }
 }
