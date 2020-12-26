@@ -2,21 +2,19 @@
   <div class="container py-4">
     <div class="row py-5">
       <div class="col-md-4 mb-3 mb-md-0">
-        <h6 class="text-uppercase mb-3">Customer services</h6>
+        <h6 class="text-uppercase mb-3">Eclair - Mart</h6>
         <ul class="list-unstyled mb-0">
-          <li><a class="footer-link" href="#">Help &amp; Contact Us</a></li>
-          <li><a class="footer-link" href="#">Returns &amp; Refunds</a></li>
-          <li><a class="footer-link" href="#">Online Stores</a></li>
-          <li><a class="footer-link" href="#">Terms &amp; Conditions</a></li>
+          <li><a class="footer-link" href="aboutus">About Us</a></li>
         </ul>
       </div>
       <div class="col-md-4 mb-3 mb-md-0">
-        <h6 class="text-uppercase mb-3">Company</h6>
+        <h6 class="text-uppercase mb-3">Contact Us</h6>
         <ul class="list-unstyled mb-0">
-          <li><a class="footer-link" href="#">What We Do</a></li>
-          <li><a class="footer-link" href="#">Available Services</a></li>
-          <li><a class="footer-link" href="#">Latest Posts</a></li>
-          <li><a class="footer-link" href="#">FAQs</a></li>
+          <li><a class="footer-link" href="#">Jl. Keputih</a></li>
+          <li><a class="footer-link" href="#">Surabaya, SBY 61243</a></li>
+          <li><a class="footer-link" href="#">Indonesia</a></li>
+          <li><a class="footer-link" href="#"><strong>Phone :</strong> +62 5589 55488 55</a></li>
+          <li><a class="footer-link" href="#"><strong>Email :</strong> eclairmart@gmail.com</a></li>
         </ul>
       </div>
       <div class="col-md-4">
@@ -31,12 +29,6 @@
     </div>
     <div class="border-top pt-4" style="border-color: #1d1d1d !important">
       <div class="row">
-        <div class="col-lg-6">
-          <p class="small text-muted mb-0">&copy; 2020 All rights reserved.</p>
-        </div>
-        <div class="col-lg-6 text-lg-right">
-          <p class="small text-muted mb-0">Template designed by <a class="text-white reset-anchor" href="https://bootstraptemple.com/p/bootstrap-ecommerce">Bootstrap Temple</a></p>
-        </div>
       </div>
     </div>
   </div>
