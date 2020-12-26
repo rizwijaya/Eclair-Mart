@@ -4,7 +4,7 @@
       <div class="col-md-4 mb-3 mb-md-0">
         <h6 class="text-uppercase mb-3">Eclair - Mart</h6>
         <ul class="list-unstyled mb-0">
-          <li><a class="footer-link" href="aboutus">About Us</a></li>
+          <li><a class="footer-link" href="<?= base_url() ?>home/aboutredir">About Us</a></li>
         </ul>
       </div>
       <div class="col-md-4 mb-3 mb-md-0">
