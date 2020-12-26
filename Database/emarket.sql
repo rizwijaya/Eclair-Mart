@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 26 Des 2020 pada 12.27
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.2.33
+-- Host: 127.0.0.1:3306
+-- Waktu pembuatan: 26 Des 2020 pada 17.19
+-- Versi server: 10.4.10-MariaDB
+-- Versi PHP: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,18 +26,27 @@ DELIMITER $$
 --
 -- Prosedur
 --
+DROP PROCEDURE IF EXISTS `deletebarang`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deletebarang` (IN `ID` VARCHAR(12))  BEGIN
 	DELETE FROM barang where ID_BARANG=ID;
 END$$
 
+DROP PROCEDURE IF EXISTS `deletedistributor`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deletedistributor` (IN `ID` VARCHAR(12))  BEGIN
 	DELETE FROM distributor where id_distributor=ID;
 END$$
 
+DROP PROCEDURE IF EXISTS `deletekategori`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deletekategori` (IN `ID` VARCHAR(12))  BEGIN
 	DELETE FROM kategori where id_kategori=ID;
 END$$
 
+DROP PROCEDURE IF EXISTS `searchbarang`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `searchbarang` (IN `nama` VARCHAR(100))  BEGIN
+ SELECT * FROM BARANG WHERE nama_barang REGEXP CONCAT('^.*',nama,'.*$');
+END$$
+
+DROP PROCEDURE IF EXISTS `updatebarang`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updatebarang` (IN `ID` INT, IN `DISTRI` INT, IN `NAMA` VARCHAR(100), IN `JUMLAH` INT, IN `HARGA` INT, IN `STATE` INT, IN `KATEGORI` INT, IN `PHOTO` CHAR(50), IN `DESK` VARCHAR(100))  BEGIN
 	UPDATE BARANG
 	SET
@@ -50,6 +60,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updatebarang` (IN `ID` INT, IN `DIS
     	deskripsi_barang = DESK WHERE ID_BARANG = ID;
 END$$
 
+DROP PROCEDURE IF EXISTS `updatedistributor`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updatedistributor` (IN `ID` INT, IN `PERUS` VARCHAR(100), IN `NAMA` VARCHAR(100), IN `TELEPON` VARCHAR(50), IN `STATE` INT)  BEGIN
 	UPDATE DISTRIBUTOR
 	SET
@@ -59,6 +70,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updatedistributor` (IN `ID` INT, IN
 	status_distributor = STATE WHERE id_distributor = ID;
 END$$
 
+DROP PROCEDURE IF EXISTS `updatekategori`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updatekategori` (IN `ID` INT, IN `KODE` VARCHAR(10), IN `NAMA` VARCHAR(100))  BEGIN
 	UPDATE kategori
 	SET
@@ -74,8 +86,9 @@ DELIMITER ;
 -- Struktur dari tabel `barang`
 --
 
-CREATE TABLE `barang` (
-  `id_barang` int(11) NOT NULL,
+DROP TABLE IF EXISTS `barang`;
+CREATE TABLE IF NOT EXISTS `barang` (
+  `id_barang` int(11) NOT NULL AUTO_INCREMENT,
   `id_distributor` int(11) DEFAULT NULL,
   `nama_barang` varchar(100) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
@@ -83,8 +96,11 @@ CREATE TABLE `barang` (
   `status_barang` int(11) NOT NULL,
   `id_kategori` int(11) NOT NULL,
   `photo_barang` char(50) DEFAULT NULL,
-  `deskripsi_barang` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `deskripsi_barang` varchar(200) NOT NULL,
+  PRIMARY KEY (`id_barang`),
+  KEY `BARANG_DISTRIBUTOR` (`id_distributor`),
+  KEY `BARANG_kategori` (`id_kategori`)
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `barang`
@@ -192,14 +208,18 @@ INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `h
 -- Struktur dari tabel `checkout`
 --
 
-CREATE TABLE `checkout` (
-  `id_checkout` int(11) NOT NULL,
+DROP TABLE IF EXISTS `checkout`;
+CREATE TABLE IF NOT EXISTS `checkout` (
+  `id_checkout` int(11) NOT NULL AUTO_INCREMENT,
   `id_transaksi` int(11) NOT NULL,
   `id_barang` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `total_harga` int(50) NOT NULL,
-  `date_created` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `date_created` date NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_checkout`),
+  KEY `CHECKOUT_TRANSAKSI` (`id_transaksi`),
+  KEY `CHECKOUT_BARANG` (`id_barang`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `checkout`
@@ -224,15 +244,17 @@ INSERT INTO `checkout` (`id_checkout`, `id_transaksi`, `id_barang`, `jumlah`, `t
 -- Struktur dari tabel `distributor`
 --
 
-CREATE TABLE `distributor` (
-  `id_distributor` int(11) NOT NULL,
+DROP TABLE IF EXISTS `distributor`;
+CREATE TABLE IF NOT EXISTS `distributor` (
+  `id_distributor` int(11) NOT NULL AUTO_INCREMENT,
   `nama_perusahaan` varchar(100) DEFAULT NULL,
   `nama_distributor` varchar(100) NOT NULL,
   `no_telp_distributor` varchar(50) NOT NULL,
   `status_distributor` int(11) NOT NULL,
   `date_created` date DEFAULT current_timestamp(),
-  `date_updated` date DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_updated` date DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_distributor`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `distributor`
@@ -255,11 +277,13 @@ INSERT INTO `distributor` (`id_distributor`, `nama_perusahaan`, `nama_distributo
 -- Struktur dari tabel `grup`
 --
 
-CREATE TABLE `grup` (
-  `id_grup` int(11) NOT NULL,
+DROP TABLE IF EXISTS `grup`;
+CREATE TABLE IF NOT EXISTS `grup` (
+  `id_grup` int(11) NOT NULL AUTO_INCREMENT,
   `nama_grup` varchar(50) DEFAULT NULL,
-  `date_created` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_created` date DEFAULT NULL,
+  PRIMARY KEY (`id_grup`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `grup`
@@ -276,12 +300,14 @@ INSERT INTO `grup` (`id_grup`, `nama_grup`, `date_created`) VALUES
 -- Struktur dari tabel `kategori`
 --
 
-CREATE TABLE `kategori` (
-  `id_kategori` int(11) NOT NULL,
+DROP TABLE IF EXISTS `kategori`;
+CREATE TABLE IF NOT EXISTS `kategori` (
+  `id_kategori` int(11) NOT NULL AUTO_INCREMENT,
   `kode_kategori` varchar(10) NOT NULL,
   `nama_kategori` varchar(200) NOT NULL,
-  `date_created` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `date_created` date NOT NULL,
+  PRIMARY KEY (`id_kategori`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `kategori`
@@ -303,14 +329,18 @@ INSERT INTO `kategori` (`id_kategori`, `kode_kategori`, `nama_kategori`, `date_c
 -- Struktur dari tabel `keranjang`
 --
 
-CREATE TABLE `keranjang` (
-  `id_keranjang` int(11) NOT NULL,
+DROP TABLE IF EXISTS `keranjang`;
+CREATE TABLE IF NOT EXISTS `keranjang` (
+  `id_keranjang` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
   `id_barang` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `total_harga` int(50) NOT NULL,
-  `date_created` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `date_created` date NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_keranjang`),
+  KEY `KERANJANG_USER` (`id_user`),
+  KEY `KERANJANG_BARANG` (`id_barang`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -318,12 +348,15 @@ CREATE TABLE `keranjang` (
 -- Struktur dari tabel `pegawai`
 --
 
-CREATE TABLE `pegawai` (
-  `id_pegawai` int(11) NOT NULL,
+DROP TABLE IF EXISTS `pegawai`;
+CREATE TABLE IF NOT EXISTS `pegawai` (
+  `id_pegawai` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) DEFAULT NULL,
   `alamat_pegawai` varchar(200) DEFAULT NULL,
-  `no_telp_pegawai` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `no_telp_pegawai` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id_pegawai`),
+  KEY `PEGAWAI_USER` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `pegawai`
@@ -338,16 +371,19 @@ INSERT INTO `pegawai` (`id_pegawai`, `id_user`, `alamat_pegawai`, `no_telp_pegaw
 -- Struktur dari tabel `pelanggan`
 --
 
-CREATE TABLE `pelanggan` (
-  `id_pelanggan` int(11) NOT NULL,
+DROP TABLE IF EXISTS `pelanggan`;
+CREATE TABLE IF NOT EXISTS `pelanggan` (
+  `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) DEFAULT NULL,
   `alamat_pelanggan` varchar(200) DEFAULT NULL,
   `kode_pos_pelanggan` int(11) DEFAULT NULL,
   `kota_pelanggan` varchar(100) DEFAULT NULL,
   `negara_pelanggan` varchar(100) DEFAULT NULL,
   `no_telp_pelanggan` varchar(50) DEFAULT NULL,
-  `photo_pelanggan` varchar(200) NOT NULL DEFAULT 'default.jpg'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `photo_pelanggan` varchar(200) NOT NULL DEFAULT 'default.jpg',
+  PRIMARY KEY (`id_pelanggan`),
+  KEY `PELANGGAN_USER` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `pelanggan`
@@ -364,10 +400,13 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `id_user`, `alamat_pelanggan`, `kode_po
 -- Struktur dari tabel `pemilik`
 --
 
-CREATE TABLE `pemilik` (
-  `id_pemilik` int(11) NOT NULL,
-  `id_user` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `pemilik`;
+CREATE TABLE IF NOT EXISTS `pemilik` (
+  `id_pemilik` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_pemilik`),
+  KEY `PEMILIK_USER` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `pemilik`
@@ -382,12 +421,14 @@ INSERT INTO `pemilik` (`id_pemilik`, `id_user`) VALUES
 -- Struktur dari tabel `status`
 --
 
-CREATE TABLE `status` (
-  `status_bayar` int(11) NOT NULL,
+DROP TABLE IF EXISTS `status`;
+CREATE TABLE IF NOT EXISTS `status` (
+  `status_bayar` int(11) NOT NULL AUTO_INCREMENT,
   `nama_status` varchar(50) NOT NULL,
   `date_created` date NOT NULL,
-  `date_updated` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `date_updated` date NOT NULL,
+  PRIMARY KEY (`status_bayar`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `status`
@@ -408,15 +449,19 @@ INSERT INTO `status` (`status_bayar`, `nama_status`, `date_created`, `date_updat
 -- Struktur dari tabel `transaksi`
 --
 
-CREATE TABLE `transaksi` (
-  `id_transaksi` int(11) NOT NULL,
+DROP TABLE IF EXISTS `transaksi`;
+CREATE TABLE IF NOT EXISTS `transaksi` (
+  `id_transaksi` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
   `total_bayar` int(50) DEFAULT NULL,
   `status_bayar` int(11) DEFAULT NULL,
   `bukti_bayar` varchar(200) NOT NULL,
   `tanggal_bayar` date DEFAULT current_timestamp(),
-  `batas_bayar` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `batas_bayar` date NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_transaksi`),
+  KEY `TRANSAKSI_USER` (`id_user`),
+  KEY `TRANSAKSI_STATUS` (`status_bayar`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `transaksi`
@@ -435,14 +480,17 @@ INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `total_bayar`, `status_bayar
 -- Struktur dari tabel `users`
 --
 
-CREATE TABLE `users` (
-  `id_user` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `id_grup` int(11) DEFAULT NULL,
   `nama` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,
-  `date_created` date DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date_created` date DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_user`),
+  KEY `USER_GRUP` (`id_grup`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `users`
@@ -454,170 +502,6 @@ INSERT INTO `users` (`id_user`, `id_grup`, `nama`, `email`, `password`, `date_cr
 (3, 2, 'Pegawai', 'pegawai@gmail.com', '$2y$10$6H9u.vCSOo7CAR1EkF.GIu.MKh.wlv8C5hbMu1SD55SdV.XBVz0Pu', '2020-12-22'),
 (4, 3, 'Pelanggan 2', 'test@gmail.com', '$2y$10$WqtTpmaL6g6ouMS3c/qnK.IigJ/YMEAUaaZti5w9RqTJkbcXplLku', '2020-12-22'),
 (5, 3, 'pelanggan', 'testpelanggan@gmail.com', '$2y$10$jLpQjbzUMtLg8g20Mbu9y.zDgbfx.nOV6PVKuj0wbEovd36y93ZkW', '2020-12-24');
-
---
--- Indexes for dumped tables
---
-
---
--- Indeks untuk tabel `barang`
---
-ALTER TABLE `barang`
-  ADD PRIMARY KEY (`id_barang`),
-  ADD KEY `BARANG_DISTRIBUTOR` (`id_distributor`),
-  ADD KEY `BARANG_kategori` (`id_kategori`);
-
---
--- Indeks untuk tabel `checkout`
---
-ALTER TABLE `checkout`
-  ADD PRIMARY KEY (`id_checkout`),
-  ADD KEY `CHECKOUT_TRANSAKSI` (`id_transaksi`),
-  ADD KEY `CHECKOUT_BARANG` (`id_barang`);
-
---
--- Indeks untuk tabel `distributor`
---
-ALTER TABLE `distributor`
-  ADD PRIMARY KEY (`id_distributor`);
-
---
--- Indeks untuk tabel `grup`
---
-ALTER TABLE `grup`
-  ADD PRIMARY KEY (`id_grup`);
-
---
--- Indeks untuk tabel `kategori`
---
-ALTER TABLE `kategori`
-  ADD PRIMARY KEY (`id_kategori`);
-
---
--- Indeks untuk tabel `keranjang`
---
-ALTER TABLE `keranjang`
-  ADD PRIMARY KEY (`id_keranjang`),
-  ADD KEY `KERANJANG_USER` (`id_user`),
-  ADD KEY `KERANJANG_BARANG` (`id_barang`);
-
---
--- Indeks untuk tabel `pegawai`
---
-ALTER TABLE `pegawai`
-  ADD PRIMARY KEY (`id_pegawai`),
-  ADD KEY `PEGAWAI_USER` (`id_user`);
-
---
--- Indeks untuk tabel `pelanggan`
---
-ALTER TABLE `pelanggan`
-  ADD PRIMARY KEY (`id_pelanggan`),
-  ADD KEY `PELANGGAN_USER` (`id_user`);
-
---
--- Indeks untuk tabel `pemilik`
---
-ALTER TABLE `pemilik`
-  ADD PRIMARY KEY (`id_pemilik`),
-  ADD KEY `PEMILIK_USER` (`id_user`);
-
---
--- Indeks untuk tabel `status`
---
-ALTER TABLE `status`
-  ADD PRIMARY KEY (`status_bayar`);
-
---
--- Indeks untuk tabel `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id_transaksi`),
-  ADD KEY `TRANSAKSI_USER` (`id_user`),
-  ADD KEY `TRANSAKSI_STATUS` (`status_bayar`);
-
---
--- Indeks untuk tabel `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_user`),
-  ADD KEY `USER_GRUP` (`id_grup`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `barang`
---
-ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
-
---
--- AUTO_INCREMENT untuk tabel `checkout`
---
-ALTER TABLE `checkout`
-  MODIFY `id_checkout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
-
---
--- AUTO_INCREMENT untuk tabel `distributor`
---
-ALTER TABLE `distributor`
-  MODIFY `id_distributor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT untuk tabel `grup`
---
-ALTER TABLE `grup`
-  MODIFY `id_grup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `kategori`
---
-ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT untuk tabel `keranjang`
---
-ALTER TABLE `keranjang`
-  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
---
--- AUTO_INCREMENT untuk tabel `pegawai`
---
-ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `pelanggan`
---
-ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `pemilik`
---
-ALTER TABLE `pemilik`
-  MODIFY `id_pemilik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `status`
---
-ALTER TABLE `status`
-  MODIFY `status_bayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT untuk tabel `transaksi`
---
-ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
-
---
--- AUTO_INCREMENT untuk tabel `users`
---
-ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
