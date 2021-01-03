@@ -11,23 +11,23 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/assets/img/favicon.png" rel="icon">
-  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?php echo base_url(); ?>/assets/assets_aboutus/img/favicon.png" rel="icon">
+  <link href="<?php echo base_url(); ?>/assets/assets_aboutus/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="/assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/aos/aos.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="/assets/css/style.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>/assets/assets_aboutus/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Gp - v3.0.0
@@ -37,6 +37,80 @@
   ======================================================== -->
 </head>
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Eclair - Mart</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/assets_home/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/assets_home/vendor/lightbox2/css/lightbox.min.css">
+    <!-- Range slider-->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/assets_home/vendor/nouislider/nouislider.min.css">
+    <!-- Bootstrap select-->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/assets_home/vendor/bootstrap-select/css/bootstrap-select.min.css">
+    <!-- Owl Carousel-->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/assets_home/vendor/owl.carousel2/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/assets_home/vendor/owl.carousel2/assets/owl.theme.default.css">
+    <!-- Google fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/assets_home/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/assets_home/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>/assets/assets_home/img/logo.svg">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+
+<body>
+    <div class="page-holder">
+        <!-- navbar-->
+        <header class="header bg-white">
+            <div class="container px-0 px-lg-3">
+                <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0"><a class="navbar-brand" href="<?php echo base_url(); ?>home""><span class=" font-weight-bold text-uppercase text-dark">Eclair Mart</span></a>
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <!-- Link--><a class="nav-link active" href="<?php echo base_url(); ?>home">Home</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="#products">Shop</a>
+                            </li> -->
+                            <?php if ($this->session->userdata('id_user')) { ?>
+                                <?php if ($this->session->userdata('id_grup') == 3) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?php echo base_url(); ?>pelanggan/histori">Histori Transaksi</a>
+                                    </li>
+                            <?php }
+                            } ?>
+                            <?php if ($this->session->userdata('id_grup') == 1) { ?>
+                                <li class="nav-item">
+                                    <!-- Link--><a class="nav-link" href="<?php echo base_url(); ?>pemilik">Pemilik</a>
+                                </li>
+                            <?php } elseif ($this->session->userdata('id_grup') == 2) { ?>
+                                <li class="nav-item">
+                                    <!-- Link--><a class="nav-link" href="<?php echo base_url(); ?>pegawai">Pegawai</a>
+                                </li>
+                            <?php } ?>
+                            <!-- <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                                <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown"><a class="dropdown-item border-0 transition-link" href="index.html">Homepage</a><a class="dropdown-item border-0 transition-link" href="shop.html">Category</a><a class="dropdown-item border-0 transition-link" href="detail.html">Product detail</a><a class="dropdown-item border-0 transition-link" href="cart.html">Shopping cart</a><a class="dropdown-item border-0 transition-link" href="checkout.html">Checkout</a></div>
+                            </li> -->
+                        </ul>
+                        
+                    </div>
+                </nav>
+            </div>
+        </header>
+
 <body>
 
  <!-- ======= Hero Section ======= -->
@@ -45,7 +119,7 @@
 
       <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
         <div class="col-xl-6 col-lg-8">
-          <h1>Powerful Digital Solutions With Gp<span>.</span></h1>
+          <h1>Waw Digital Solutions With Gp<span>.</span></h1>
           <h2>We are team of talanted digital marketers</h2>
         </div>
       </div>
@@ -94,7 +168,7 @@
 
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+            <img src="assets/assets_aboutus/img/about.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
             <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
@@ -122,14 +196,14 @@
       <div class="container" data-aos="zoom-in">
 
         <div class="owl-carousel clients-carousel">
-          <img src="/assets/img/clients/client-1.png" alt="">
-          <img src="/assets/img/clients/client-2.png" alt="">
-          <img src="/assets/img/clients/client-3.png" alt="">
-          <img src="/assets/img/clients/client-4.png" alt="">
-          <img src="/assets/img/clients/client-5.png" alt="">
-          <img src="/assets/img/clients/client-6.png" alt="">
-          <img src="/assets/img/clients/client-7.png" alt="">
-          <img src="/assets/img/clients/client-8.png" alt="">
+          <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/clients/client-1.png" alt="">
+          <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/clients/client-2.png" alt="">
+          <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/clients/client-3.png" alt="">
+          <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/clients/client-4.png" alt="">
+          <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/clients/client-5.png" alt="">
+          <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/clients/client-6.png" alt="">
+          <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/clients/client-7.png" alt="">
+          <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/clients/client-8.png" alt="">
         </div>
 
       </div>
@@ -140,7 +214,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="image col-lg-6" style='background-image: url("assets/img/features.jpg");' data-aos="fade-right"></div>
+          <div class="image col-lg-6" style='background-image: url("<?php echo base_url(); ?>/assets/assets_aboutus/img/features.jpg");' data-aos="fade-right"></div>
           <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
             <div class="icon-box mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
               <i class="bx bx-receipt"></i>
@@ -268,13 +342,13 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
-              <img src="/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+              <img src="<?php echo base_url(); ?>/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>App 1</h4>
                 <p>App</p>
                 <div class="portfolio-links">
-                  <a href="/assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="<?php echo base_url(); ?>/assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="<?php echo base_url(); ?>portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -282,13 +356,13 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
-              <img src="/assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+              <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Web 3</h4>
                 <p>Web</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="<?php echo base_url(); ?>assets/assets_aboutus/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="<?php echo base_url(); ?>portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -296,13 +370,13 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
-              <img src="/assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
+              <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>App 2</h4>
                 <p>App</p>
                 <div class="portfolio-links">
-                  <a href="/assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox" title="App 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="<?php echo base_url(); ?>/assets/assets_aboutus/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox" title="App 2"><i class="bx bx-plus"></i></a>
+                  <a href="<?php echo base_url(); ?>portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -310,12 +384,12 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-card">
             <div class="portfolio-wrap">
-              <img src="/assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+              <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Card 2</h4>
                 <p>Card</p>
                 <div class="portfolio-links">
-                  <a href="/assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox" title="Card 2"><i class="bx bx-plus"></i></a>
+                  <a href="/assets/assets_aboutus/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox" title="Card 2"><i class="bx bx-plus"></i></a>
                   <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
@@ -324,13 +398,13 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
-              <img src="/assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
+              <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Web 2</h4>
                 <p>Web</p>
                 <div class="portfolio-links">
-                  <a href="/assets/img/portfolio/portfolio-5.jpg" data-gall="portfolioGallery" class="venobox" title="Web 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="/assets/assets_aboutus/img/portfolio/portfolio-5.jpg" data-gall="portfolioGallery" class="venobox" title="Web 2"><i class="bx bx-plus"></i></a>
+                  <a href="<?php echo base_url(); ?>portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -338,13 +412,13 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
-              <img src="/assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
+              <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>App 3</h4>
                 <p>App</p>
                 <div class="portfolio-links">
-                  <a href="/assets/img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox" title="App 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="<?php echo base_url(); ?>/assets/assets_aboutus/img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox" title="App 3"><i class="bx bx-plus"></i></a>
+                  <a href="<?php echo base_url(); ?>portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -352,13 +426,13 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-card">
             <div class="portfolio-wrap">
-              <img src="/assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
+              <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Card 1</h4>
                 <p>Card</p>
                 <div class="portfolio-links">
-                  <a href="/assets/img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery" class="venobox" title="Card 1"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="<?php echo base_url(); ?>/assets/assets_aboutus/img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery" class="venobox" title="Card 1"><i class="bx bx-plus"></i></a>
+                  <a href="<?php echo base_url(); ?>portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -366,13 +440,13 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-card">
             <div class="portfolio-wrap">
-              <img src="/assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
+              <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Card 3</h4>
                 <p>Card</p>
                 <div class="portfolio-links">
-                  <a href="/assets/img/portfolio/portfolio-8.jpg" data-gall="portfolioGallery" class="venobox" title="Card 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="<?php echo base_url(); ?>/assets/assets_aboutus/img/portfolio/portfolio-8.jpg" data-gall="portfolioGallery" class="venobox" title="Card 3"><i class="bx bx-plus"></i></a>
+                  <a href="<?php echo base_url(); ?>portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -380,13 +454,13 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
-              <img src="/assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
+              <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Web 3</h4>
                 <p>Web</p>
                 <div class="portfolio-links">
-                  <a href="/assets/img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="<?php echo base_url(); ?>/assets/assets_aboutus/img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="<?php echo base_url(); ?>portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -456,7 +530,7 @@
         <div class="owl-carousel testimonials-carousel">
 
           <div class="testimonial-item">
-            <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+            <img src="<?php echo base_url(); ?>imgassets/assets_aboutus/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
             <h3>Saul Goodman</h3>
             <h4>Ceo &amp; Founder</h4>
             <p>
@@ -467,7 +541,7 @@
           </div>
 
           <div class="testimonial-item">
-            <img src="/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+            <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
             <h3>Sara Wilsson</h3>
             <h4>Designer</h4>
             <p>
@@ -478,7 +552,7 @@
           </div>
 
           <div class="testimonial-item">
-            <img src="/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+            <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
             <h3>Jena Karlis</h3>
             <h4>Store Owner</h4>
             <p>
@@ -489,7 +563,7 @@
           </div>
 
           <div class="testimonial-item">
-            <img src="/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+            <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
             <h3>Matt Brandon</h3>
             <h4>Freelancer</h4>
             <p>
@@ -500,7 +574,7 @@
           </div>
 
           <div class="testimonial-item">
-            <img src="/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+            <img src="<?php echo base_url(); ?>img/assets/assets_aboutus/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
             <h3>John Larson</h3>
             <h4>Entrepreneur</h4>
             <p>
@@ -529,7 +603,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
               <div class="member-img">
-                <img src="/assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/team/team-1.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>
                   <a href=""><i class="icofont-facebook"></i></a>
@@ -547,7 +621,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="200">
               <div class="member-img">
-                <img src="/assets/img/team/team-2.jpg" class="img-fluid" alt="">
+                <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/team/team-2.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>
                   <a href=""><i class="icofont-facebook"></i></a>
@@ -565,7 +639,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="300">
               <div class="member-img">
-                <img src="/assets/img/team/team-3.jpg" class="img-fluid" alt="">
+                <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/team/team-3.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>
                   <a href=""><i class="icofont-facebook"></i></a>
@@ -583,7 +657,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="400">
               <div class="member-img">
-                <img src="/assets/img/team/team-4.jpg" class="img-fluid" alt="">
+                <img src="<?php echo base_url(); ?>/assets/assets_aboutus/img/team/team-4.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>
                   <a href=""><i class="icofont-facebook"></i></a>
@@ -684,19 +758,19 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="/assets/vendor/jquery/jquery.min.js"></script>
-  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="/assets/vendor/php-email-form/validate.js"></script>
-  <script src="/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="/assets/vendor/venobox/venobox.min.js"></script>
-  <script src="/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="/assets/vendor/counterup/counterup.min.js"></script>
-  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/jquery/jquery.min.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/php-email-form/validate.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/venobox/venobox.min.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/counterup/counterup.min.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/assets_aboutus/vendor/aos/aos.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="/assets/js/main.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/assets_aboutus/js/main.js"></script>
 
 </body>
 
