@@ -170,7 +170,7 @@
           <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
             <img src="assets/assets_aboutus/img/about.jpg" class="img-fluid" alt="">
           </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
+          <center><div class="" data-aos="fade-right" data-aos-delay="100">
             <h3>Tentang Eclair-Mart</h3>
 
             <p>
@@ -283,7 +283,7 @@
                 <div class="col-md-6 d-md-flex align-items-md-stretch">
                   <div class="count-box">
                     <i class="icofont-simple-smile"></i>
-                    <span>Mudah</span>
+                    <h4>&nbsp; Mudah</h4>
                     <p><strong>Eclair-Mart</strong> menyediakan sarana yang tepat untuk membantu
                     pembeli membeli barang dengan mudah dan sesuai dengan kebutuhan Anda hanya dalam 30 Detik saja!</p>
                   </div>
@@ -292,7 +292,7 @@
                 <div class="col-md-6 d-md-flex align-items-md-stretch">
                   <div class="count-box">
                     <i class="icofont-document-folder"></i>
-                    <span>Aman</span>
+                    <h4>&nbsp; Aman</h4>
                     <p><strong>Eclair-Mart</strong> menjamin keamanan dalam proses transaksi
                     sehingga barang Anda akan sampai dengan keadaan yang baik</p>
                   </div>
@@ -301,7 +301,7 @@
                 <div class="col-md-6 d-md-flex align-items-md-stretch">
                   <div class="count-box">
                     <i class="icofont-clock-time"></i>
-                    <span>Terpercaya</span>
+                    <h4>&nbsp; Terpercaya</h4>
                     <p><strong>Eclair-Mart</strong> sudah dipercaya oleh 123 Ribu pembeli
                     yang puas akan layanan kami. Sehingga Anda akan mendapat barang yang sesuai dengan kualitas
                     yang Anda inginkan! </p>
@@ -311,8 +311,8 @@
                 <div class="col-md-6 d-md-flex align-items-md-stretch">
                   <div class="count-box">
                     <i class="icofont-award"></i>
-                    <span>Beragam</span>
-                    <p><strong>Eclaor-Mart</strong> menyediakan beragam barang sehingga Anda mendapatkan barang yang Anda cari
+                    <h4>&nbsp; Beragam</h4>
+                    <p><strong>Eclair-Mart</strong> menyediakan beragam barang sehingga Anda mendapatkan barang yang Anda cari
                     dengan mudah dan cepat</p>
                   </div>
                 </div>
