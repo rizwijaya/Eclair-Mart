@@ -5,16 +5,16 @@ class Pegawai extends CI_Controller
 {
 	public function __construct()
 	{
-			parent::__construct(); // you have missed this line.
-			$this->load->library('session');
-			if (!$this->session->userdata('email')) {
-					redirect('home');
-			}
+		parent::__construct(); // you have missed this line.
+		$this->load->library('session');
+		if (!$this->session->userdata('email')) {
+			redirect('home');
+		}
 
-			$session_data = $this->session->userdata('id_grup');
-			if ($session_data == 3) {
-					redirect('home/redirecting');
-			}
+		$session_data = $this->session->userdata('id_grup');
+		if ($session_data == 3) {
+			redirect('home/redirecting');
+		}
 	}
 
 
@@ -84,7 +84,7 @@ class Pegawai extends CI_Controller
 			);
 
 			$this->pegawai_model->tambah_distributor($data, 'distributor');
-			
+
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil ditambahkan.</div>');
 			$this->distributor();
 		}
@@ -138,7 +138,7 @@ class Pegawai extends CI_Controller
 			);
 
 			$this->pegawai_model->tambah_kategori($data, 'kategori');
-			
+
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil ditambahkan.</div>');
 			$this->kategori();
 		}
@@ -184,7 +184,7 @@ class Pegawai extends CI_Controller
 			);
 
 			$this->pegawai_model->update_kategori($data);
-			
+
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil diperbarui.</div>');
 			$this->kategori();
 		}
@@ -231,7 +231,7 @@ class Pegawai extends CI_Controller
 			);
 
 			$this->pegawai_model->update_distributor($data);
-			
+
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data telah berhasil diperbarui.</div>');
 			$this->distributor();
 		}
@@ -286,8 +286,8 @@ class Pegawai extends CI_Controller
 
 		$this->load->model('transaksi_model');
 
-		$this->transaksi_model->updatebayar('transaksi', $data , $where);
-		
+		$this->transaksi_model->updatebayar('transaksi', $data, $where);
+
 		$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Pembayaran Berhasil diterima, barang sedang akan dikemas!</div>');
 		$this->pembayaranmasuk();
 	}
@@ -303,7 +303,7 @@ class Pegawai extends CI_Controller
 		);
 
 		$this->load->model('transaksi_model');
-		$this->transaksi_model->updatebayar('transaksi', $data , $where);
+		$this->transaksi_model->updatebayar('transaksi', $data, $where);
 
 		$this->session->set_flashdata('pesan', '<div class="alert alert-error alert-danger fade show" role="alert">Pembayaran Berhasil Ditolak!</div>');
 		$this->pembayaranmasuk();
@@ -313,10 +313,10 @@ class Pegawai extends CI_Controller
 	{
 		$this->load->model('pegawai_model');
 		$data['transaksi'] = $this->pegawai_model->transaksi();
-		
+
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
-		$this->load->view('pegawai/transaksi', $data);		
+		$this->load->view('pegawai/transaksi', $data);
 	}
 
 	function update_transaksi()
@@ -333,7 +333,7 @@ class Pegawai extends CI_Controller
 		);
 
 		$this->load->model('transaksi_model');
-		$this->transaksi_model->updatebayar('transaksi', $data , $where);
+		$this->transaksi_model->updatebayar('transaksi', $data, $where);
 
 		$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Status Pembelian Berhasil diperbarui!</div>');
 		$this->transaksi();
@@ -343,17 +343,17 @@ class Pegawai extends CI_Controller
 	{
 		$this->load->model('pegawai_model');
 		$data['laporan'] = $this->pegawai_model->pembayaran(6);
-		
+		$data['transaksi'] = $this->pegawai_model->transaksi();
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
-		$this->load->view('pegawai/laporan', $data);				
+		$this->load->view('pegawai/laporan', $data);
 	}
 
 	function cetaklaporan()
 	{
 		$this->load->model('pegawai_model');
 		$data['laporan'] = $this->pegawai_model->pembayaran(6);
-		
-		$this->load->view('pegawai/cetaklaporan', $data);		
+
+		$this->load->view('pegawai/cetaklaporan', $data);
 	}
 }
