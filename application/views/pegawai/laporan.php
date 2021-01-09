@@ -3,7 +3,7 @@
         <div class="app-page-title">
             <div class="page-title-wrapper">
                 <div class="page-title-heading">
-                <div class="page-title-icon">
+                    <div class="page-title-icon">
                         <img class="img-fluid w-100" src="<?php echo base_url(); ?>/assets/assets_admin/assets/images/logo.svg">
                     </div>
                     <div><strong>Eclair-Mart</strong>
@@ -58,7 +58,7 @@
                                         <td><?= $u->kode_pos_pelanggan ?></td>
                                         <td><?= $u->alamat_pelanggan ?>, Kota <?= $u->kota_pelanggan ?>, <?= $u->negara_pelanggan ?></td>
                                         <td>
-                                            <a type="button" class="btn btn-sm btn-primary" href=""><i>Detail</i></button>
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail_modal<?= $u->id_transaksi; ?>"><i>Detail</i></button>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -109,6 +109,44 @@
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 </div>
 </div>
+<!-- Modal Detail Data -->
+<?php foreach ($transaksi as $u) : ?>
+    <div class="modal fade" id="detail_modal<?= $u->id_transaksi ?>" tabindex="-1" role="dialog" aria-labelledby="detail_modal" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detail_modal"><strong>Detail Data Barang</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="">
+                        <!-- <div class="col-md-6">
+                            <img class="card-img-top" height="320px" src="<?php echo base_url(); ?>assets/assets_barang/image/<?php echo $u->photo_barang ?>" alt="Barang">
+                        </div> -->
+                        <div class="">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Nomor transaksi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<?php echo $u->id_transaksi; ?></li>
+                                <li class="list-group-item">Nama Lengkap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->nama; ?></li>
+                                <li class="list-group-item">Alamat Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->email; ?></li>
+                                <li class="list-group-item">Nomor Telepon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->no_telp_pelanggan; ?> </li>
+                                <li class="list-group-item">Alamat Pengiriman&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->alamat_pelanggan; ?> </li>
+                                <li class="list-group-item">Tanggal Pembelian&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;<?php echo $u->tanggal_bayar; ?> </li>
+                                <li class="list-group-item">Total Pembayaran&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Rp. <?php echo $u->total_bayar; ?> </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+<?php endforeach; ?>
+<!--End Detail Modal Update -->
 <script type="text/javascript" src="<?php echo base_url(); ?>/assets/assets_admin/assets/scripts/main.js"></script>
 </body>
 
