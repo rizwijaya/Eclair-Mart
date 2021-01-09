@@ -80,6 +80,48 @@ END$$
 
 DELIMITER ;
 
+Create Table barang_delete
+
+SQL : 
+
+CREATE TABLE barang_delete (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+id_barang int,
+id_distributor int,
+nama_barang varchar(100),
+jumlah int,
+harga int,
+id_kategori int,
+photo_barang char(50),
+deskripsi_barang varchar(200),
+tanggal_delete date
+)
+
+---------------------------------------------------
+
+Create Trigger before_barang_delete
+
+SQL : 
+
+DELIMITER $$
+CREATE TRIGGER before_barang_delete
+    BEFORE DELETE ON barang
+    FOR EACH ROW 
+BEGIN
+    INSERT INTO barang_delete
+    set id_barang = OLD.id_barang,
+    id_distributor = old.id_distributor,
+    nama_barang = old.nama_barang,
+    jumlah = old.jumlah,
+    harga = old.harga,
+    id_kategori = old.id_kategori,
+    photo_barang = old.photo_barang,
+    deskripsi_barang = old.deskripsi_barang ,
+    tanggal_delete = CURDATE();
+END$$
+DELIMITER ;
+
+
 -- --------------------------------------------------------
 
 --

@@ -48,20 +48,22 @@
                             <tbody>
                                 <?php
                                 foreach ($laporan as $u) {
+                                    foreach ($transaksi as $a) {
                                 ?>
-                                    <tr>
-                                        <th scope="row">#0938<?= $u->id_transaksi; ?></th>
-                                        <td><?= $u->nama ?></td>
-                                        <td><?= $u->email ?></td>
-                                        <td><?= $u->no_telp_pelanggan ?></td>
-                                        <td><?= date('d/m/Y', strtotime($u->tanggal_bayar)) ?></td>
-                                        <td><?= $u->kode_pos_pelanggan ?></td>
-                                        <td><?= $u->alamat_pelanggan ?>, Kota <?= $u->kota_pelanggan ?>, <?= $u->negara_pelanggan ?></td>
-                                        <td>
-                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail_modal<?= $u->id_transaksi; ?>"><i>Detail</i></button>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                        <tr>
+                                            <th scope="row">#0938<?= $u->id_transaksi; ?></th>
+                                            <td><?= $u->nama ?></td>
+                                            <td><?= $u->email ?></td>
+                                            <td><?= $u->no_telp_pelanggan ?></td>
+                                            <td><?= date('d/m/Y', strtotime($u->tanggal_bayar)) ?></td>
+                                            <td><?= $u->kode_pos_pelanggan ?></td>
+                                            <td><?= $u->alamat_pelanggan ?>, Kota <?= $u->kota_pelanggan ?>, <?= $u->negara_pelanggan ?></td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail_modal<?= $a->id_transaksi; ?>"><i>Detail</i></button>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
                             </tbody>
                         </table>
                     </div>
