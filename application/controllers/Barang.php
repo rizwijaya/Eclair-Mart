@@ -194,4 +194,16 @@ class Barang extends CI_Controller
 		$this->load->view('template/admin/sidebar');
 		$this->load->view('pegawai/barang', $data);
 	}
+
+	public function hapus_barang()
+	{
+		$this->load->model('barang_model');
+		$data['barang'] = $this->barang_model->select_barang_hapus()->result();
+		$data['kategori'] = $this->barang_model->select_category()->result();
+		$data['distributor'] = $this->barang_model->select_distributor()->result();
+
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('pegawai/barangdihapus', $data);
+	}
 }

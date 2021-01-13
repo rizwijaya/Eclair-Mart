@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Waktu pembuatan: 26 Des 2020 pada 17.19
+-- Waktu pembuatan: 13 Jan 2021 pada 07.14
 -- Versi server: 10.4.10-MariaDB
 -- Versi PHP: 7.3.12
 
@@ -80,48 +80,6 @@ END$$
 
 DELIMITER ;
 
-Create Table barang_delete
-
-SQL : 
-
-CREATE TABLE barang_delete (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-id_barang int,
-id_distributor int,
-nama_barang varchar(100),
-jumlah int,
-harga int,
-id_kategori int,
-photo_barang char(50),
-deskripsi_barang varchar(200),
-tanggal_delete date
-)
-
----------------------------------------------------
-
-Create Trigger before_barang_delete
-
-SQL : 
-
-DELIMITER $$
-CREATE TRIGGER before_barang_delete
-    BEFORE DELETE ON barang
-    FOR EACH ROW 
-BEGIN
-    INSERT INTO barang_delete
-    set id_barang = OLD.id_barang,
-    id_distributor = old.id_distributor,
-    nama_barang = old.nama_barang,
-    jumlah = old.jumlah,
-    harga = old.harga,
-    id_kategori = old.id_kategori,
-    photo_barang = old.photo_barang,
-    deskripsi_barang = old.deskripsi_barang ,
-    tanggal_delete = CURDATE();
-END$$
-DELIMITER ;
-
-
 -- --------------------------------------------------------
 
 --
@@ -153,7 +111,6 @@ INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `h
 (5, 1, 'sabun', 85, 10000, 0, 10, 'sabundetol1.png', 'sabun'),
 (6, 2, 'kursi', 96, 85000, 0, 6, 'kursi3.png', 'kursi'),
 (7, 2, 'Dancow Fortigo', 45, 120000, 1, 2, 'dancow3.png', 'Dancow Fortigo adalah produk susu unggulan'),
-(9, 1, 'Nugget', 15, 12500, 0, 2, 'nugget.png', 'Nugget AYAM'),
 (13, 14, 'Garnier Sakura White Serum Night Cream Moisturizer Skin Care - 50 ml', 49, 53000, 1, 10, 'garnier.png', 'Krim essence lembut dengan paduan Ekstrak Sakura, Ekstrak Buah-buahan, dan Vitamin CG, melembapkan wajah hingga 24 jam dan membiarkannya bernafas selama Anda tidur.'),
 (14, 1, 'Pond\'s White Beauty Facial Foam 50 gr', 92, 14000, 1, 10, 'ponds1.png', 'Dengan kandungan Pearl Nutrients, Vitamin B3, dan AHA'),
 (15, 1, 'Garnier Sakura White Pinkish Radiance Essence Lotion Skin Care - 120ml', 99, 75600, 1, 10, 'garnieres.png', 'Essence lotion yang melembabkan, mencerahkan, menghaluskan tekstur kulit dan menyiapkan kulit untuk perawatan kulit tahap selanjutnya.'),
@@ -243,6 +200,54 @@ INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `h
 (100, 17, 'Rebo Kuaci Bunga Matahari Super 150Gr', 49, 13000, 1, 1, '62.png', 'Rebo Kuaci Bunga Matahari Super 70gr merupakan cemilan yang dibuat dari biji bunga matahari yang berkualitas.'),
 (101, 14, 'Nextar Pineapple 14gr x 8', 37, 6500, 1, 1, '68.png', 'Nextar Pineapple 14gr x 8 merupakan biskuit dengan nanas didalamnya membuat brownis yang lezat dan lembut.'),
 (102, 14, 'Mr. Hottest Maitos Tortilla Chips Rasa BBQ Fiesta 55 gr', 49, 3900, 1, 1, '67.png', 'Snack yang terbuat dari bahan baku jagung asli dan dapat di sajikan sebagai hidangan pembuka, lauk atau snack malam...');
+
+--
+-- Trigger `barang`
+--
+DROP TRIGGER IF EXISTS `before_barang_delete`;
+DELIMITER $$
+CREATE TRIGGER `before_barang_delete` BEFORE DELETE ON `barang` FOR EACH ROW BEGIN
+    INSERT INTO barang_delete
+    set id_barang = OLD.id_barang,
+    id_distributor = old.id_distributor,
+    nama_barang = old.nama_barang,
+    jumlah = old.jumlah,
+    harga = old.harga,
+    id_kategori = old.id_kategori,
+    photo_barang = old.photo_barang,
+    deskripsi_barang = old.deskripsi_barang ,
+    tanggal_delete = CURDATE();
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `barang_delete`
+--
+
+DROP TABLE IF EXISTS `barang_delete`;
+CREATE TABLE IF NOT EXISTS `barang_delete` (
+  `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_barang` int(11) DEFAULT NULL,
+  `id_distributor` int(11) DEFAULT NULL,
+  `nama_barang` varchar(100) DEFAULT NULL,
+  `jumlah` int(11) DEFAULT NULL,
+  `harga` int(11) DEFAULT NULL,
+  `id_kategori` int(11) DEFAULT NULL,
+  `photo_barang` char(50) DEFAULT NULL,
+  `deskripsi_barang` varchar(200) DEFAULT NULL,
+  `tanggal_delete` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `barang_delete`
+--
+
+INSERT INTO `barang_delete` (`id`, `id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `harga`, `id_kategori`, `photo_barang`, `deskripsi_barang`, `tanggal_delete`) VALUES
+(1, 9, 1, 'Nugget', 15, 12500, 2, 'nugget.png', 'Nugget AYAM', '2021-01-13');
 
 -- --------------------------------------------------------
 
@@ -471,135 +476,6 @@ CREATE TABLE IF NOT EXISTS `status` (
   `date_updated` date NOT NULL,
   PRIMARY KEY (`status_bayar`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `status`
---
-
-INSERT INTO `status` (`status_bayar`, `nama_status`, `date_created`, `date_updated`) VALUES
-(0, 'Belum dibayar', '2020-12-26', '2020-12-26'),
-(1, 'Menunggu Konfirmasi', '2020-12-26', '2020-12-26'),
-(2, 'Pembayaran Ditolak', '2020-12-26', '2020-12-26'),
-(3, 'Pembayaran Berhasil', '2020-12-26', '2020-12-26'),
-(4, 'Sedang Dikemas', '2020-12-26', '2020-12-26'),
-(5, 'Proses Pengiriman', '2020-12-26', '2020-12-26'),
-(6, 'Selesai', '2020-12-26', '2020-12-26');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `transaksi`
---
-
-DROP TABLE IF EXISTS `transaksi`;
-CREATE TABLE IF NOT EXISTS `transaksi` (
-  `id_transaksi` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
-  `total_bayar` int(50) DEFAULT NULL,
-  `status_bayar` int(11) DEFAULT NULL,
-  `bukti_bayar` varchar(200) NOT NULL,
-  `tanggal_bayar` date DEFAULT current_timestamp(),
-  `batas_bayar` date NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id_transaksi`),
-  KEY `TRANSAKSI_USER` (`id_user`),
-  KEY `TRANSAKSI_STATUS` (`status_bayar`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
-
---
--- Dumping data untuk tabel `transaksi`
---
-
-INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `total_bayar`, `status_bayar`, `bukti_bayar`, `tanggal_bayar`, `batas_bayar`) VALUES
-(34, 1, 112500, 0, '', '2020-12-26', '2020-12-27'),
-(36, 1, 112500, 6, 'bukti.jpg', '2020-12-26', '2020-12-27'),
-(38, 1, 141500, 6, 'bukti5.jpg', '2020-12-26', '2020-12-27'),
-(40, 1, 112500, 5, 'bukti3.jpg', '2020-12-26', '2020-12-27'),
-(42, 1, 24000, 1, 'bukti2.jpg', '2020-12-26', '2020-12-27');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `users`
---
-
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id_user` int(11) NOT NULL AUTO_INCREMENT,
-  `id_grup` int(11) DEFAULT NULL,
-  `nama` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `password` varchar(200) DEFAULT NULL,
-  `date_created` date DEFAULT current_timestamp(),
-  PRIMARY KEY (`id_user`),
-  KEY `USER_GRUP` (`id_grup`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
---
--- Dumping data untuk tabel `users`
---
-
-INSERT INTO `users` (`id_user`, `id_grup`, `nama`, `email`, `password`, `date_created`) VALUES
-(1, 3, 'Pelanggan 1', 'pelanggan@gmail.com', '$2y$10$lKbhoHUExeFONB.t6yVASutWMYOmo9e7wSDOvXYedd9.F0mmSIFry', '2020-12-22'),
-(2, 1, 'Pemilik', 'pemilik@gmail.com', '$2y$10$gUXPIGBGnduJLziOVJNB3.P90ovqw.2DphvQb.drKj5Airw7E22tW', '2020-12-22'),
-(3, 2, 'Pegawai', 'pegawai@gmail.com', '$2y$10$6H9u.vCSOo7CAR1EkF.GIu.MKh.wlv8C5hbMu1SD55SdV.XBVz0Pu', '2020-12-22'),
-(4, 3, 'Pelanggan 2', 'test@gmail.com', '$2y$10$WqtTpmaL6g6ouMS3c/qnK.IigJ/YMEAUaaZti5w9RqTJkbcXplLku', '2020-12-22'),
-(5, 3, 'pelanggan', 'testpelanggan@gmail.com', '$2y$10$jLpQjbzUMtLg8g20Mbu9y.zDgbfx.nOV6PVKuj0wbEovd36y93ZkW', '2020-12-24');
-
---
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
---
-
---
--- Ketidakleluasaan untuk tabel `barang`
---
-ALTER TABLE `barang`
-  ADD CONSTRAINT `BARANG_DISTRIBUTOR` FOREIGN KEY (`id_distributor`) REFERENCES `distributor` (`id_distributor`),
-  ADD CONSTRAINT `BARANG_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
-
---
--- Ketidakleluasaan untuk tabel `checkout`
---
-ALTER TABLE `checkout`
-  ADD CONSTRAINT `CHECKOUT_BARANG` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
-  ADD CONSTRAINT `CHECKOUT_TRANSAKSI` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`);
-
---
--- Ketidakleluasaan untuk tabel `keranjang`
---
-ALTER TABLE `keranjang`
-  ADD CONSTRAINT `KERANJANG_BARANG` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
-  ADD CONSTRAINT `KERANJANG_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
-
---
--- Ketidakleluasaan untuk tabel `pegawai`
---
-ALTER TABLE `pegawai`
-  ADD CONSTRAINT `PEGAWAI_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
-
---
--- Ketidakleluasaan untuk tabel `pelanggan`
---
-ALTER TABLE `pelanggan`
-  ADD CONSTRAINT `PELANGGAN_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
-
---
--- Ketidakleluasaan untuk tabel `pemilik`
---
-ALTER TABLE `pemilik`
-  ADD CONSTRAINT `PEMILIK_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
-
---
--- Ketidakleluasaan untuk tabel `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD CONSTRAINT `TRANSAKSI_STATUS` FOREIGN KEY (`status_bayar`) REFERENCES `status` (`status_bayar`),
-  ADD CONSTRAINT `TRANSAKSI_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
-
---
--- Ketidakleluasaan untuk tabel `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `USER_GRUP` FOREIGN KEY (`id_grup`) REFERENCES `grup` (`id_grup`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -8,6 +8,13 @@ class Barang_model extends CI_Model
         return $query;
     }
 
+    function select_barang_hapus()
+    {
+        $q = "SELECT t1.*, t2.id_distributor, t2.nama_perusahaan, t2.nama_distributor, t2.no_telp_distributor, t3.id_kategori, t3.nama_kategori, t3.kode_kategori FROM barang_delete t1 JOIN distributor t2 ON t1.id_distributor=t2.id_distributor LEFT JOIN kategori t3 ON t1.id_kategori=t3.id_kategori";
+        $query = $this->db->query($q);
+        return $query;
+    }
+
     function barang_pagging($limit, $start)
     {
         $query = $this->db->get('barang', $limit, $start);

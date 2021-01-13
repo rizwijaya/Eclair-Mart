@@ -83,16 +83,16 @@
                                 </div>
                                 <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
-                                    <?= $this->session->userdata('nama') ?>
+                                        <?= $this->session->userdata('nama') ?>
                                     </div>
                                     <div class="widget-subheading">
-                                    <?php if ($this->session->userdata('id_grup') == 1) { ?>
-                                        Pemilik Toko
-                                    <?php } elseif ($this->session->userdata('id_grup') == 2) { ?>
-                                        Pegawai
-                                    <?php } else { ?>
-                                        Pelanggan
-                                    <?php } ?>
+                                        <?php if ($this->session->userdata('id_grup') == 1) { ?>
+                                            Pemilik Toko
+                                        <?php } elseif ($this->session->userdata('id_grup') == 2) { ?>
+                                            Pegawai
+                                        <?php } else { ?>
+                                            Pelanggan
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <!-- <div class="widget-content-right header-user-info ml-3">
@@ -432,14 +432,14 @@
                                 <?php } else { ?>
                                     <a href="<?php echo base_url(); ?>pemilik" class="mm-active">
                                         <i class="metismenu-icon">
-                                        <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/dashboard.png">
+                                            <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/dashboard.png">
                                         </i>
                                         Dashboard
                                     </a>
                                 <?php } ?>
                                 <a href="<?php echo base_url(); ?>home">
                                     <i class="metismenu-icon">
-                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/store.svg">
+                                        <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/store.svg">
                                     </i>
                                     Dashboard Pelanggan
                                 </a>
@@ -449,7 +449,7 @@
                             <li>
                                 <a href="<?php echo base_url(); ?>barang">
                                     <i class="metismenu-icon">
-                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/supermarket.svg">
+                                        <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/supermarket.svg">
                                     </i>
                                     Daftar Barang
                                 </a>
@@ -457,64 +457,71 @@
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/distributor">
                                     <i class="metismenu-icon">
-                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/distribution.svg">
+                                        <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/distribution.svg">
                                     </i>Daftar Distributor
                                 </a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/kategori">
-                                <i class="metismenu-icon">
-                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/categories.svg">
+                                    <i class="metismenu-icon">
+                                        <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/categories.svg">
                                     </i>Kategori Barang
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url(); ?>barang/hapus_barang">
+                                    <i class="metismenu-icon">
+                                        <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/categories.svg">
+                                    </i>Barang Terhapus
                                 </a>
                             </li>
                             <li class="app-sidebar__heading">Kelola Pembayaran</li>
                             <?php if ($this->session->userdata('id_grup') == 2) { ?>
-                            <li>
-                                <a href="<?php echo base_url(); ?>pegawai/pembayaranmasuk">
-                                <i class="metismenu-icon">
-                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/wallet.svg">
-                                    </i>Pembayaran Masuk
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(); ?>pegawai/transaksi">
-                                <i class="metismenu-icon">
-                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/trade.svg">
-                                    </i>Transaksi Penjualan
-                                </a>
-                            </li>
+                                <li>
+                                    <a href="<?php echo base_url(); ?>pegawai/pembayaranmasuk">
+                                        <i class="metismenu-icon">
+                                            <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/wallet.svg">
+                                        </i>Pembayaran Masuk
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url(); ?>pegawai/transaksi">
+                                        <i class="metismenu-icon">
+                                            <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/trade.svg">
+                                        </i>Transaksi Penjualan
+                                    </a>
+                                </li>
                             <?php } ?>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/laporantransaksi">
-                                <i class="metismenu-icon">
-                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/report.svg">
+                                    <i class="metismenu-icon">
+                                        <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/report.svg">
                                     </i>Laporan Transaksi
                                 </a>
                             </li>
                             <li class="app-sidebar__heading">Kelola Pengguna</li>
                             <li>
                                 <a href="<?php echo base_url(); ?>pegawai/daftarpelanggan">
-                                <i class="metismenu-icon">
-                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/customer.svg">
+                                    <i class="metismenu-icon">
+                                        <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/customer.svg">
                                     </i>Daftar Pelanggan
                                 </a>
                             </li>
                             <?php if ($this->session->userdata('id_grup') == 1) { ?>
-                            <li>
-                                <a href="<?php echo base_url(); ?>pegawai/daftarpegawai">
-                                <i class="metismenu-icon">
-                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/employee.svg">
-                                    </i>Daftar Pegawai
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(); ?>pemilik/tambahpegawai">
-                                <i class="metismenu-icon">
-                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/addemployee.png">
-                                    </i>Tambah Pegawai
-                                </a>
-                            </li>
+                                <li>
+                                    <a href="<?php echo base_url(); ?>pegawai/daftarpegawai">
+                                        <i class="metismenu-icon">
+                                            <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/employee.svg">
+                                        </i>Daftar Pegawai
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url(); ?>pemilik/tambahpegawai">
+                                        <i class="metismenu-icon">
+                                            <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/addemployee.png">
+                                        </i>Tambah Pegawai
+                                    </a>
+                                </li>
                             <?php } ?>
                             <!-- <li>
                                 <a href="forms-validation.html">
@@ -532,8 +539,8 @@
                             <li class="app-sidebar__heading">Setelan</li>
                             <li>
                                 <a href="<?php echo base_url(); ?>/users/logout">
-                                <i class="metismenu-icon">
-                                    <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/exit.svg">
+                                    <i class="metismenu-icon">
+                                        <img width="30px" src="<?php echo base_url(); ?>assets/assets_admin/assets/icons/exit.svg">
                                     </i>
                                     Logout
                                 </a>
