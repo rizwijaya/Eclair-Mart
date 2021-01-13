@@ -59,8 +59,7 @@
                                         <td>Rp. <?php echo number_format($u->harga, 0, ',', '.'); ?></td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#detail_modal<?= $u->id_barang ?>"><i class="fas fa-eye"></i></button>
-                                            <a href="<?php echo base_url(); ?>barang/hapus/<?= $u->id_barang ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash" onclick="return confirm('Yakin untuk menghapus?')"></i></a>
-                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal<?= $u->id_barang ?>"><i class="fas fa-edit"></i></button>
+
                                         </td>
                                     </tr>
                                 <?php } ?>
