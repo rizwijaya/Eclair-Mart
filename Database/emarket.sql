@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Waktu pembuatan: 13 Jan 2021 pada 07.14
--- Versi server: 10.4.10-MariaDB
--- Versi PHP: 7.3.12
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 15 Jan 2021 pada 07.59
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -26,27 +25,22 @@ DELIMITER $$
 --
 -- Prosedur
 --
-DROP PROCEDURE IF EXISTS `deletebarang`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deletebarang` (IN `ID` VARCHAR(12))  BEGIN
 	DELETE FROM barang where ID_BARANG=ID;
 END$$
 
-DROP PROCEDURE IF EXISTS `deletedistributor`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deletedistributor` (IN `ID` VARCHAR(12))  BEGIN
 	DELETE FROM distributor where id_distributor=ID;
 END$$
 
-DROP PROCEDURE IF EXISTS `deletekategori`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deletekategori` (IN `ID` VARCHAR(12))  BEGIN
 	DELETE FROM kategori where id_kategori=ID;
 END$$
 
-DROP PROCEDURE IF EXISTS `searchbarang`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `searchbarang` (IN `nama` VARCHAR(100))  BEGIN
  SELECT * FROM BARANG WHERE nama_barang REGEXP CONCAT('^.*',nama,'.*$');
 END$$
 
-DROP PROCEDURE IF EXISTS `updatebarang`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updatebarang` (IN `ID` INT, IN `DISTRI` INT, IN `NAMA` VARCHAR(100), IN `JUMLAH` INT, IN `HARGA` INT, IN `STATE` INT, IN `KATEGORI` INT, IN `PHOTO` CHAR(50), IN `DESK` VARCHAR(100))  BEGIN
 	UPDATE BARANG
 	SET
@@ -60,7 +54,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updatebarang` (IN `ID` INT, IN `DIS
     	deskripsi_barang = DESK WHERE ID_BARANG = ID;
 END$$
 
-DROP PROCEDURE IF EXISTS `updatedistributor`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updatedistributor` (IN `ID` INT, IN `PERUS` VARCHAR(100), IN `NAMA` VARCHAR(100), IN `TELEPON` VARCHAR(50), IN `STATE` INT)  BEGIN
 	UPDATE DISTRIBUTOR
 	SET
@@ -70,7 +63,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updatedistributor` (IN `ID` INT, IN
 	status_distributor = STATE WHERE id_distributor = ID;
 END$$
 
-DROP PROCEDURE IF EXISTS `updatekategori`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updatekategori` (IN `ID` INT, IN `KODE` VARCHAR(10), IN `NAMA` VARCHAR(100))  BEGIN
 	UPDATE kategori
 	SET
@@ -86,9 +78,8 @@ DELIMITER ;
 -- Struktur dari tabel `barang`
 --
 
-DROP TABLE IF EXISTS `barang`;
-CREATE TABLE IF NOT EXISTS `barang` (
-  `id_barang` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `barang` (
+  `id_barang` int(11) NOT NULL,
   `id_distributor` int(11) DEFAULT NULL,
   `nama_barang` varchar(100) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
@@ -96,24 +87,19 @@ CREATE TABLE IF NOT EXISTS `barang` (
   `status_barang` int(11) NOT NULL,
   `id_kategori` int(11) NOT NULL,
   `photo_barang` char(50) DEFAULT NULL,
-  `deskripsi_barang` varchar(200) NOT NULL,
-  PRIMARY KEY (`id_barang`),
-  KEY `BARANG_DISTRIBUTOR` (`id_distributor`),
-  KEY `BARANG_kategori` (`id_kategori`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
+  `deskripsi_barang` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `barang`
 --
 
 INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `harga`, `status_barang`, `id_kategori`, `photo_barang`, `deskripsi_barang`) VALUES
-(4, 2, 'meja', 81, 100000, 0, 6, 'meja1.png', 'meja'),
-(5, 1, 'sabun', 85, 10000, 0, 10, 'sabundetol1.png', 'sabun'),
+(4, 2, 'meja', 78, 100000, 0, 6, 'meja1.png', 'meja'),
 (6, 2, 'kursi', 96, 85000, 0, 6, 'kursi3.png', 'kursi'),
 (7, 2, 'Dancow Fortigo', 45, 120000, 1, 2, 'dancow3.png', 'Dancow Fortigo adalah produk susu unggulan'),
-(13, 14, 'Garnier Sakura White Serum Night Cream Moisturizer Skin Care - 50 ml', 49, 53000, 1, 10, 'garnier.png', 'Krim essence lembut dengan paduan Ekstrak Sakura, Ekstrak Buah-buahan, dan Vitamin CG, melembapkan wajah hingga 24 jam dan membiarkannya bernafas selama Anda tidur.'),
-(14, 1, 'Pond\'s White Beauty Facial Foam 50 gr', 92, 14000, 1, 10, 'ponds1.png', 'Dengan kandungan Pearl Nutrients, Vitamin B3, dan AHA'),
-(15, 1, 'Garnier Sakura White Pinkish Radiance Essence Lotion Skin Care - 120ml', 99, 75600, 1, 10, 'garnieres.png', 'Essence lotion yang melembabkan, mencerahkan, menghaluskan tekstur kulit dan menyiapkan kulit untuk perawatan kulit tahap selanjutnya.'),
+(13, 14, 'Garnier Sakura White Serum Night Cream Moisturizer Skin Care - 50 ml', 48, 53000, 1, 10, 'garnier.png', 'Krim essence lembut dengan paduan Ekstrak Sakura, Ekstrak Buah-buahan, dan Vitamin CG, melembapkan wajah hingga 24 jam dan membiarkannya bernafas selama Anda tidur.'),
+(15, 1, 'Garnier Sakura White Pinkish Radiance Essence Lotion Skin Care - 300ml', 97, 75600, 1, 10, 'garnieres.png', 'Essence lotion yang melembabkan, mencerahkan, menghaluskan tekstur kulit dan menyiapkan kulit untuk '),
 (17, 17, 'Ovale Facial Lotion Lemon Botol 200 ml', 49, 22800, 1, 10, 'ovale.png', 'Membersihkan kotoran dan sisa tata rias'),
 (18, 1, 'Garnier Men Turbo Light Oil Control 3 in 1 Charcoal Cleanser Foam Skin Care - 100 ml', 48, 29000, 1, 10, 'garnier1.png', 'Pembersih wajah 3 in 1 pertama untuk berminyak dengan kombinasi kekuatan charcoal, beads dan clay.'),
 (19, 1, 'Rexona Men Deodorant Roll On Invisible Dry 45 ml - Antiperspirant Deodorant Deodoran Roll On', 45, 13300, 1, 10, 'rexona1.png', 'Rexona Men Deodorant Pria Roll On tanpa pewarna Dengan formula anti noda terbaik Melawan keringat dan bau badan hingga 48 jam'),
@@ -199,12 +185,12 @@ INSERT INTO `barang` (`id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `h
 (99, 14, 'Mayasi Pedas 65gr', 46, 9000, 1, 1, '63.png', 'Mayasi Pedas 65gr merupakan kacang panggang yang kaya akan serat dan cita rasa.'),
 (100, 17, 'Rebo Kuaci Bunga Matahari Super 150Gr', 49, 13000, 1, 1, '62.png', 'Rebo Kuaci Bunga Matahari Super 70gr merupakan cemilan yang dibuat dari biji bunga matahari yang berkualitas.'),
 (101, 14, 'Nextar Pineapple 14gr x 8', 37, 6500, 1, 1, '68.png', 'Nextar Pineapple 14gr x 8 merupakan biskuit dengan nanas didalamnya membuat brownis yang lezat dan lembut.'),
-(102, 14, 'Mr. Hottest Maitos Tortilla Chips Rasa BBQ Fiesta 55 gr', 49, 3900, 1, 1, '67.png', 'Snack yang terbuat dari bahan baku jagung asli dan dapat di sajikan sebagai hidangan pembuka, lauk atau snack malam...');
+(102, 14, 'Mr. Hottest Maitos Tortilla Chips Rasa BBQ Fiesta 55 gr', 49, 3900, 1, 1, '67.png', 'Snack yang terbuat dari bahan baku jagung asli dan dapat di sajikan sebagai hidangan pembuka, lauk atau snack malam...'),
+(103, 1, 'Dancow Fortigo', 50, 150000, 1, 2, 'Toyota_Alphard.jpg', 'Dancow fortigo');
 
 --
 -- Trigger `barang`
 --
-DROP TRIGGER IF EXISTS `before_barang_delete`;
 DELIMITER $$
 CREATE TRIGGER `before_barang_delete` BEFORE DELETE ON `barang` FOR EACH ROW BEGIN
     INSERT INTO barang_delete
@@ -227,9 +213,8 @@ DELIMITER ;
 -- Struktur dari tabel `barang_delete`
 --
 
-DROP TABLE IF EXISTS `barang_delete`;
-CREATE TABLE IF NOT EXISTS `barang_delete` (
-  `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `barang_delete` (
+  `id` int(6) UNSIGNED NOT NULL,
   `id_barang` int(11) DEFAULT NULL,
   `id_distributor` int(11) DEFAULT NULL,
   `nama_barang` varchar(100) DEFAULT NULL,
@@ -238,16 +223,18 @@ CREATE TABLE IF NOT EXISTS `barang_delete` (
   `id_kategori` int(11) DEFAULT NULL,
   `photo_barang` char(50) DEFAULT NULL,
   `deskripsi_barang` varchar(200) DEFAULT NULL,
-  `tanggal_delete` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `tanggal_delete` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `barang_delete`
 --
 
 INSERT INTO `barang_delete` (`id`, `id_barang`, `id_distributor`, `nama_barang`, `jumlah`, `harga`, `id_kategori`, `photo_barang`, `deskripsi_barang`, `tanggal_delete`) VALUES
-(1, 9, 1, 'Nugget', 15, 12500, 2, 'nugget.png', 'Nugget AYAM', '2021-01-13');
+(1, 9, 1, 'Nugget', 15, 12500, 2, 'nugget.png', 'Nugget AYAM', '2021-01-13'),
+(2, 14, 1, 'Pond\'s White Beauty Facial Foam 50 gr', 92, 14000, 10, 'ponds1.png', 'Dengan kandungan Pearl Nutrients, Vitamin B3, dan AHA', '2021-01-14'),
+(3, 5, 1, 'sabun', 58, 10000, 10, 'sabundetol1.png', 'sabun', '2021-01-14'),
+(4, 9, 1, 'Nugget', 15, 12500, 2, 'nugget.png', 'Nugget AYAM', '2021-01-15');
 
 -- --------------------------------------------------------
 
@@ -255,18 +242,14 @@ INSERT INTO `barang_delete` (`id`, `id_barang`, `id_distributor`, `nama_barang`,
 -- Struktur dari tabel `checkout`
 --
 
-DROP TABLE IF EXISTS `checkout`;
-CREATE TABLE IF NOT EXISTS `checkout` (
-  `id_checkout` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `checkout` (
+  `id_checkout` int(11) NOT NULL,
   `id_transaksi` int(11) NOT NULL,
   `id_barang` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `total_harga` int(50) NOT NULL,
-  `date_created` date NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id_checkout`),
-  KEY `CHECKOUT_TRANSAKSI` (`id_transaksi`),
-  KEY `CHECKOUT_BARANG` (`id_barang`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
+  `date_created` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `checkout`
@@ -283,7 +266,13 @@ INSERT INTO `checkout` (`id_checkout`, `id_transaksi`, `id_barang`, `jumlah`, `t
 (56, 40, 4, 1, 100000, '2020-12-26'),
 (57, 40, 9, 1, 12500, '2020-12-26'),
 (58, 42, 5, 1, 10000, '2020-12-26'),
-(59, 42, 14, 1, 14000, '2020-12-26');
+(59, 42, 14, 1, 14000, '2020-12-26'),
+(60, 50, 5, 1, 10000, '2021-01-14'),
+(61, 50, 15, 1, 75600, '2021-01-14'),
+(62, 52, 4, 1, 100000, '2021-01-15'),
+(63, 52, 15, 1, 75600, '2021-01-15'),
+(64, 54, 4, 1, 100000, '2021-01-15'),
+(65, 54, 13, 1, 53000, '2021-01-15');
 
 -- --------------------------------------------------------
 
@@ -291,17 +280,15 @@ INSERT INTO `checkout` (`id_checkout`, `id_transaksi`, `id_barang`, `jumlah`, `t
 -- Struktur dari tabel `distributor`
 --
 
-DROP TABLE IF EXISTS `distributor`;
-CREATE TABLE IF NOT EXISTS `distributor` (
-  `id_distributor` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `distributor` (
+  `id_distributor` int(11) NOT NULL,
   `nama_perusahaan` varchar(100) DEFAULT NULL,
   `nama_distributor` varchar(100) NOT NULL,
   `no_telp_distributor` varchar(50) NOT NULL,
   `status_distributor` int(11) NOT NULL,
   `date_created` date DEFAULT current_timestamp(),
-  `date_updated` date DEFAULT current_timestamp(),
-  PRIMARY KEY (`id_distributor`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+  `date_updated` date DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `distributor`
@@ -324,13 +311,11 @@ INSERT INTO `distributor` (`id_distributor`, `nama_perusahaan`, `nama_distributo
 -- Struktur dari tabel `grup`
 --
 
-DROP TABLE IF EXISTS `grup`;
-CREATE TABLE IF NOT EXISTS `grup` (
-  `id_grup` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `grup` (
+  `id_grup` int(11) NOT NULL,
   `nama_grup` varchar(50) DEFAULT NULL,
-  `date_created` date DEFAULT NULL,
-  PRIMARY KEY (`id_grup`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `date_created` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `grup`
@@ -347,14 +332,12 @@ INSERT INTO `grup` (`id_grup`, `nama_grup`, `date_created`) VALUES
 -- Struktur dari tabel `kategori`
 --
 
-DROP TABLE IF EXISTS `kategori`;
-CREATE TABLE IF NOT EXISTS `kategori` (
-  `id_kategori` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `kategori` (
+  `id_kategori` int(11) NOT NULL,
   `kode_kategori` varchar(10) NOT NULL,
   `nama_kategori` varchar(200) NOT NULL,
-  `date_created` date NOT NULL,
-  PRIMARY KEY (`id_kategori`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+  `date_created` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `kategori`
@@ -376,18 +359,22 @@ INSERT INTO `kategori` (`id_kategori`, `kode_kategori`, `nama_kategori`, `date_c
 -- Struktur dari tabel `keranjang`
 --
 
-DROP TABLE IF EXISTS `keranjang`;
-CREATE TABLE IF NOT EXISTS `keranjang` (
-  `id_keranjang` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `keranjang` (
+  `id_keranjang` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_barang` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `total_harga` int(50) NOT NULL,
-  `date_created` date NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id_keranjang`),
-  KEY `KERANJANG_USER` (`id_user`),
-  KEY `KERANJANG_BARANG` (`id_barang`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
+  `date_created` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `keranjang`
+--
+
+INSERT INTO `keranjang` (`id_keranjang`, `id_user`, `id_barang`, `jumlah`, `total_harga`, `date_created`) VALUES
+(63, 1, 15, 1, 75600, '2021-01-15'),
+(64, 1, 4, 5, 500000, '2021-01-15');
 
 -- --------------------------------------------------------
 
@@ -395,22 +382,20 @@ CREATE TABLE IF NOT EXISTS `keranjang` (
 -- Struktur dari tabel `pegawai`
 --
 
-DROP TABLE IF EXISTS `pegawai`;
-CREATE TABLE IF NOT EXISTS `pegawai` (
-  `id_pegawai` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pegawai` (
+  `id_pegawai` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
   `alamat_pegawai` varchar(200) DEFAULT NULL,
-  `no_telp_pegawai` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id_pegawai`),
-  KEY `PEGAWAI_USER` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `no_telp_pegawai` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `id_user`, `alamat_pegawai`, `no_telp_pegawai`) VALUES
-(1, 3, NULL, NULL);
+(1, 3, NULL, NULL),
+(2, 8, 'Surabaya', '08534334323232');
 
 -- --------------------------------------------------------
 
@@ -418,19 +403,16 @@ INSERT INTO `pegawai` (`id_pegawai`, `id_user`, `alamat_pegawai`, `no_telp_pegaw
 -- Struktur dari tabel `pelanggan`
 --
 
-DROP TABLE IF EXISTS `pelanggan`;
-CREATE TABLE IF NOT EXISTS `pelanggan` (
-  `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pelanggan` (
+  `id_pelanggan` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
   `alamat_pelanggan` varchar(200) DEFAULT NULL,
   `kode_pos_pelanggan` int(11) DEFAULT NULL,
   `kota_pelanggan` varchar(100) DEFAULT NULL,
   `negara_pelanggan` varchar(100) DEFAULT NULL,
   `no_telp_pelanggan` varchar(50) DEFAULT NULL,
-  `photo_pelanggan` varchar(200) NOT NULL DEFAULT 'default.jpg',
-  PRIMARY KEY (`id_pelanggan`),
-  KEY `PELANGGAN_USER` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `photo_pelanggan` varchar(200) NOT NULL DEFAULT 'default.jpg'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `pelanggan`
@@ -439,7 +421,8 @@ CREATE TABLE IF NOT EXISTS `pelanggan` (
 INSERT INTO `pelanggan` (`id_pelanggan`, `id_user`, `alamat_pelanggan`, `kode_pos_pelanggan`, `kota_pelanggan`, `negara_pelanggan`, `no_telp_pelanggan`, `photo_pelanggan`) VALUES
 (1, 5, NULL, 0, '', '', NULL, 'default.jpg'),
 (2, 4, NULL, 0, '', '', NULL, 'default.jpg'),
-(3, 1, 'Jalan Merpati', 63154, 'Surabaya', 'Indonesia', '6285606392213', 'default.jpg');
+(3, 1, 'Jalan Merpati', 63154, 'Surabaya', 'Indonesia', '6285606392213', 'default.jpg'),
+(4, 7, 'Jalan Merpati Putih', 63154, 'Surabaya', 'Indonesia', '6285606392213', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -447,20 +430,10 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `id_user`, `alamat_pelanggan`, `kode_po
 -- Struktur dari tabel `pemilik`
 --
 
-DROP TABLE IF EXISTS `pemilik`;
-CREATE TABLE IF NOT EXISTS `pemilik` (
-  `id_pemilik` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_pemilik`),
-  KEY `PEMILIK_USER` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Dumping data untuk tabel `pemilik`
---
-
-INSERT INTO `pemilik` (`id_pemilik`, `id_user`) VALUES
-(1, 2);
+CREATE TABLE `pemilik` (
+  `id_pemilik` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -468,14 +441,287 @@ INSERT INTO `pemilik` (`id_pemilik`, `id_user`) VALUES
 -- Struktur dari tabel `status`
 --
 
-DROP TABLE IF EXISTS `status`;
-CREATE TABLE IF NOT EXISTS `status` (
-  `status_bayar` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `status` (
+  `status_bayar` int(11) NOT NULL,
   `nama_status` varchar(50) NOT NULL,
   `date_created` date NOT NULL,
-  `date_updated` date NOT NULL,
-  PRIMARY KEY (`status_bayar`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  `date_updated` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `status`
+--
+
+INSERT INTO `status` (`status_bayar`, `nama_status`, `date_created`, `date_updated`) VALUES
+(0, 'Belum dibayar', '2020-12-26', '2020-12-26'),
+(1, 'Menunggu Konfirmasi', '2020-12-26', '2020-12-26'),
+(2, 'Pembayaran Ditolak', '2020-12-26', '2020-12-26'),
+(3, 'Pembayaran Berhasil', '2020-12-26', '2020-12-26'),
+(4, 'Sedang Dikemas', '2020-12-26', '2020-12-26'),
+(5, 'Proses Pengiriman', '2020-12-26', '2020-12-26'),
+(6, 'Selesai', '2020-12-26', '2020-12-26');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transaksi`
+--
+
+CREATE TABLE `transaksi` (
+  `id_transaksi` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `total_bayar` int(50) DEFAULT NULL,
+  `status_bayar` int(11) DEFAULT NULL,
+  `bukti_bayar` varchar(200) NOT NULL,
+  `tanggal_bayar` date DEFAULT current_timestamp(),
+  `batas_bayar` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `total_bayar`, `status_bayar`, `bukti_bayar`, `tanggal_bayar`, `batas_bayar`) VALUES
+(34, 1, 112500, 5, 'bukti22.jpg', '2020-12-26', '2020-12-27'),
+(36, 1, 112500, 6, 'bukti.jpg', '2020-12-26', '2020-12-27'),
+(38, 1, 141500, 6, 'bukti5.jpg', '2020-12-26', '2020-12-27'),
+(40, 1, 112500, 6, 'bukti3.jpg', '2020-12-26', '2020-12-27'),
+(42, 1, 24000, 3, 'bukti2.jpg', '2020-12-26', '2020-12-27'),
+(48, 1, 100000, 2, 'bukti21.jpg', '2020-12-31', '2021-01-01'),
+(49, 1, NULL, 0, '', '2020-12-31', '2021-01-01'),
+(50, 1, 85600, 4, 'bukti23.jpg', '2021-01-14', '2021-01-15'),
+(51, 1, NULL, 0, '', '2021-01-14', '2021-01-15'),
+(52, 1, 175600, 4, 'bukti24.jpg', '2021-01-15', '2021-01-16'),
+(53, 1, NULL, 0, '', '2021-01-15', '2021-01-16'),
+(54, 7, 153000, 0, '', '2021-01-15', '2021-01-16');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `users`
+--
+
+CREATE TABLE `users` (
+  `id_user` int(11) NOT NULL,
+  `id_grup` int(11) DEFAULT NULL,
+  `nama` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `date_created` date DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id_user`, `id_grup`, `nama`, `email`, `password`, `date_created`) VALUES
+(1, 3, 'Pelanggan 1', 'pelanggan@gmail.com', '$2y$10$lKbhoHUExeFONB.t6yVASutWMYOmo9e7wSDOvXYedd9.F0mmSIFry', '2020-12-22'),
+(2, 1, 'Pemilik', 'pemilik@gmail.com', '$2y$10$gUXPIGBGnduJLziOVJNB3.P90ovqw.2DphvQb.drKj5Airw7E22tW', '2020-12-22'),
+(3, 2, 'Pegawai', 'pegawai@gmail.com', '$2y$10$6H9u.vCSOo7CAR1EkF.GIu.MKh.wlv8C5hbMu1SD55SdV.XBVz0Pu', '2020-12-22'),
+(4, 3, 'Pelanggan 2', 'test@gmail.com', '$2y$10$WqtTpmaL6g6ouMS3c/qnK.IigJ/YMEAUaaZti5w9RqTJkbcXplLku', '2020-12-22'),
+(5, 3, 'pelanggan', 'testpelanggan@gmail.com', '$2y$10$jLpQjbzUMtLg8g20Mbu9y.zDgbfx.nOV6PVKuj0wbEovd36y93ZkW', '2020-12-24'),
+(6, 2, 'Ini Pegawai Baru', 'ROO@gmail.com', '$2y$10$KUn6zkMo/7MTqDyIiGWNCeGBMk/VbM.A1epCPe.XSdDAFNd8XpTIO', '2020-12-31'),
+(7, 3, 'Aless', 'peserta@gmail.com', '$2y$10$QLzNLgsRP9a4ibvKCzliaeOA5WK0zVjsX15AUGf64xT.h9/t/iIvC', '2021-01-15'),
+(8, 2, 'Roy Martin', 'Roy@gmail.com', '$2y$10$yc/leT68iBGgjMzxQlk/oepQHWEAjVE5hckiF2OA5DIa3QjJIrEZy', '2021-01-15');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `barang`
+--
+ALTER TABLE `barang`
+  ADD PRIMARY KEY (`id_barang`),
+  ADD KEY `BARANG_DISTRIBUTOR` (`id_distributor`),
+  ADD KEY `BARANG_kategori` (`id_kategori`);
+
+--
+-- Indeks untuk tabel `barang_delete`
+--
+ALTER TABLE `barang_delete`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `checkout`
+--
+ALTER TABLE `checkout`
+  ADD PRIMARY KEY (`id_checkout`),
+  ADD KEY `CHECKOUT_TRANSAKSI` (`id_transaksi`),
+  ADD KEY `CHECKOUT_BARANG` (`id_barang`);
+
+--
+-- Indeks untuk tabel `distributor`
+--
+ALTER TABLE `distributor`
+  ADD PRIMARY KEY (`id_distributor`);
+
+--
+-- Indeks untuk tabel `grup`
+--
+ALTER TABLE `grup`
+  ADD PRIMARY KEY (`id_grup`);
+
+--
+-- Indeks untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id_kategori`);
+
+--
+-- Indeks untuk tabel `keranjang`
+--
+ALTER TABLE `keranjang`
+  ADD PRIMARY KEY (`id_keranjang`),
+  ADD KEY `KERANJANG_USER` (`id_user`),
+  ADD KEY `KERANJANG_BARANG` (`id_barang`);
+
+--
+-- Indeks untuk tabel `pegawai`
+--
+ALTER TABLE `pegawai`
+  ADD PRIMARY KEY (`id_pegawai`),
+  ADD KEY `PEGAWAI_USER` (`id_user`);
+
+--
+-- Indeks untuk tabel `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  ADD PRIMARY KEY (`id_pelanggan`),
+  ADD KEY `PELANGGAN_USER` (`id_user`);
+
+--
+-- Indeks untuk tabel `pemilik`
+--
+ALTER TABLE `pemilik`
+  ADD PRIMARY KEY (`id_pemilik`);
+
+--
+-- Indeks untuk tabel `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`status_bayar`);
+
+--
+-- Indeks untuk tabel `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id_transaksi`),
+  ADD KEY `TRANSAKSI_USER` (`id_user`),
+  ADD KEY `TRANSAKSI_STATUS` (`status_bayar`);
+
+--
+-- Indeks untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `USER_GRUP` (`id_grup`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `barang`
+--
+ALTER TABLE `barang`
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+
+--
+-- AUTO_INCREMENT untuk tabel `barang_delete`
+--
+ALTER TABLE `barang_delete`
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `checkout`
+--
+ALTER TABLE `checkout`
+  MODIFY `id_checkout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+
+--
+-- AUTO_INCREMENT untuk tabel `distributor`
+--
+ALTER TABLE `distributor`
+  MODIFY `id_distributor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT untuk tabel `grup`
+--
+ALTER TABLE `grup`
+  MODIFY `id_grup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT untuk tabel `keranjang`
+--
+ALTER TABLE `keranjang`
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- AUTO_INCREMENT untuk tabel `pegawai`
+--
+ALTER TABLE `pegawai`
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `pemilik`
+--
+ALTER TABLE `pemilik`
+  MODIFY `id_pemilik` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `status`
+--
+ALTER TABLE `status`
+  MODIFY `status_bayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `transaksi`
+--
+ALTER TABLE `transaksi`
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT untuk tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `barang`
+--
+ALTER TABLE `barang`
+  ADD CONSTRAINT `BARANG_DISTRIBUTOR` FOREIGN KEY (`id_distributor`) REFERENCES `distributor` (`id_distributor`),
+  ADD CONSTRAINT `BARANG_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
+
+--
+-- Ketidakleluasaan untuk tabel `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD CONSTRAINT `TRANSAKSI_STATUS` FOREIGN KEY (`status_bayar`) REFERENCES `status` (`status_bayar`),
+  ADD CONSTRAINT `TRANSAKSI_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+
+--
+-- Ketidakleluasaan untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `USER_GRUP` FOREIGN KEY (`id_grup`) REFERENCES `grup` (`id_grup`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
